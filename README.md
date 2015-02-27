@@ -16,6 +16,12 @@ A redesign of http://www.propokertools.com/
 1. `node app.js`
 1. Open http://localhost:8080/
 
+## Running tests
+
+1. `node test/`
+
+:)
+
 ## Deploying to Heroku
 
 Note, not everyone can do this, currently ours is hosted on @Nava2's account.
