@@ -6,7 +6,7 @@ var assert  = require("assert"),
 var url = 'localhost:8080';
 
 describe('/submit POST', function () {
-    it('should return an ID in JSON format', function () {
+    it('should return an ID in JSON format', function (done) {
         request(url)
             .post('/submit')
             .send({
@@ -21,17 +21,19 @@ describe('/submit POST', function () {
                 }
 
                 should(res.body).have.property('id').and.be.a.String;
+
+                done();
             });
     });
 });
 
 describe('/status GET', function () {
-    it('should return Error on undefined ID', function () {
+    it('should return Error on undefined ID', function (done) {
         request(url)
             .get('/status/baaaaad')
             .send()
-            .expect(204)
-            .expect('Content-Type', /json/)
+            .expect(200)
+            .expect('content-type', /json/)
             .end(function (err, res) {
                 if (err) throw err;
 
@@ -39,17 +41,18 @@ describe('/status GET', function () {
                 should(res.body).have.property('message').and.be.a.String;
 
                 assert(/^Error/.test(res.body.message));
+                done();
             });
     });
 
-    it('should return a new ID that has a status of Running', function () {
+    it('should return a new ID that has a status of Running', function (done) {
         request(url)
             .post('/submit')
             .send({
                 table: ['ah', 'td', 'jh'],
                 hands: [['ac', 'jd'], ['as', 'qs']]
             })
-            .expect('Content-Type', /json/)
+            .expect('content-type', /json/)
             .expect(200)
             .end(function (err, res) {
                 if (err) {
@@ -80,6 +83,9 @@ describe('/status GET', function () {
 
                             if (/^Running/.test(res.body.message)) {
                                 setTimeout(callReq, 100);
+                            } else {
+                                assert(/^\s*<div class='onesimbox'/.test(res.body.message));
+                                done();
                             }
                         });
                 }

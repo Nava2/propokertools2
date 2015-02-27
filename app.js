@@ -92,13 +92,12 @@ app.get('/status/:id', function (req, res) {
 
     console.log('/status - ID: ' + id);
 
-    if (_.isUndefined(id)) {
+    if (_.isUndefined(sessions[id])) {
         // undefined session id
         res.json({
-            'id' : req.params.id,
-            'message' : "Error: Unknown Session ID"
-        });
-        res.sendStatus(204);
+                'id' : req.params.id,
+                'message' : "Error: Unknown Session ID"
+            });
 
         return;
     }
@@ -106,7 +105,7 @@ app.get('/status/:id', function (req, res) {
     // valid session id
     res.json({
         'id' : req.params.id,
-        'message' : sessions[req.params.id]
+        'message' : sessions[id]
     });
 
     //delete sessions[req.params.id];
