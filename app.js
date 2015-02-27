@@ -1,5 +1,4 @@
-var jade = require("jade"),
-    express = require('express'),
+var express = require('express'),
     bodyParser = require('body-parser'),
     _ = require('underscore'),
     request = require('superagent');
@@ -10,16 +9,26 @@ var querystring = require('querystring');
 var app = express();
 app.use(bodyParser.json());
 
-app.set('views', './views');
-app.set('view engine', 'jade');
-
 /* ***********************************
  * Static routes
  * ***********************************/
 
- app.get('/', function (req, res) {
+ app.get('/', function (err, res) {
+     var options = {
+         root: __dirname + '/public/',
+         dotfiles: 'deny',
+         headers: {
+             'x-timestamp': Date.now(),
+             'x-sent': true
+         }
+     };
 
-    res.render('index', {pageTitle: 'wat', youAreUsingJade: true});
+     res.sendFile('index.html', options, function (err) {
+         if (err) {
+             console.log(err);
+             res.status(err.status).end();
+         }
+     });
 });
 
 /* ***********************************
@@ -62,7 +71,6 @@ app.post('/submit', function (req, res) {
 
     // create the post data (key value) pairs
     var postData = querystring.stringify(_.extend(baseQuery, hands, { b : data.table.join('') }));
-    console.log(postData);
 
     var sessionId = _.uniqueId('session_');
     sessions[sessionId] = "Running";
@@ -89,8 +97,6 @@ app.post('/submit', function (req, res) {
  */
 app.get('/status/:id', function (req, res) {
     var id = req.params.id;
-
-    console.log('/status - ID: ' + id);
 
     if (_.isUndefined(sessions[id])) {
         // undefined session id
