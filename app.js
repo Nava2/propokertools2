@@ -1,7 +1,8 @@
-var jade = require("jade");
-var express = require('express');
-var bodyParser = require('body-parser');
-var _ = require('underscore');
+var jade = require("jade"),
+    express = require('express'),
+    bodyParser = require('body-parser'),
+    _ = require('underscore'),
+    request = require('superagent');
 
 var http = require('http');
 var querystring = require('querystring');
@@ -29,13 +30,6 @@ var test = {
 
 var sessions = {};
 
-var propokerOptions = {
-    hostname: 'www.propokertools.com',
-    port: 80,
-    path: '/simulations/results_box',
-    method: 'POST'
-};
-
 /**
  * {
  *  table: ['ah', 'td', 'jh'],
@@ -49,49 +43,50 @@ app.post('/submit', function (req, res) {
     var data = req.body;
     if (_.isUndefined(data.hands)) data = test;
 
-    //  http://www.propokertools.com/simulations/results_box?g=he&s=generic&b=ackcqc&d=&h1=jckh&h2=adah&h3=&h4=&h5=&h6=
     var hands = _.object(data.hands.map(function (hand, i) {
        return ['h' + (i + 1), hand.join('')];
     }));
 
+    // create the post data (key value) pairs
     var postData = querystring.stringify(_.extend(baseQuery, hands, { b : data.table.join('') }));
 
     var sessionId = _.uniqueId('session_');
     sessions[sessionId] = "Running";
 
-    var _req = http.request(_.extend(propokerOptions, {
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            'Content-Length': postData.length
-        }
-    }), function(_res) {
-        console.log('STATUS: ' + _res.statusCode);
-        console.log('HEADERS: ' + JSON.stringify(_res.headers));
-        _res.setEncoding('utf8');
-        _res.on('data', function (chunk) {
-            console.log('BODY: ' + chunk);
-            // TODO parse the chunk which is html into JSON
-            sessions[sessionId] = chunk;
+    request.post('http://www.propokertools.com/simulations/results_box')
+        .send(postData)
+        .end(function (err, _res) {
+            if (err) throw err;
+
+            sessions[sessionId] = _res.body;
+
+            console.log('STATUS: ' + _res.statusCode);
+            console.log('HEADERS: ' + JSON.stringify(_res.headers));
         });
-    });
-
-    _req.on('error', function(e) {
-        console.log('problem with request: ' + e.message);
-        sessions[sessionId] = e.message;
-    });
-
-// write data to request body
-    _req.write(postData);
-    _req.end();
 
     res.json({'id' : sessionId});
 });
 
 app.get('/session/:id', function (req, res) {
-    console.log('ID: ' + req.params.id);
+    var id = req.params.id;
+
+    console.log('/session - ID: ' + id);
+
+    if (_.isUndefined(id)) {
+        // undefined session id
+        res.json({
+            'id' : req.params.id,
+            'message' : "Error: Unknown Session ID"
+        });
+        res.sendStatus(204);
+
+        return;
+    }
+
+    // valid session id
     res.json({
         'id' : req.params.id,
-        'message' : _.isUndefined(sessions[req.params.id]) ? "Error: Unknown Session ID" : sessions[req.params.id]
+        'message' : sessions[req.params.id]
     });
 
     //delete sessions[req.params.id];
