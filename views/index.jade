@@ -1,20 +1,35 @@
 doctype html
 html(lang="en")
     head
-        title= pageTitle
+        title= ProPokerTools2
+        script(src='//code.jquery.com/jquery-2.1.3.min.js')
+
         script(type='text/javascript').
-            if (foo) {
-                bar(1 + 5);
-            }
-    body
-        h1 Jade - node template engine
-        #container.col
-            if youAreUsingJade
-                p You are amazing
-            else
-                p Get on it!
-            p.
-                Jade is a terse and simple
-                templating language with a
-                strong focus on performance
-                and powerful features.
+            $(document).ready(function () {
+                $('#submitBtn').click(function () {
+                    $.post("/submit", {
+                        table: ['ah', 'td', 'jh'],
+                        hands: [['ac', 'jd'], ['as', 'qs']]
+                    }, function (data) {
+                        var id = data.id;
+
+                        function reqStatus() {
+                            $.get("/status/" + id, function (data) {
+                                if (!/^(?:Error|Running)/.test(data.message)) {
+                                    $('#output').append('<pre>' + JSON.stringify(data) + '</pre>');
+                                } else {
+                                    setTimeout(reqStatus, 100);
+                                }
+                            });
+                        }
+
+                        setTimeout(reqStatus, 100);
+                    });
+                });
+            });
+
+body
+        h1 ProPokerTools2
+
+        button#submitBtn Click Me Fool!
+        #output
