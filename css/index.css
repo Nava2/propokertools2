@@ -1,0 +1,46 @@
+#container{
+	width: 100%;
+	height: 100%;
+}
+
+#table{
+	border: 2px solid blue;
+	height: 80%;
+	width: 68%;
+	float: left;
+}
+
+#sidebar{
+	border: 2px solid red;
+	float: right;
+	width: 30%;
+	height: 100%;
+}
+
+#sidebar h2{
+	text-align: center;
+	height: 50px;
+	background: -webkit-linear-gradient(whie,rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(white, rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(white,rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(white,rgba(117, 200, 255, 1)); /* Standard syntax */
+}
+
+#footer{
+	float: left;
+	border: 2px solid green;
+	height: 20%;
+	width: 68%;
+}
+
+#simulate, #reset{
+	float: right;
+	margin: 5px;
+}
+
+#pokerTable{
+	display: block;
+   	margin-left: auto;
+    	margin-right: auto;
+	z-index: -10;
+}
