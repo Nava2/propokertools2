@@ -124,6 +124,25 @@
 }
 
 /*********************
+* Modal CSS
+**********************/
+.card-row{
+	padding-bottom:2%;
+}
+
+.card-row > img{
+	padding-left: 2%;
+}
+
+.collapse.width {
+    height: auto;
+    -webkit-transition: width 0.35s ease;
+    -moz-transition: width 0.35s ease;
+    -o-transition: width 0.35s ease;
+    transition: width 0.35s ease;
+}
+
+/*********************
 * Misc CSS
 **********************/
 .blue-gradient{
