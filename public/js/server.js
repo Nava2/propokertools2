@@ -1,5 +1,5 @@
-function submitData(boardData, callback){
-   
+
+function submitData(boardData, callback) {
 
     $.ajax({
         url : '/submit',
