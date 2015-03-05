@@ -8,12 +8,20 @@ $('#simulate').click(function () {
    });
 });
 
-
 $('#cardPicker').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget)[0] // Button that triggered the modal
-    var playerId = button.id;
+    var button = $(event.relatedTarget) // Button that triggered the modal
+    var playerId = button.attr('data-playerId');
+    var numCards = button.attr('data-numCards');
 
-    <!-- TODO get cards from card repo-->
-    $("#mCardInput").val(playerId);
+    console.log(playerId);
+    console.log(numCards);
 
+    var $modal = $(this);
+    $modal.data("playerId",playerId);
+    
+    <!-- TODO: implement num cards functionality -->
+})
+
+$("#saveCards").click(function(){
+    console.log("Saving changes for player id: "+$("#cardPicker").data("playerId"));
 })
