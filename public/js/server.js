@@ -1,8 +1,5 @@
 function submitData(boardData, callback){
-    boardData = {
-            table: { flop: ['ah', 'td', 'jh'] },
-            hands: [['ac', 'jd'], ['90%']]
-        };
+   
 
     $.ajax({
         url : '/submit',
@@ -16,7 +13,6 @@ function submitData(boardData, callback){
             function reqStatus() {
                 $.get("/status/" + id, function (data) {
                     if (!/^(?:Error|Running)/.test(data.message)) {
-                        $('#output').append($('<pre>').text(JSON.stringify(data.message, null, '  ')));
                         callback(data.message);
                     } else {
                         setTimeout(reqStatus, 100);
