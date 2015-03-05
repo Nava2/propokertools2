@@ -3,41 +3,18 @@
 <head>
     <title>ProPokerTools2 :3</title>
     <script src="//code.jquery.com/jquery-2.1.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="../css/index.css">
-    <script type="text/javascript">
-    // This should be in index.js, I was being lazy
-    $(document).ready(function () {
-        $('#submitBtn').click(function () {
-            $.post("/submit", {
-                table: ['ah', 'td', 'jh'],
-                hands: [['ac', 'jd'], ['as', 'qs']]
-            }, function (data) {
-                var id = data.id;
+    <link rel="stylesheet" type="text/css" href="css/index.css">
 
-                function reqStatus() {
-                    $.get("/status/" + id, function (data) {
-                        if (!/^(?:Error|Running)/.test(data.message)) {
-                            $('#output').append('<pre>' + JSON.stringify(data) + '</pre>');
-                        } else {
-                            setTimeout(reqStatus, 100);
-                        }
-                    });
-                }
-
-                setTimeout(reqStatus, 100);
-            });
-        });
-    });
-    </script>
 </head>
-</html>
+
 <body>
 <h1>ProPokerTools2</h1>
 <div id="container">
 	<div id="table">
-		<img src="../images/table.svg" alt="Poker Table" id="pokerTable">
+		<img src="images/table.svg" alt="Poker Table" id="pokerTable">
         <div id="p1" class="circle blue-gradient">+</div>
         <div id="p2" class="circle black-gradient">+</div>
         <div id="p3" class="circle black-gradient">+</div>
@@ -63,4 +40,11 @@
 		<button id="simulate" class="btn btn-lg btn-success">Simulate</button>
 	</div>
 </div>
+
+<div id="output">
+
+</div>
 </body>
+
+<script src="js/index.js"></script>
+</html>
