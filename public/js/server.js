@@ -1,6 +1,4 @@
-
 function submitData(boardData, callback) {
-
     $.ajax({
         url : '/submit',
         type : "POST",
