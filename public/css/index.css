@@ -12,9 +12,8 @@
 * Main Table CSS
 **********************/
 #table{
-	border: 2px solid blue;
-	height: 80%;
-	width: 68%;
+	height: 620px;
+	width: 800px;
 	float: left;
 	position: relative;
 }
@@ -68,7 +67,6 @@
 	left: 28%;
 	bottom: 235px;
 }
-
 /* Player circle class */
 .circle {
 	/*Circle Drawing*/
@@ -87,6 +85,54 @@
 	color: white;
 }
 
+/* Cards On Board */
+#flop {
+    border: 2px solid #a1a1a1;
+    background-color: rgba(200,200,200,0.5);
+    width: 185px;
+    height: 80px;
+    border-radius: 10px;
+    position: relative;
+    left: 40%;
+    bottom: 460px;
+}
+
+#turn {
+	border: 2px solid #a1a1a1;
+    background-color: rgba(200,200,200,0.5);
+    width: 65px;
+    height: 80px;
+    border-radius: 10px;
+    position: relative;
+    left: 67%;
+    bottom: 540px;
+}
+
+#river {
+	border: 2px solid #a1a1a1;
+    background-color: rgba(200,200,200,0.5);
+    width: 65px;
+    height: 80px;
+    border-radius: 10px;
+    position: relative;
+    left: 80%;
+    bottom: 620px;
+}
+
+.card {
+	width: 50px;
+	height: 70px;
+	float: left;
+	margin: 5px;
+	/* + sign */
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 55px;
+	font-size: 50px;
+	font-weight: bold;
+	color: white;
+}
 /*********************
 * Sidebar CSS
 **********************/
@@ -146,6 +192,7 @@
 * Misc CSS
 **********************/
 .blue-gradient{
+	border: 2px solid #a1a1a1;
 	background: -webkit-linear-gradient(rgba(211, 236, 255, 0.9),rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
  	background: -o-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
   	background: -moz-linear-gradient(rgba(211, 236, 255, 0.9),rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
@@ -153,6 +200,7 @@
 }
 
 .black-gradient{
+	border: 2px solid #a1a1a1;
 	background: -webkit-linear-gradient(gray,black); /* For Safari 5.1 to 6.0 */
  	background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
   	background: -moz-linear-gradient(gray,black); /* For Firefox 3.6 to 15 */
