@@ -1,4 +1,10 @@
 doctype html(lang='en')
+
+mixin card_img(suit, card)
+   - var lsuiy = suit.toLowerCase();
+   - var letter = suit[0];
+   img(src='images/Cards/#{suit}/#{card}#{letter}.svg')&attributes(attributes)
+
 head
    title ProPokerTools2 :3
 
@@ -60,10 +66,9 @@ body
                   - var suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
                   .col-md-9
                      - suits.forEach(function (suit) {
-                        - var lsuit = suit.toLowerCase(), letter = suit[0];
-                        .card-selection(id='card-selection-#{lsuit}')
+                        .card-selection(id='card-selection-#{suit.toLowerCase()}')
                            - cards.forEach(function (card) {
-                              img(id='card-#{lsuit}-#{card}#{letter}' src='images/Cards/#{suit}/#{card}#{letter}.svg')
+                              +card_img(suit, card)(id='card-#{suit.toLowerCase()}-#{card}#{suit[0]}')
                            - });
                      - });
             .modal-footer
