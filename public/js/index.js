@@ -9,7 +9,7 @@ $('#simulate').click(function () {
 });
 
 $('#cardPicker').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget) // Button that triggered the modal
+    var button = $(event.relatedTarget); // Button that triggered the modal
     var playerId = button.attr('data-playerId');
     var numCards = button.attr('data-numCards');
 
@@ -20,8 +20,8 @@ $('#cardPicker').on('show.bs.modal', function (event) {
     $modal.data("playerId",playerId);
     
     <!-- TODO: implement num cards functionality -->
-})
+});
 
 $("#saveCards").click(function(){
     console.log("Saving changes for player id: "+$("#cardPicker").data("playerId"));
-})
+});

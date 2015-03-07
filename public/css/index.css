@@ -172,12 +172,27 @@
 /*********************
 * Modal CSS
 **********************/
-.card-row{
-	padding-bottom:2%;
+
+.card-display {
+	padding-bottom: 2%;
 }
 
-.card-row > img{
+.card-display img {
 	padding-left: 2%;
+	padding-bottom: 0.75em;
+}
+
+.card-display img:nth-child(5n) {
+	clear: both;
+}
+
+.suit-select {
+	border-right: 1px solid rgb(229, 229, 229);
+	text-align: center;
+}
+
+.suit-select img {
+	width: 58%; /* 20% * 9 / 3 - 2% padding */
 }
 
 .collapse.width {
