@@ -8,6 +8,9 @@ var http = require('http');
 var querystring = require('querystring');
 
 var app = express();
+
+app.set('views', './views');
+app.set('view engine', 'jade');
 app.use(bodyParser.json());
 
 app.set('port', (process.env.PORT || 8080));
@@ -18,21 +21,7 @@ app.use(express.static(__dirname + '/public'));
  * ***********************************/
 
  app.get('/', function (err, res) {
-     var options = {
-         root: __dirname + '/public/',
-         dotfiles: 'deny',
-         headers: {
-             'x-timestamp': Date.now(),
-             'x-sent': true
-         }
-     };
-
-     res.sendFile('index.html', options, function (err) {
-         if (err) {
-             console.log(err);
-             res.status(err.status).end();
-         }
-     });
+     res.render('index');
 });
 
 /* ***********************************

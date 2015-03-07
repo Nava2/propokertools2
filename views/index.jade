@@ -1,0 +1,75 @@
+doctype html(lang='en')
+head
+   title ProPokerTools2 :3
+
+   //- remote scripts
+   script(src='//code.jquery.com/jquery-2.1.3.min.js')
+   script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js')
+   link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+   script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+   link(rel='stylesheet', type='text/css', href='css/index.css')
+
+body
+   h1 ProPokerTools2
+   #container
+      #table
+         img#pokerTable(src='images/table.svg', alt='Poker Table')
+         #p1.circle.blue-gradient(data-toggle='modal', data-target='#cardPicker', data-playerid='p1', data-numcards='2')
+            | +
+         #p2.circle.black-gradient +
+         #p3.circle.black-gradient +
+         #p4.circle.black-gradient +
+         #p5.circle.black-gradient +
+         #p6.circle.black-gradient +
+         #flop
+            - for (var i = 0; i < 3; ++i)
+             .card.blue-gradient(id="f#{i}") +
+         #turn
+            #t1.black-gradient.card
+         #river
+            #r1.black-gradient.card
+
+      #sidebar
+         h2.blue-gradient Output
+
+      #footer
+         h5 Footer
+         button#reset.btn.btn-lg.btn-danger Reset
+         button#simulate.btn.btn-lg.btn-success Simulate
+
+   #output
+
+   // Card Picker Modal
+   #cardPicker.modal.fade(tabindex='-1', role='dialog', aria-labelledby='Card Picker', aria-hidden='true')
+      .modal-dialog
+         .modal-content
+            .modal-header
+               button.close(type='button', data-dismiss='modal', aria-label='Close')
+                  span(aria-hidden='true') &times;
+               h4#myModalLabel.modal-title Pick Cards
+
+            .modal-body.card-display
+               .row
+                  .col-md-3.suit-select
+                     img#suit-clubs(src='images/Cards/Clubs/AC.svg')
+                     img#suit-diamonds(src='images/Cards/Diamonds/AD.svg')
+                     img#suit-hearts(src='images/Cards/Hearts/AH.svg')
+                     img#suit-spades(src='images/Cards/Spades/AS.svg')
+
+                  - var cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
+                  - var suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
+                  .col-md-9
+                     - suits.forEach(function (suit) {
+                        - var lsuit = suit.toLowerCase(), letter = suit[0];
+                        .card-selection(id='card-selection-#{lsuit}')
+                           - cards.forEach(function (card) {
+                              img(id='card-#{lsuit}-#{card}#{letter}' src='images/Cards/#{suit}/#{card}#{letter}.svg')
+                           - });
+                     - });
+            .modal-footer
+               button.btn.btn-default(type='button', data-dismiss='modal') Close
+               button#saveCards.btn.btn-primary(type='button') Save changes
+
+   //- local scripts:
+   script(src='js/server.js')
+   script(src='js/index.js')

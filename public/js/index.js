@@ -4,7 +4,7 @@ $('#simulate').click(function () {
             hands: [['ac', 'jd'], ['90%']]
         };
    submitData(boardData, function(data){
-        $('#output').append($('<pre>').text(JSON.stringify(data.message, null, '  ')));
+        $('#output').append($('<pre>').text(JSON.stringify(data, null, '  ')));
    });
 });
 
