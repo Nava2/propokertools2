@@ -5,6 +5,18 @@ mixin card_img(suit, card)
    - var letter = suit[0];
    img(src='images/Cards/#{suit}/#{card}#{letter}.svg')&attributes(attributes)
 
+//- Creates a player circle, if the player number is 1 it will make it blue
+mixin player_circle(playerNo)
+   div.circle(
+      id='p' + playerNo
+      class=(playerNo === 1 ? 'blue' : 'black') + '-gradient'
+      data-toggle= 'modal'
+      data-target= '#cardPicker'
+      data-playerid= 'p' + playerNo
+      data-numcards= '2'
+   )
+      p.plus-content +
+
 head
    title ProPokerTools2 :3
 
@@ -21,20 +33,16 @@ body
    #container
       #table
          img#pokerTable(src='images/table.svg', alt='Poker Table')
-         #p1.circle.blue-gradient(data-toggle='modal', data-target='#cardPicker', data-playerid='p1', data-numcards='2')
-            | +
-         #p2.circle.black-gradient +
-         #p3.circle.black-gradient +
-         #p4.circle.black-gradient +
-         #p5.circle.black-gradient +
-         #p6.circle.black-gradient +
+         - for (var i = 1; i <= 6; ++i)
+            +player_circle(i)
+
          #flop
             - for (var i = 0; i < 3; ++i)
-             .card.blue-gradient(id="f#{i}") +
+             .table-card.blue-gradient(id="f#{i}") +
          #turn
-            #t1.black-gradient.card
+            #t1.black-gradient.table-card
          #river
-            #r1.black-gradient.card
+            #r1.black-gradient.table-card
 
       #sidebar
          h2.blue-gradient Output
@@ -73,20 +81,22 @@ body
                               img#suit-hearts(src='images/Cards/Hearts/AH.svg')
                               img#suit-spades(src='images/Cards/Spades/AS.svg')
 
-                           - var cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
-                           - var suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
                            .col-md-9
-                              - suits.forEach(function (suit) {
+                              each suit in ['Clubs', 'Diamonds', 'Hearts', 'Spades']
                                  .card-display.card-selection(id='card-selection-#{suit.toLowerCase()}')
-                                    - cards.forEach(function (card) {
+                                    each card in ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
                                        +card_img(suit, card)(id='card-#{suit.toLowerCase()}-#{card}#{suit[0]}')
-                                    - });
-                              - });
 
                      li
                         h2: span Advanced...
                         #advanced-content
                            p Content Here please. :D
+               .row
+
+                  ul#picked-cards
+                     li.pick-card.blue-gradient.plus-content: p +
+                     li.pick-card.black-gradient.plus-content: p +
+                     li.pick-card.black-gradient.plus-content: p +
 
             .modal-footer
                button.btn.btn-default(type='button', data-dismiss='modal') Close
