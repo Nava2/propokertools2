@@ -6,7 +6,7 @@ mixin card_img(suit, card)
 
 //- Creates a player circle, if the player number is 1 it will make it blue
 mixin player_circle(playerNo)
-   div.circle(
+   .player.circle(
       id=            'p' + playerNo
       class=         (playerNo === 1 ? 'blue' : 'black') + '-gradient'
       data-toggle=   'modal'
@@ -31,23 +31,26 @@ body
    #content
       h1 ProPokerTools2
       #container
-         #table
-            img#pokerTable(src='images/table.svg', alt='Poker Table')
-            - for (var i = 1; i <= 6; ++i)
-               +player_circle(i)
+         .row
+            #table.col-md-9
+               //img#pokerTable(src='images/table.svg', alt='Poker Table')
+               - for (var i = 1; i <= 6; ++i)
+                  +player_circle(i)
 
-            #flop
-               - for (var i = 0; i < 3; ++i)
-                .table-card.blue-gradient(id="f#{i}") +
-            #turn
-               #t1.black-gradient.table-card
-            #river
-               #r1.black-gradient.table-card
+               ul#table-cards
+                  li#flop
+                     ul
+                        - for (var i = 0; i < 3; ++i)
+                           li.table-card.blue-gradient(id="f#{i}") +
+                  li#turn
+                     #t1.black-gradient.table-card +
+                  li#river
+                     #r1.black-gradient.table-card +
 
-         #sidebar
-            h2.blue-gradient Output
+            #sidebar.col-md-3
+               h2.blue-gradient Output
 
-         #footer
+         #footer.row.col-md-12
             h5 Footer
             button#reset.btn.btn-lg.btn-danger Reset
             button#simulate.btn.btn-lg.btn-success Simulate
