@@ -173,6 +173,11 @@
 * Modal CSS
 **********************/
 
+.modal-dialog{
+	width: 750px;
+	height: 100%;
+}
+
 .card-display {
 	padding-bottom: 2%;
 }
@@ -196,6 +201,10 @@
 .suit-select img {
 	width: 58%; /* 20% * 9 / 3 - 2% padding */
 	height: auto;
+}
+
+.card-selection {
+	padding-right: 2%;
 }
 
 #card-selection-spades {

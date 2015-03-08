@@ -14,6 +14,7 @@ head
    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
    link(rel='stylesheet', type='text/css', href='css/index.css')
+   link(rel='stylesheet', type='text/css', href='css/liteAccordion/liteaccordion.css')
 
 body
    h1 ProPokerTools2
@@ -54,23 +55,34 @@ body
                   span(aria-hidden='true') &times;
                h4#myModalLabel.modal-title Pick Cards
 
-            .modal-body.card-display
-               .row
-                  .col-md-3.suit-select
-                     img#suit-clubs(src='images/Cards/Clubs/AC.svg')
-                     img#suit-diamonds(src='images/Cards/Diamonds/AD.svg')
-                     img#suit-hearts(src='images/Cards/Hearts/AH.svg')
-                     img#suit-spades(src='images/Cards/Spades/AS.svg')
+            .modal-body
+               #liteAccordion
+                  ol
+                     li
+                        h2: span Main Card Selection...
 
-                  - var cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
-                  - var suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
-                  .col-md-9
-                     - suits.forEach(function (suit) {
-                        .card-selection(id='card-selection-#{suit.toLowerCase()}')
-                           - cards.forEach(function (card) {
-                              +card_img(suit, card)(id='card-#{suit.toLowerCase()}-#{card}#{suit[0]}')
-                           - });
-                     - });
+                        .card-display.row
+                           .col-md-3.suit-select
+                              img#suit-clubs(src='images/Cards/Clubs/AC.svg')
+                              img#suit-diamonds(src='images/Cards/Diamonds/AD.svg')
+                              img#suit-hearts(src='images/Cards/Hearts/AH.svg')
+                              img#suit-spades(src='images/Cards/Spades/AS.svg')
+
+                           - var cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
+                           - var suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
+                           .col-md-9
+                              - suits.forEach(function (suit) {
+                                 .card-selection(id='card-selection-#{suit.toLowerCase()}')
+                                    - cards.forEach(function (card) {
+                                       +card_img(suit, card)(id='card-#{suit.toLowerCase()}-#{card}#{suit[0]}')
+                                    - });
+                              - });
+
+                     li
+                        h2: span Advanced...
+                        #advanced-content
+                           p Content Here please. :D
+
             .modal-footer
                button.btn.btn-default(type='button', data-dismiss='modal') Close
                button#saveCards.btn.btn-primary(type='button') Save changes
@@ -78,3 +90,4 @@ body
    //- local scripts:
    script(src='js/server.js')
    script(src='js/index.js')
+   script(src='js/liteAccordion/liteaccordion.jquery.min.js')

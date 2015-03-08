@@ -22,6 +22,13 @@ $('#cardPicker').on('show.bs.modal', function (event) {
     <!-- TODO: implement num cards functionality -->
 });
 
-$("#saveCards").click(function(){
-    console.log("Saving changes for player id: "+$("#cardPicker").data("playerId"));
+$("#saveCards").click(function() {
+    console.log("Saving changes for player id: " + $("#cardPicker").data("playerId"));
+});
+
+$(window).load(function() {
+    $('#liteAccordion').liteAccordion({
+        containerWidth: 700,
+        containerHeight: 550
+    });
 });
