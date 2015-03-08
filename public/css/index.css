@@ -1,9 +1,10 @@
-/* TEMP */
-#output {
-    clear: both;
+
+#content {
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
-#container{
+#container {
 	width: 100%;
 	height: 100%;
 }
@@ -11,62 +12,56 @@
 /*********************
 * Main Table CSS
 **********************/
-#table{
-	height: 620px;
-	width: 800px;
-	float: left;
-	position: relative;
+#table {
+	background : url(../images/table.svg) center no-repeat;
+	background-size: contain;
+	min-height: 620px;
+	border: solid 1px blue;
+
+	overflow: auto;
 }
 
-/* Poker Table Img */
-#pokerTable{
-	display: block;
-   	left: 15%;
-	z-index: -1;
-	position: relative;
+.player {
+	position: absolute;
+
 }
 
 /* Player 1's circle position */
 #p1 {
-	position: relative;
-   	left: 45%;
-    bottom: 200px;
+   	left: 46.5%;
+	bottom: 15%;
 }
 
 /* Player 2's circle position */
 #p2 {
-	position: relative;
-	left: 10%;
-	bottom: 235px;
+	left: 20%;
+	bottom: 20%;
 }
 
 /* Player 3's circle position */
 #p3 {
-	position: relative;
-	left: 1%;
-	bottom: 500px;
+	left: 20%;
+	top: 20%;
 }
 
 /* Player 4's circle position */
 #p4 {
-	position: relative;
-   	left: 18%;
-    bottom: 535px;
+   	left: 46.5%;
+    top: 15%;
 }
 
 /* Player 5's circle position */
 #p5 {
-	position: relative;
-	left: 37%;
-	bottom: 500px;
+	right: 20%;
+	top: 20%;
 }
 
 /* Player 6's circle position */
 #p6 {
-	position: relative;
-	left: 28%;
-	bottom: 235px;
+	right: 20%;
+	bottom: 20%;
 }
+
 /* Player circle class */
 .circle {
 	/*Circle Drawing*/
@@ -98,6 +93,22 @@
 	color: white;
 }
 
+#table-cards {
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+
+	position: absolute;
+	left: 35%;
+	top: 40%;
+
+	padding: 2%;
+}
+
+#table-cards li {
+	margin-right: 2%;
+}
+
 /* Cards On Board */
 #flop {
     border: 2px solid #a1a1a1;
@@ -106,8 +117,18 @@
     height: 80px;
     border-radius: 10px;
     position: relative;
-    left: 40%;
-    bottom: 460px;
+}
+
+#flop ul {
+	display: flex;
+	flex-direction: row;
+	list-style: outside none none;
+	margin: 0 0;
+	padding: 2%;
+}
+
+#flop ul li {
+	margin: 2%;
 }
 
 #turn {
@@ -116,9 +137,6 @@
     width: 65px;
     height: 80px;
     border-radius: 10px;
-    position: relative;
-    left: 67%;
-    bottom: 540px;
 }
 
 #river {
@@ -128,8 +146,6 @@
     height: 80px;
     border-radius: 10px;
     position: relative;
-    left: 80%;
-    bottom: 620px;
 }
 
 .table-card {
@@ -155,7 +171,6 @@
 	position: relative;
 	border: 2px solid red;
 	float: right;
-	width: 30%;
 	height: 100%;
 }
 
@@ -172,11 +187,11 @@
 * Footer CSS
 **********************/
 #footer{
-	position: relative;
-	float: left;
+	/*position: relative;*/
+	/*float: left;*/
 	border: 2px solid green;
-	height: 20%;
-	width: 68%;
+	/*height: 20%;*/
+	/*width: 68%;*/
 }
 
 #simulate, #reset{
@@ -224,14 +239,15 @@
 
 .card-selection {
 	padding-right: 2%;
+	display: none;
 }
 
 #card-selection-spades {
-	display: none;
+
 }
 
 #card-selection-hearts {
-	display: none;
+
 }
 
 #card-selection-clubs {
@@ -239,7 +255,7 @@
 }
 
 #card-selection-diamonds {
-	display: none;
+
 }
 
 .collapse.width {
@@ -254,6 +270,8 @@
 	display: flex;
 	flex-direction: row;
 	margin-top: 2%;
+
+	list-style: none;
 
 }
 
