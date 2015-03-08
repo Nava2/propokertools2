@@ -25,3 +25,10 @@ $('#cardPicker').on('show.bs.modal', function (event) {
 $("#saveCards").click(function(){
     console.log("Saving changes for player id: "+$("#cardPicker").data("playerId"));
 })
+
+$(window).load(function() {
+    $('#liteAccordion').liteAccordion({
+        containerWidth: 700,
+        containerHeight: 550
+    });
+});
