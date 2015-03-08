@@ -75,11 +75,24 @@
     height: 100px;
     border-radius: 50%;
 	z-index: 1;
-	/* + sign */
+
 	display: inline-block;
-	text-align: center;
 	vertical-align: middle;
-	line-height: 85px;
+	overflow: hidden;
+}
+
+.plus-content {
+	/* Center the + */
+	display: flex;
+	justify-content:center;
+	align-content:center;
+	flex-direction:column;
+	/*vertical-align: middle;*/
+
+	height: 100%;
+
+	/* font style */
+	text-align: center;
 	font-size: 75px;
 	font-weight: bold;
 	color: white;
@@ -119,7 +132,7 @@
     bottom: 620px;
 }
 
-.card {
+.table-card {
 	width: 50px;
 	height: 70px;
 	float: left;
@@ -133,6 +146,8 @@
 	font-weight: bold;
 	color: white;
 }
+
+
 /*********************
 * Sidebar CSS
 **********************/
@@ -236,7 +251,6 @@
     transition: width 0.35s ease;
 }
 
-
 #search {
   background-color: #fff;
   padding:5px;
@@ -245,8 +259,33 @@
 }
 
 #search:focus {
-  border: 2px solid #0097cf;
+    border: 2px solid #0097cf;
 }
+
+#picked-cards {
+	display: flex;
+	flex-direction: row;
+
+}
+
+#picked-cards .pick-card {
+	width: 85px;
+	height: 126px;
+	padding-bottom: 2%;
+
+	float: left;
+	margin: 5px;
+}
+
+#picked-cards .pick-card p {
+	/* + sign */
+	font-size: 50px;
+	font-weight: bold;
+	color: white;
+
+	text-align: center;
+}
+
 /*********************
 * Misc CSS
 **********************/

@@ -4,6 +4,18 @@ mixin card_img(suit, card)
     - var classes = [suit.long.toLowerCase(), card.long.toLowerCase()]
     img(src='images/Cards/#{suit.long}/#{card.short}#{suit.short}.svg', class=classes)&attributes(attributes)
 
+//- Creates a player circle, if the player number is 1 it will make it blue
+mixin player_circle(playerNo)
+   div.circle(
+      id='p' + playerNo
+      class=(playerNo === 1 ? 'blue' : 'black') + '-gradient'
+      data-toggle= 'modal'
+      data-target= '#cardPicker'
+      data-playerid= 'p' + playerNo
+      data-numcards= '2'
+   )
+      p.plus-content +
+
 head
     title ProPokerTools2 :3
 
@@ -16,24 +28,20 @@ head
     link(rel='stylesheet', type='text/css', href='css/liteAccordion/liteaccordion.css')
 
 body
-    h1 ProPokerTools2
-    #container
-        #table
-            img#pokerTable(src='images/table.svg', alt='Poker Table')
-            #p1.circle.blue-gradient(data-toggle='modal', data-target='#cardPicker', data-playerid='p1', data-numcards='2')
-                | +
-            #p2.circle.black-gradient +
-            #p3.circle.black-gradient +
-            #p4.circle.black-gradient +
-            #p5.circle.black-gradient +
-            #p6.circle.black-gradient +
-            #flop
-                - for (var i = 0; i < 3; ++i)
-                .card.blue-gradient(id="f#{i}") +
-            #turn
-                #t1.black-gradient.card
-            #river
-                #r1.black-gradient.card
+   h1 ProPokerTools2
+   #container
+      #table
+         img#pokerTable(src='images/table.svg', alt='Poker Table')
+         - for (var i = 1; i <= 6; ++i)
+            +player_circle(i)
+
+         #flop
+            - for (var i = 0; i < 3; ++i)
+             .table-card.blue-gradient(id="f#{i}") +
+         #turn
+            #t1.black-gradient.table-card
+         #river
+            #r1.black-gradient.table-card
 
         #sidebar
             h2.blue-gradient Output
@@ -82,6 +90,12 @@ body
                                 h2: span Advanced...
                                 #advanced-content
                                     p Content Here please. :D
+
+                    .row
+                        ul#picked-cards
+                            li.pick-card.blue-gradient.plus-content: p +
+                            li.pick-card.black-gradient.plus-content: p +
+                            li.pick-card.black-gradient.plus-content: p +
 
                 .modal-footer
                     button.btn.btn-default(type='button', data-dismiss='modal') Close
