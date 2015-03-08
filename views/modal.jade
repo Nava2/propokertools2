@@ -1,0 +1,49 @@
+
+// Card Picker Modal
+#cardPicker.modal.fade(tabindex='-1', role='dialog', aria-labelledby='Card Picker', aria-hidden='true')
+  .modal-dialog
+     .modal-content
+        .modal-header
+           button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') &times;
+           h4#selection-title.modal-title
+              | Card Selection - (
+              span#currCard 1
+              | /
+              span#numCards 1
+              | )
+
+        .modal-body
+           #liteAccordion
+              ol
+                 li
+                    h2: span Main Card Selection...
+
+                    .row.simple-selection
+                       .col-md-2.suit-select.card-display
+                          img#suit-clubs(src='images/Cards/Clubs/AC.svg')
+                          img#suit-diamonds(src='images/Cards/Diamonds/AD.svg')
+                          img#suit-hearts(src='images/Cards/Hearts/AH.svg')
+                          img#suit-spades(src='images/Cards/Spades/AS.svg')
+
+                       .col-md-9
+                          //- Create hidden entities for all of the cards
+                          each suit in ['Clubs', 'Diamonds', 'Hearts', 'Spades']
+                             .card-display.card-selection(id='card-selection-#{suit.toLowerCase()}')
+                                each card in ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
+                                   +card_img(suit, card)(id='card-#{suit.toLowerCase()}-#{card}#{suit[0]}')
+
+                 li
+                    h2: span Advanced...
+                    #advanced-content
+                       p Content Here please. :D
+           .row
+
+              ul#picked-cards
+                 li.pick-card.blue-gradient.plus-content: p +
+                 li.pick-card.black-gradient.plus-content: p +
+                 li.pick-card.black-gradient.plus-content: p +
+
+        .modal-footer
+           button.btn.btn-default(type='button', data-dismiss='modal') Close
+           button#saveCards.btn.btn-primary(type='button') Save changes

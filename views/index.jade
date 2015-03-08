@@ -8,11 +8,11 @@ mixin card_img(suit, card)
 //- Creates a player circle, if the player number is 1 it will make it blue
 mixin player_circle(playerNo)
    div.circle(
-      id='p' + playerNo
-      class=(playerNo === 1 ? 'blue' : 'black') + '-gradient'
-      data-toggle= 'modal'
-      data-target= '#cardPicker'
-      data-playerid= 'p' + playerNo
+      id=            'p' + playerNo
+      class=         (playerNo === 1 ? 'blue' : 'black') + '-gradient'
+      data-toggle=   'modal'
+      data-target=   '#cardPicker'
+      data-playerid= playerNo
       data-numcards= '2'
    )
       p.plus-content +
@@ -29,78 +29,31 @@ head
    link(rel='stylesheet', type='text/css', href='css/liteAccordion/liteaccordion.css')
 
 body
-   h1 ProPokerTools2
-   #container
-      #table
-         img#pokerTable(src='images/table.svg', alt='Poker Table')
-         - for (var i = 1; i <= 6; ++i)
-            +player_circle(i)
+   #content
+      h1 ProPokerTools2
+      #container
+         #table
+            img#pokerTable(src='images/table.svg', alt='Poker Table')
+            - for (var i = 1; i <= 6; ++i)
+               +player_circle(i)
 
-         #flop
-            - for (var i = 0; i < 3; ++i)
-             .table-card.blue-gradient(id="f#{i}") +
-         #turn
-            #t1.black-gradient.table-card
-         #river
-            #r1.black-gradient.table-card
+            #flop
+               - for (var i = 0; i < 3; ++i)
+                .table-card.blue-gradient(id="f#{i}") +
+            #turn
+               #t1.black-gradient.table-card
+            #river
+               #r1.black-gradient.table-card
 
-      #sidebar
-         h2.blue-gradient Output
+         #sidebar
+            h2.blue-gradient Output
 
-      #footer
-         h5 Footer
-         button#reset.btn.btn-lg.btn-danger Reset
-         button#simulate.btn.btn-lg.btn-success Simulate
+         #footer
+            h5 Footer
+            button#reset.btn.btn-lg.btn-danger Reset
+            button#simulate.btn.btn-lg.btn-success Simulate
 
-   #output
-
-   // Card Picker Modal
-   #cardPicker.modal.fade(tabindex='-1', role='dialog', aria-labelledby='Card Picker', aria-hidden='true')
-      .modal-dialog
-         .modal-content
-            .modal-header
-               button.close(type='button', data-dismiss='modal', aria-label='Close')
-                  span(aria-hidden='true') &times;
-               h4#selection-title.modal-title
-                  | Card Selection - (
-                  span#currCard 1
-                  | /
-                  span#numCards 1
-                  | )
-
-            .modal-body
-               #liteAccordion
-                  ol
-                     li
-                        h2: span Main Card Selection...
-
-                        .row.simple-selection
-                           .col-md-2.suit-select.card-display
-                              img#suit-clubs(src='images/Cards/Clubs/AC.svg')
-                              img#suit-diamonds(src='images/Cards/Diamonds/AD.svg')
-                              img#suit-hearts(src='images/Cards/Hearts/AH.svg')
-                              img#suit-spades(src='images/Cards/Spades/AS.svg')
-
-                           .col-md-9
-                              each suit in ['Clubs', 'Diamonds', 'Hearts', 'Spades']
-                                 .card-display.card-selection(id='card-selection-#{suit.toLowerCase()}')
-                                    each card in ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
-                                       +card_img(suit, card)(id='card-#{suit.toLowerCase()}-#{card}#{suit[0]}')
-
-                     li
-                        h2: span Advanced...
-                        #advanced-content
-                           p Content Here please. :D
-               .row
-
-                  ul#picked-cards
-                     li.pick-card.blue-gradient.plus-content: p +
-                     li.pick-card.black-gradient.plus-content: p +
-                     li.pick-card.black-gradient.plus-content: p +
-
-            .modal-footer
-               button.btn.btn-default(type='button', data-dismiss='modal') Close
-               button#saveCards.btn.btn-primary(type='button') Save changes
+      include ./modal.jade
 
    //- local scripts:
    script(src='js/server.js')
