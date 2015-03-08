@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/liteAccordion/liteaccordion.css">
 
 </head>
 
@@ -57,33 +58,45 @@
         <h4 class="modal-title" id="myModalLabel">Pick Cards</h4>
       </div>
       <div class="modal-body">
-            <div class="row card-row">
-                <img src="images/Cards/Clubs/AC.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/AC.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/2C.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/3C.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/4C.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/5C.svg" width="16%" height="16%">
-                
-            </div>
-            <div class="row card-row">
-                <img src="images/Cards/Spades/AS.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/6C.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/7C.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/8C.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/9C.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/10C.svg" width="16%" height="16%">
-            </div>
-            <div class="row card-row">
-                <img src="images/Cards/Hearts/AH.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/JC.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/QC.svg" width="16%" height="16%">
-                <img src="images/Cards/Clubs/KC.svg" width="16%" height="16%">
-            </div>
-            <div class="row card-row">
-                <img src="images/Cards/Diamonds/AD.svg" width="16%" height="16%">
-            </div>
-
+        <div id="liteAccordion">
+            <ol>
+                <li>
+                    <h2><span>Main Card Selection...</span></h2>
+                    <div>
+                        <div class="row card-row">
+                            <img src="images/Cards/Clubs/AC.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/AC.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/2C.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/3C.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/4C.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/5C.svg" width="71px" height="100px">
+                            
+                        </div>
+                        <div class="row card-row">
+                            <img src="images/Cards/Spades/AS.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/6C.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/7C.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/8C.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/9C.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/TC.svg" width="71px" height="100px">
+                        </div>
+                        <div class="row card-row">
+                            <img src="images/Cards/Hearts/AH.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/JC.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/QC.svg" width="71px" height="100px">
+                            <img src="images/Cards/Clubs/KC.svg" width="71px" height="100px">
+                        </div>
+                        <div class="row card-row">
+                            <img src="images/Cards/Diamonds/AD.svg" width="71px" height="100px">
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <h2><span>Advanced...</span></h2>
+                    <div>Content Here...</div>
+                </li>
+            </ol>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -95,6 +108,6 @@
 
 <script src="js/server.js"></script>
 <script src="js/index.js"></script>
-
+<script src="js/liteAccordion/liteaccordion.jquery.min.js"></script>
 </body>
 </html>

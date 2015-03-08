@@ -172,8 +172,12 @@
 /*********************
 * Modal CSS
 **********************/
+.modal-dialog{
+	width: 750px;
+	height: 100%;
+}
 .card-row{
-	padding-bottom:2%;
+	margin: 5px !important;
 }
 
 .card-row > img{
