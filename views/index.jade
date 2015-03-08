@@ -61,8 +61,8 @@ body
                      li
                         h2: span Main Card Selection...
 
-                        .card-display.row
-                           .col-md-3.suit-select
+                        .row.simple-selection
+                           .col-md-2.suit-select.card-display
                               img#suit-clubs(src='images/Cards/Clubs/AC.svg')
                               img#suit-diamonds(src='images/Cards/Diamonds/AD.svg')
                               img#suit-hearts(src='images/Cards/Hearts/AH.svg')
@@ -72,7 +72,7 @@ body
                            - var suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
                            .col-md-9
                               - suits.forEach(function (suit) {
-                                 .card-selection(id='card-selection-#{suit.toLowerCase()}')
+                                 .card-display.card-selection(id='card-selection-#{suit.toLowerCase()}')
                                     - cards.forEach(function (card) {
                                        +card_img(suit, card)(id='card-#{suit.toLowerCase()}-#{card}#{suit[0]}')
                                     - });

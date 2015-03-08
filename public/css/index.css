@@ -178,8 +178,12 @@
 	height: 100%;
 }
 
+.simple-selection {
+	padding: 1%;
+}
+
 .card-display {
-	padding-bottom: 2%;
+	padding-bottom: 2% ;
 }
 
 .card-display img {
@@ -194,12 +198,12 @@
 }
 
 .suit-select {
-	border-right: 1px solid rgb(229, 229, 229);
+	border-right: 1px solid rgb(229, 229, 229) !important;
 	text-align: center;
 }
 
 .suit-select img {
-	width: 58%; /* 20% * 9 / 3 - 2% padding */
+	width: 81%; /* 20% * 9 / 3 - 2% padding */
 	height: auto;
 }
 
