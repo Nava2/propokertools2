@@ -17,6 +17,9 @@ $('#cardPicker').on('show.bs.modal', function (event) {
     console.log(numCards);
 
     var $modal = $(this);
+    $('#selection-title #currCard', this).text(numCards);
+    $('#selection-title #numCards', this).text(numCards);
+
     $modal.data("playerId",playerId);
     
     <!-- TODO: implement num cards functionality -->
@@ -29,6 +32,6 @@ $("#saveCards").click(function() {
 $(window).load(function() {
     $('#liteAccordion').liteAccordion({
         containerWidth: 700,
-        containerHeight: 550
+        containerHeight: 500
     });
 });

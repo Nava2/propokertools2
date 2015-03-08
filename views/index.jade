@@ -53,7 +53,12 @@ body
             .modal-header
                button.close(type='button', data-dismiss='modal', aria-label='Close')
                   span(aria-hidden='true') &times;
-               h4#myModalLabel.modal-title Pick Cards
+               h4#selection-title.modal-title
+                  | Card Selection - (
+                  span#currCard 1
+                  | /
+                  span#numCards 1
+                  | )
 
             .modal-body
                #liteAccordion
