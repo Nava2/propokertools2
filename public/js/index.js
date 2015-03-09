@@ -64,3 +64,85 @@ $(window).load(function() {
     $('.suit-select #suit-' + suitDisplayed).click();
 })();
 
+
+
+(function(){
+
+    var cards = [
+        {short:"A", long:"Ace"},
+        {short:"2", long:"two"},
+        {short:"3", long:"three"},
+        {short:"4", long:"four"},
+        {short:"5", long:"five"},
+        {short:"6", long:"six"},
+        {short:"7", long:"seven"},
+        {short:"8", long:"eight"},
+        {short:"9", long:"nine"},
+        {short:"T", long:"10 ten"},
+        {short:"J", long:"jack"},
+        {short:"Q", long:"queen"},
+        {short:"K", long:"king"}
+    ];
+
+    var suits = [
+        {short:"C", long:"Clubs"},
+        {short:"D", long:"Diamonds"},
+        {short:"H", long:"Hearts"},
+        {short:"S", long:"Spades"},
+    ];
+
+    var allCards = [];
+    $.each(cards,function(index,card){
+        $.each(suits,function(index,suit){
+            var cardObject = {
+                card: card,
+                suit: suit,
+                search: card.short+" "+card.long+" "+suit.short+" "+suit.long
+
+            }
+            allCards.push(cardObject);
+        });
+    });
+
+    console.log(allCards);
+
+    var cardsEngine = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('search'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      local: allCards,
+      limit: 13
+    });
+     
+    cardsEngine.initialize();
+
+    var $searchInput = $("#search");
+    var $simpleSuitLayout = $("#simple-suit-layout"); //suit and cards div
+    var $autocompleteLayout = $("#autocomplete-layout"); //autocomplete layout
+
+    $searchInput.on('input',function(e){
+        var search = $searchInput.val();
+        if ( search ){
+            $simpleSuitLayout.hide();
+
+            cardsEngine.get($searchInput.val(),function(suggestions){
+                var suggestionDisplay = "";
+                $.each(suggestions, function(index,card){
+                    suggestionDisplay += "<img src='images/Cards/"+card.suit.long+"/"+card.card.short+""+card.suit.short+".svg'/>"
+                });
+                console.log(suggestionDisplay);
+                $autocompleteLayout.html("<div class='card-display'>"+suggestionDisplay+"</div>");
+                
+            });
+            $autocompleteLayout.show();
+        }else{
+            $autocompleteLayout.hide();
+            $simpleSuitLayout.show();
+        }
+        
+        
+    })
+
+
+})();
+
+
