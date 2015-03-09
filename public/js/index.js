@@ -1,3 +1,5 @@
+var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
+
 $('#simulate').click(function () {
     boardData = {
             table: { flop: ['ah', 'td', 'jh'] },
@@ -17,6 +19,9 @@ $('#cardPicker').on('show.bs.modal', function (event) {
     console.log(numCards);
 
     var $modal = $(this);
+    $('#selection-title #currCard', this).text(numCards);
+    $('#selection-title #numCards', this).text(numCards);
+
     $modal.data("playerId",playerId);
     
     <!-- TODO: implement num cards functionality -->
@@ -29,6 +34,33 @@ $("#saveCards").click(function() {
 $(window).load(function() {
     $('#liteAccordion').liteAccordion({
         containerWidth: 700,
-        containerHeight: 550
+        containerHeight: 500
     });
 });
+
+/*
+ * Modal suit pickers:
+ */
+
+/*
+ * When you click on a suit image, it will display the cards associated with the suit and hide the old display.
+ */
+(function () {
+    var suitDisplayed = suits[0]; // init
+
+    function getCardDisplay(suit) {
+        return $('#card-selection-' + suit.toLowerCase());
+    }
+
+    suits.forEach(function (suit) {
+        $('.suit-select #suit-' + suit).click(function () {
+            getCardDisplay(suitDisplayed).hide();
+
+            getCardDisplay(suit).show();
+            suitDisplayed = suit;
+        });
+    });
+
+    $('.suit-select #suit-' + suitDisplayed).click();
+})();
+
