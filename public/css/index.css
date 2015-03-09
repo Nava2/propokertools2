@@ -235,6 +235,17 @@
     transition: width 0.35s ease;
 }
 
+
+#search {
+  background-color: #fff;
+  padding:5px;
+  border:2px solid #ccc;
+  border-radius: 8px;
+}
+
+#search:focus {
+  border: 2px solid #0097cf;
+}
 /*********************
 * Misc CSS
 **********************/
