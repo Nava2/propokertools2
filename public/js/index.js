@@ -97,7 +97,7 @@ $(window).load(function() {
             var cardObject = {
                 card: card,
                 suit: suit,
-                search: card.short+" "+card.long+" "+suit.short+" "+suit.long,
+                search: card.short+""+suit.short+" "+card.long+" "+suit.long,
                 selector:$("#card-"+suit.long.toLowerCase()+"-"+card.short+""+suit.short)
 
             }
