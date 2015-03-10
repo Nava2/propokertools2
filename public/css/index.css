@@ -23,6 +23,7 @@
 
 .player {
 	position: absolute;
+
 }
 
 /* Player 1's circle position */
@@ -231,7 +232,6 @@
 
 .card-select {
 	padding-right: 2%;
-	display: none;
 }
 
 /* All of the cards for a suit: */
@@ -267,7 +267,7 @@
 }
 
 #search:focus {
-  border: 2px solid #0097cf;
+    border: 2px solid #0097cf;
 }
 
 #picked-cards {

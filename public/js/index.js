@@ -1,7 +1,7 @@
 var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
 
 $('#simulate').click(function () {
-    boardData = {
+   var boardData = {
             table: { flop: ['ah', 'td', 'jh'] },
             hands: [['ac', 'jd'], ['90%']]
         };
@@ -50,8 +50,6 @@ $(window).load(function() {
 
     suits.forEach(function (suit) {
         $('.suit-select .' + suit).click(function () {
-            debugger;
-
             $('.card-select .' + suitDisplayed).hide();
 
             $('.card-select .' + suit).show();

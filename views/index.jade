@@ -28,38 +28,37 @@ head
     link(rel='stylesheet', type='text/css', href='css/liteAccordion/liteaccordion.css')
 
 body
+   #content
+      h1 ProPokerTools2
+      #container
+         .row
+            #table.col-md-9
+               //img#pokerTable(src='images/table.svg', alt='Poker Table')
+               - for (var i = 1; i <= 6; ++i)
+                  +player_circle(i)
 
-    #content
-        h1 ProPokerTools2
-        #container
-            .row
-                #table.col-md-9
-                    - for (var i = 1; i <= 6; ++i)
-                        +player_circle(i)
+               ul#table-cards
+                  li#flop
+                     ul
+                        - for (var i = 0; i < 3; ++i)
+                           li.table-card.blue-gradient(id="f#{i}") +
+                  li#turn
+                     #t1.black-gradient.table-card +
+                  li#river
+                     #r1.black-gradient.table-card +
 
-                    ul#table-cards
-                        li#flop
-                            ul
-                                - for (var i = 0; i < 3; ++i)
-                                    li.table-card.blue-gradient(id="f#{i}") +
-                        li#turn
-                            #t1.black-gradient.table-card +
-                        li#river
-                            #r1.black-gradient.table-card +
+            #sidebar.col-md-3
+               h2.blue-gradient Output
 
-                #sidebar.col-md-3
-                    h2.blue-gradient Output
+         #footer.row.col-md-12
+            h5 Footer
+            button#reset.btn.btn-lg.btn-danger Reset
+            button#simulate.btn.btn-lg.btn-success Simulate
 
-            #footer.row.col-md-12
-                h5 Footer
-                button#reset.btn.btn-lg.btn-danger Reset
-                button#simulate.btn.btn-lg.btn-success Simulate
+   include ./modal.jade
 
-    include ./modal.jade
-
-    //- local scripts:
-    script(src='js/liteAccordion/liteaccordion.jquery.min.js')
-    script(src='js/bloodhound.js')
-    script(src='js/server.js')
-    script(src='js/index.js')
-   
+   //- local scripts:
+   script(src='js/server.js')
+   script(src='js/bloodhound.js')
+   script(src='js/index.js')
+   script(src='js/liteAccordion/liteaccordion.jquery.min.js')
