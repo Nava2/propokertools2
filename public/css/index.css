@@ -211,19 +211,20 @@
 	padding-right: 2%;
 }
 
-#card-selection-spades {
+/* All of the cards for a suit: */
+.card-selection .clubs {
 	display: none;
 }
 
-#card-selection-hearts {
+.card-selection .hearts {
 	display: none;
 }
 
-#card-selection-clubs {
-
+.card-selection .spades {
+    display: none;
 }
 
-#card-selection-diamonds {
+.card-selection .diamonds {
 	display: none;
 }
 

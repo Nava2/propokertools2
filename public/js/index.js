@@ -49,11 +49,11 @@ $(window).load(function() {
     var suitDisplayed = suits[0]; // init
 
     function getCardDisplay(suit) {
-        return $('#card-selection-' + suit.toLowerCase());
+        return $('.card-selection .' + suit.toLowerCase());
     }
 
     suits.forEach(function (suit) {
-        $('.suit-select #suit-' + suit).click(function () {
+        $('.suit-select .' + suit).click(function () {
             getCardDisplay(suitDisplayed).hide();
 
             getCardDisplay(suit).show();
@@ -61,7 +61,7 @@ $(window).load(function() {
         });
     });
 
-    $('.suit-select #suit-' + suitDisplayed).click();
+    $('.suit-select .' + suitDisplayed).click();
 })();
 
 
@@ -85,10 +85,10 @@ $(window).load(function() {
     ];
 
     var suits = [
-        {short:"C", long:"Clubs", selector:$("#card-selection-clubs")},
-        {short:"D", long:"Diamonds", selector:$("#card-selection-diamonds")},
-        {short:"H", long:"Hearts", selector:$("#card-selection-hearts")},
-        {short:"S", long:"Spades", selector:$("#card-selection-spades")},
+        {short:"C", long:"Clubs", selector:$(".card-selection .clubs")},
+        {short:"D", long:"Diamonds", selector:$(".card-selection .diamonds")},
+        {short:"H", long:"Hearts", selector:$(".card-selection .hearts")},
+        {short:"S", long:"Spades", selector:$(".card-selection .spades")}
     ];
 
     var allCards = [];
@@ -97,10 +97,10 @@ $(window).load(function() {
             var cardObject = {
                 card: card,
                 suit: suit,
-                search: card.short+""+suit.short+" "+card.long+" "+suit.long,
-                selector:$("#card-"+suit.long.toLowerCase()+"-"+card.short+""+suit.short)
-
-            }
+                search: card.short+" "+card.long+" "+suit.short+" "+suit.long,
+                selector:$(".card-selection ."+suit.long.toLowerCase() + " ." + card.long.toLowerCase())
+            };
+            
             allCards.push(cardObject);
         });
     });

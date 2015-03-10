@@ -20,8 +20,33 @@ app.use(express.static(__dirname + '/public'));
  * Static routes
  * ***********************************/
 
+var indexModel = {
+    cards : [
+        {short:"A", long:"Ace"},
+        {short:"2", long:"two"},
+        {short:"3", long:"three"},
+        {short:"4", long:"four"},
+        {short:"5", long:"five"},
+        {short:"6", long:"six"},
+        {short:"7", long:"seven"},
+        {short:"8", long:"eight"},
+        {short:"9", long:"nine"},
+        {short:"T", long:"10 ten"},
+        {short:"J", long:"jack"},
+        {short:"Q", long:"queen"},
+        {short:"K", long:"king"}
+    ],
+
+    suits : [
+        {short:"C", long:"Clubs" },
+        {short:"D", long:"Diamonds" },
+        {short:"H", long:"Hearts" },
+        {short:"S", long:"Spades" }
+    ]
+};
+
  app.get('/', function (err, res) {
-     res.render('index');
+     res.render('index', indexModel);
 });
 
 /* ***********************************
