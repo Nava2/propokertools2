@@ -73,7 +73,7 @@ body
                                                 img(src='images/Cards/#{suit.long}/A#{suit.short}.svg' class='#{suit.long.toLowerCase()}')
 
                                         .col-md-9
-                                            .card-selection.card-display
+                                            .card-select.card-display
                                                 each suit in suits
                                                     each card in cards
                                                         +card_img(suit, card)(id='card-#{card.short}#{suit.short}')

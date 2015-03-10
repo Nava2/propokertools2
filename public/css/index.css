@@ -207,24 +207,24 @@
 	height: auto;
 }
 
-.card-selection {
+.card-select {
 	padding-right: 2%;
 }
 
 /* All of the cards for a suit: */
-.card-selection .clubs {
+.card-select .clubs {
 	display: none;
 }
 
-.card-selection .hearts {
+.card-select .hearts {
 	display: none;
 }
 
-.card-selection .spades {
+.card-select .spades {
     display: none;
 }
 
-.card-selection .diamonds {
+.card-select .diamonds {
 	display: none;
 }
 

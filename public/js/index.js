@@ -49,7 +49,7 @@ $(window).load(function() {
     var suitDisplayed = suits[0]; // init
 
     function getCardDisplay(suit) {
-        return $('.card-selection .' + suit.toLowerCase());
+        return $('.card-select .' + suit.toLowerCase());
     }
 
     suits.forEach(function (suit) {
@@ -85,10 +85,10 @@ $(window).load(function() {
     ];
 
     var suits = [
-        {short:"C", long:"Clubs", selector:$(".card-selection .clubs")},
-        {short:"D", long:"Diamonds", selector:$(".card-selection .diamonds")},
-        {short:"H", long:"Hearts", selector:$(".card-selection .hearts")},
-        {short:"S", long:"Spades", selector:$(".card-selection .spades")}
+        {short:"C", long:"Clubs", selector:$(".card-select .clubs")},
+        {short:"D", long:"Diamonds", selector:$(".card-select .diamonds")},
+        {short:"H", long:"Hearts", selector:$(".card-select .hearts")},
+        {short:"S", long:"Spades", selector:$(".card-select .spades")}
     ];
 
     var allCards = [];
@@ -98,7 +98,7 @@ $(window).load(function() {
                 card: card,
                 suit: suit,
                 search: card.short+" "+card.long+" "+suit.short+" "+suit.long,
-                selector:$(".card-selection ."+suit.long.toLowerCase() + " ." + card.long.toLowerCase())
+                selector:$(".card-select ."+suit.long.toLowerCase() + " ." + card.long.toLowerCase())
             };
             
             allCards.push(cardObject);
