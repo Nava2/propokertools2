@@ -122,6 +122,7 @@ $(window).load(function() {
     $searchInput.on('input',function(e){
         var search = $searchInput.val();
         if ( search ){
+            $(".suit-select").hide();
             //hide all cards
             $.each(allCards,function(index,value){
                 value.selector.hide();
@@ -145,6 +146,7 @@ $(window).load(function() {
             });
 
             suits[0].selector.click();
+            $(".suit-select").show();
         }
     })
 
