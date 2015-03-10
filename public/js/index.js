@@ -117,48 +117,35 @@ $(window).load(function() {
     cardsEngine.initialize();
 
     var $searchInput = $("#search");
-    var $simpleSuitLayout = $("#simple-suit-layout"); //suit and cards div
-    var $autocompleteLayout = $("#autocomplete-layout"); //autocomplete layout
-
-    /*$searchInput.on('input',function(e){
-        var search = $searchInput.val();
-        if ( search ){
-            $simpleSuitLayout.hide();
-
-            cardsEngine.get($searchInput.val(),function(suggestions){
-                var suggestionDisplay = "";
-                $.each(suggestions, function(index,card){
-                    suggestionDisplay += "<img src='images/Cards/"+card.suit.long+"/"+card.card.short+""+card.suit.short+".svg'/>"
-                });
-                console.log(suggestionDisplay);
-                $autocompleteLayout.html("<div class='card-display'>"+suggestionDisplay+"</div>");
-                
-            });
-            $autocompleteLayout.show();
-        }else{
-            $autocompleteLayout.hide();
-            $simpleSuitLayout.show();
-        }
-        
-        
-    })*/
 
     //second way of doing autocomplete display
     $searchInput.on('input',function(e){
         var search = $searchInput.val();
-        $.each(allCards,function(index,value){
-            value.selector.hide();
-        });
-
-        cardsEngine.get(search, function(suggestions){
-            $.each(suggestions, function(index,card){
-                card.selector.show();
+        if ( search ){
+            //hide all cards
+            $.each(allCards,function(index,value){
+                value.selector.hide();
             });
-        });
 
-        $.each(suits,function(index,value){
-            value.selector.show();
-        });
+            //show only cards that need to be displayed
+            cardsEngine.get(search, function(suggestions){
+                $.each(suggestions, function(index,card){
+                    card.selector.show();
+                });
+            });
+
+            //show all suits
+            $.each(suits,function(index,value){
+                value.selector.show();
+            });
+        }else{
+            //no search input, go back to default view
+            $.each(allCards,function(index,value){
+                value.selector.show();
+            });
+
+            suits[0].selector.click();
+        }
     })
 
 
