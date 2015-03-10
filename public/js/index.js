@@ -34,7 +34,7 @@ $("#saveCards").click(function() {
 $(window).load(function() {
     $('#liteAccordion').liteAccordion({
         containerWidth: 700,
-        containerHeight: 500
+        containerHeight: 550
     });
 });
 
