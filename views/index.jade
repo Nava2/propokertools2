@@ -5,92 +5,61 @@ mixin card_img(suit, card)
    - var letter = suit[0];
    img(src='images/Cards/#{suit}/#{card}#{letter}.svg')&attributes(attributes)
 
+//- Creates a player circle, if the player number is 1 it will make it blue
+mixin player_circle(playerNo)
+   .player.circle(
+      id=            'p' + playerNo
+      class=         (playerNo === 1 ? 'blue' : 'black') + '-gradient'
+      data-toggle=   'modal'
+      data-target=   '#cardPicker'
+      data-playerid= playerNo
+      data-numcards= '2'
+   )
+      .plus-content: p +
+
 head
    title ProPokerTools2 :3
 
    //- remote scripts
    script(src='//code.jquery.com/jquery-2.1.3.min.js')
    script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js')
+
+   link(rel='stylesheet', type='text/css', href='css/vendor/normalize.css')
    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+
    link(rel='stylesheet', type='text/css', href='css/index.css')
-   link(rel='stylesheet', type='text/css', href='css/liteAccordion/liteaccordion.css')
+   link(rel='stylesheet', type='text/css', href='css/vendor/liteAccordion/liteaccordion.css')
 
 body
-   h1 ProPokerTools2
-   #container
-      #table
-         img#pokerTable(src='images/table.svg', alt='Poker Table')
-         #p1.circle.blue-gradient(data-toggle='modal', data-target='#cardPicker', data-playerid='p1', data-numcards='2')
-            | +
-         #p2.circle.black-gradient +
-         #p3.circle.black-gradient +
-         #p4.circle.black-gradient +
-         #p5.circle.black-gradient +
-         #p6.circle.black-gradient +
-         #flop
-            - for (var i = 0; i < 3; ++i)
-             .card.blue-gradient(id="f#{i}") +
-         #turn
-            #t1.black-gradient.card
-         #river
-            #r1.black-gradient.card
+   #content
+      h1 ProPokerTools2
+      #container
+         .row
+            #table.col-md-9
+               //img#pokerTable(src='images/table.svg', alt='Poker Table')
+               - for (var i = 1; i <= 6; ++i)
+                  +player_circle(i)
 
-      #sidebar
-         h2.blue-gradient Output
+               ul#table-cards
+                  li#flop
+                     ul
+                        - for (var i = 0; i < 3; ++i)
+                           li.table-card.blue-gradient(id="f#{i}") +
+                  li#turn
+                     #t1.black-gradient.table-card +
+                  li#river
+                     #r1.black-gradient.table-card +
 
-      #footer
-         h5 Footer
-         button#reset.btn.btn-lg.btn-danger Reset
-         button#simulate.btn.btn-lg.btn-success Simulate
+            #sidebar.col-md-3
+               h2.blue-gradient Output
 
-   #output
+         #footer.row.col-md-12
+            h5 Footer
+            button#reset.btn.btn-lg.btn-danger Reset
+            button#simulate.btn.btn-lg.btn-success Simulate
 
-   // Card Picker Modal
-   #cardPicker.modal.fade(tabindex='-1', role='dialog', aria-labelledby='Card Picker', aria-hidden='true')
-      .modal-dialog
-         .modal-content
-            .modal-header
-               button.close(type='button', data-dismiss='modal', aria-label='Close')
-                  span(aria-hidden='true') &times;
-               h4#selection-title.modal-title
-                  | Card Selection - (
-                  span#currCard 1
-                  | /
-                  span#numCards 1
-                  | )
-
-            .modal-body
-               #liteAccordion
-                  ol
-                     li
-                        h2: span Main Card Selection...
-
-                        .row.simple-selection
-                           .col-md-2.suit-select.card-display
-                              img#suit-clubs(src='images/Cards/Clubs/AC.svg')
-                              img#suit-diamonds(src='images/Cards/Diamonds/AD.svg')
-                              img#suit-hearts(src='images/Cards/Hearts/AH.svg')
-                              img#suit-spades(src='images/Cards/Spades/AS.svg')
-
-                           - var cards = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
-                           - var suits = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
-                           .col-md-9
-                              - suits.forEach(function (suit) {
-                                 .card-display.card-selection(id='card-selection-#{suit.toLowerCase()}')
-                                    - cards.forEach(function (card) {
-                                       +card_img(suit, card)(id='card-#{suit.toLowerCase()}-#{card}#{suit[0]}')
-                                    - });
-                              - });
-
-                     li
-                        h2: span Advanced...
-                        #advanced-content
-                           p Content Here please. :D
-
-            .modal-footer
-               button.btn.btn-default(type='button', data-dismiss='modal') Close
-               button#saveCards.btn.btn-primary(type='button') Save changes
+      include ./modal.jade
 
    //- local scripts:
    script(src='js/server.js')

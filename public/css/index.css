@@ -1,222 +1,245 @@
-/* TEMP */
-#output {
-    clear: both;
+
+#content {
+    margin-left: 10%;
+    margin-right: 10%;
 }
 
-#container{
-	width: 100%;
-	height: 100%;
+#container {
+    width: 100%;
+    height: 100%;
 }
 
 /*********************
 * Main Table CSS
 **********************/
-#table{
-	height: 620px;
-	width: 800px;
-	float: left;
-	position: relative;
+#table {
+    background: url(../images/table.svg) center no-repeat;
+    background-size: contain;
+    min-height: 620px;
+    border: solid 1px blue;
+
+    overflow: auto;
 }
 
-/* Poker Table Img */
-#pokerTable{
-	display: block;
-   	left: 15%;
-	z-index: -1;
-	position: relative;
+.player {
+    position: absolute;
+
 }
 
 /* Player 1's circle position */
 #p1 {
-	position: relative;
-   	left: 45%;
-    bottom: 200px;
+    left: 45.5%;
+    bottom: 15%;
 }
 
 /* Player 2's circle position */
 #p2 {
-	position: relative;
-	left: 10%;
-	bottom: 235px;
+    left: 20%;
+    bottom: 20%;
 }
 
 /* Player 3's circle position */
 #p3 {
-	position: relative;
-	left: 1%;
-	bottom: 500px;
+    left: 20%;
+    top: 18%;
 }
 
 /* Player 4's circle position */
 #p4 {
-	position: relative;
-   	left: 18%;
-    bottom: 535px;
+    left: 45.5%;
+    top: 15%;
 }
 
 /* Player 5's circle position */
 #p5 {
-	position: relative;
-	left: 37%;
-	bottom: 500px;
+    right: 20%;
+    top: 18%;
 }
 
 /* Player 6's circle position */
 #p6 {
-	position: relative;
-	left: 28%;
-	bottom: 235px;
+    right: 20%;
+    bottom: 20%;
 }
+
 /* Player circle class */
 .circle {
-	/*Circle Drawing*/
+    /*Circle Drawing*/
     background: rgba(25, 163, 255, 1);
-    width: 100px;
-    height: 100px;
+    width: 8%;
+    height: auto;
     border-radius: 50%;
-	z-index: 1;
-	/* + sign */
-	display: inline-block;
-	text-align: center;
-	vertical-align: middle;
-	line-height: 85px;
-	font-size: 75px;
-	font-weight: bold;
-	color: white;
+    z-index: 1;
+}
+
+.plus-content {
+    /* Center the + */
+    vertical-align: middle;
+    text-align: center;
+    line-height: 95%;
+    height: 100%;
+    /*vertical-align: middle;*/
+
+    /* font style */
+    font-size: 75px;
+    font-weight: bold;
+    color: white;
+}
+
+#table-cards {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+
+    position: absolute;
+    left: 35%;
+    top: 40%;
+
+    padding: 2%;
+}
+
+#table-cards li {
+    margin-right: 2%;
 }
 
 /* Cards On Board */
 #flop {
     border: 2px solid #a1a1a1;
-    background-color: rgba(200,200,200,0.5);
+    background-color: rgba(200, 200, 200, 0.5);
     width: 185px;
     height: 80px;
     border-radius: 10px;
     position: relative;
-    left: 40%;
-    bottom: 460px;
+}
+
+#flop ul {
+    display: flex;
+    flex-direction: row;
+    list-style: outside none none;
+    margin: 0 0;
+    padding: 2%;
+}
+
+#flop ul li {
+    margin: 2%;
 }
 
 #turn {
-	border: 2px solid #a1a1a1;
-    background-color: rgba(200,200,200,0.5);
+    border: 2px solid #a1a1a1;
+    background-color: rgba(200, 200, 200, 0.5);
     width: 65px;
     height: 80px;
     border-radius: 10px;
-    position: relative;
-    left: 67%;
-    bottom: 540px;
 }
 
 #river {
-	border: 2px solid #a1a1a1;
-    background-color: rgba(200,200,200,0.5);
+    border: 2px solid #a1a1a1;
+    background-color: rgba(200, 200, 200, 0.5);
     width: 65px;
     height: 80px;
     border-radius: 10px;
     position: relative;
-    left: 80%;
-    bottom: 620px;
 }
 
-.card {
-	width: 50px;
-	height: 70px;
-	float: left;
-	margin: 5px;
-	/* + sign */
-	display: inline-block;
-	text-align: center;
-	vertical-align: middle;
-	line-height: 55px;
-	font-size: 50px;
-	font-weight: bold;
-	color: white;
+.table-card {
+    width: 50px;
+    height: 70px;
+    float: left;
+    margin: 5px;
+    /* + sign */
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 55px;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
 }
+
 /*********************
 * Sidebar CSS
 **********************/
-#sidebar{
-	position: relative;
-	border: 2px solid red;
-	float: right;
-	width: 30%;
-	height: 100%;
+#sidebar {
+    position: relative;
+    border: 2px solid red;
+    float: right;
+    height: 100%;
 }
 
-#sidebar h2{
-	text-align: center;
-	height: 50px;
-	background: -webkit-linear-gradient(white,rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
-  	background: -o-linear-gradient(white, rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
-	background: -moz-linear-gradient(white,rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
-  	background: linear-gradient(white,rgba(117, 200, 255, 1)); /* Standard syntax */
+#sidebar h2 {
+    text-align: center;
+    height: 50px;
+    background: -webkit-linear-gradient(white, rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(white, rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(white, rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(white, rgba(117, 200, 255, 1)); /* Standard syntax */
 }
 
 /*********************
 * Footer CSS
 **********************/
-#footer{
-	position: relative;
-	float: left;
-	border: 2px solid green;
-	height: 20%;
-	width: 68%;
+#footer {
+    /*position: relative;*/
+    /*float: left;*/
+    border: 2px solid green;
+    /*height: 20%;*/
+    /*width: 68%;*/
 }
 
-#simulate, #reset{
-	float: right;
-	margin: 5px;
+#simulate, #reset {
+    float: right;
+    margin: 5px;
 }
 
 /*********************
 * Modal CSS
 **********************/
 
-.modal-dialog{
-	width: 750px;
-	height: 100%;
+.modal-dialog {
+    width: 750px;
+    height: 100%;
 }
 
 .simple-selection {
-	padding: 1%;
+    padding: 1%;
 }
 
 .card-display {
-	padding-bottom: 2% ;
+    padding-bottom: 2%;
 }
 
 .card-display img {
-	padding-left: 2%;
-	padding-bottom: 0.75em;
-	width: 18%;
-	height: auto;
+    padding-left: 2%;
+    padding-bottom: 0.75em;
+    width: 18%;
+    height: auto;
 }
 
 .card-display img:nth-child(5n) {
-	clear: both;
+    clear: both;
 }
 
 .suit-select {
-	border-right: 1px solid rgb(229, 229, 229) !important;
-	text-align: center;
+    border-right: 1px solid rgb(229, 229, 229) !important;
+    text-align: center;
 }
 
 .suit-select img {
-	width: 81%; /* 20% * 9 / 3 - 2% padding */
-	height: auto;
+    width: 81%; /* 20% * 9 / 3 - 2% padding */
+    height: auto;
 }
 
 .card-selection {
-	padding-right: 2%;
+    padding-right: 2%;
+    display: none;
 }
 
 #card-selection-spades {
-	display: none;
+
 }
 
 #card-selection-hearts {
-	display: none;
+
 }
 
 #card-selection-clubs {
@@ -224,7 +247,7 @@
 }
 
 #card-selection-diamonds {
-	display: none;
+
 }
 
 .collapse.width {
@@ -235,21 +258,48 @@
     transition: width 0.35s ease;
 }
 
+#picked-cards {
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+
+    list-style: none;
+
+}
+
+#picked-cards .pick-card {
+    width: 85px;
+    height: 126px;
+    padding-bottom: 2%;
+
+    float: left;
+    margin: 5px;
+}
+
+#picked-cards .pick-card p {
+    /* + sign */
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+
+    text-align: center;
+}
+
 /*********************
 * Misc CSS
 **********************/
-.blue-gradient{
-	border: 2px solid #a1a1a1;
-	background: -webkit-linear-gradient(rgba(211, 236, 255, 0.9),rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
- 	background: -o-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
-  	background: -moz-linear-gradient(rgba(211, 236, 255, 0.9),rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
-  	background: linear-gradient(rgba(211, 236, 255, 0.9),rgba(117, 200, 255, 1)); /* Standard syntax */
+.blue-gradient {
+    border: 2px solid #a1a1a1;
+    background: -webkit-linear-gradient(rgba(211, 236, 255, 0.9), rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* Standard syntax */
 }
 
-.black-gradient{
-	border: 2px solid #a1a1a1;
-	background: -webkit-linear-gradient(gray,black); /* For Safari 5.1 to 6.0 */
- 	background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
-  	background: -moz-linear-gradient(gray,black); /* For Firefox 3.6 to 15 */
-  	background: linear-gradient(gray,black); /* Standard syntax */
+.black-gradient {
+    border: 2px solid #a1a1a1;
+    background: -webkit-linear-gradient(gray, black); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(gray, black); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(gray, black); /* Standard syntax */
 }
