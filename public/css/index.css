@@ -1,9 +1,10 @@
-/* TEMP */
-#output {
-    clear: both;
+
+#content {
+	margin-left: 10%;
+	margin-right: 10%;
 }
 
-#container{
+#container {
 	width: 100%;
 	height: 100%;
 }
@@ -11,62 +12,55 @@
 /*********************
 * Main Table CSS
 **********************/
-#table{
-	height: 620px;
-	width: 800px;
-	float: left;
-	position: relative;
+#table {
+	background : url(../images/table.svg) center no-repeat;
+	background-size: contain;
+	min-height: 620px;
+	border: solid 1px blue;
+
+	overflow: auto;
 }
 
-/* Poker Table Img */
-#pokerTable{
-	display: block;
-   	left: 15%;
-	z-index: -1;
-	position: relative;
+.player {
+	position: absolute;
 }
 
 /* Player 1's circle position */
 #p1 {
-	position: relative;
-   	left: 45%;
-    bottom: 200px;
+   	left: 45.5%;
+	bottom: 15%;
 }
 
 /* Player 2's circle position */
 #p2 {
-	position: relative;
-	left: 10%;
-	bottom: 235px;
+	left: 20%;
+	bottom: 20%;
 }
 
 /* Player 3's circle position */
 #p3 {
-	position: relative;
-	left: 1%;
-	bottom: 500px;
+	left: 20%;
+	top: 18%;
 }
 
 /* Player 4's circle position */
 #p4 {
-	position: relative;
-   	left: 18%;
-    bottom: 535px;
+   	left: 45.5%;
+    top: 15%;
 }
 
 /* Player 5's circle position */
 #p5 {
-	position: relative;
-	left: 37%;
-	bottom: 500px;
+	right: 20%;
+	top: 18%;
 }
 
 /* Player 6's circle position */
 #p6 {
-	position: relative;
-	left: 28%;
-	bottom: 235px;
+	right: 20%;
+	bottom: 20%;
 }
+
 /* Player circle class */
 .circle {
 	/*Circle Drawing*/
@@ -75,14 +69,36 @@
     height: 100px;
     border-radius: 50%;
 	z-index: 1;
-	/* + sign */
-	display: inline-block;
+}
+
+.plus-content {
+	/* Center the + */
+  	vertical-align: middle; 
+  	text-align: center; 
+  	line-height: 80px;       
+	/*vertical-align: middle;*/
+
+	/* font style */
 	text-align: center;
-	vertical-align: middle;
-	line-height: 85px;
 	font-size: 75px;
 	font-weight: bold;
 	color: white;
+}
+
+#table-cards {
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+
+	position: absolute;
+	left: 35%;
+	top: 40%;
+
+	padding: 2%;
+}
+
+#table-cards li {
+	margin-right: 2%;
 }
 
 /* Cards On Board */
@@ -93,8 +109,18 @@
     height: 80px;
     border-radius: 10px;
     position: relative;
-    left: 40%;
-    bottom: 460px;
+}
+
+#flop ul {
+	display: flex;
+	flex-direction: row;
+	list-style: outside none none;
+	margin: 0 0;
+	padding: 2%;
+}
+
+#flop ul li {
+	margin: 2%;
 }
 
 #turn {
@@ -103,9 +129,6 @@
     width: 65px;
     height: 80px;
     border-radius: 10px;
-    position: relative;
-    left: 67%;
-    bottom: 540px;
 }
 
 #river {
@@ -115,11 +138,9 @@
     height: 80px;
     border-radius: 10px;
     position: relative;
-    left: 80%;
-    bottom: 620px;
 }
 
-.card {
+.table-card {
 	width: 50px;
 	height: 70px;
 	float: left;
@@ -133,6 +154,8 @@
 	font-weight: bold;
 	color: white;
 }
+
+
 /*********************
 * Sidebar CSS
 **********************/
@@ -140,7 +163,6 @@
 	position: relative;
 	border: 2px solid red;
 	float: right;
-	width: 30%;
 	height: 100%;
 }
 
@@ -157,11 +179,11 @@
 * Footer CSS
 **********************/
 #footer{
-	position: relative;
-	float: left;
+	/*position: relative;*/
+	/*float: left;*/
 	border: 2px solid green;
-	height: 20%;
-	width: 68%;
+	/*height: 20%;*/
+	/*width: 68%;*/
 }
 
 #simulate, #reset{
@@ -209,6 +231,7 @@
 
 .card-select {
 	padding-right: 2%;
+	display: none;
 }
 
 /* All of the cards for a suit: */
@@ -236,7 +259,6 @@
     transition: width 0.35s ease;
 }
 
-
 #search {
   background-color: #fff;
   padding:5px;
@@ -247,6 +269,34 @@
 #search:focus {
   border: 2px solid #0097cf;
 }
+
+#picked-cards {
+	display: flex;
+	flex-direction: row;
+	margin-top: 2%;
+
+	list-style: none;
+
+}
+
+#picked-cards .pick-card {
+	width: 85px;
+	height: 126px;
+	padding-bottom: 2%;
+
+	float: left;
+	margin: 5px;
+}
+
+#picked-cards .pick-card p {
+	/* + sign */
+	font-size: 50px;
+	font-weight: bold;
+	color: white;
+
+	text-align: center;
+}
+
 /*********************
 * Misc CSS
 **********************/

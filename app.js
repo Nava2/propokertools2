@@ -31,7 +31,7 @@ var indexModel = {
         {short:"7", long:"seven"},
         {short:"8", long:"eight"},
         {short:"9", long:"nine"},
-        {short:"T", long:"10 ten"},
+        {short:"T", long:"ten"},
         {short:"J", long:"jack"},
         {short:"Q", long:"queen"},
         {short:"K", long:"king"}
