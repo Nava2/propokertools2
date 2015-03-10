@@ -86,6 +86,10 @@
     color: white;
 }
 
+.plus-content p {
+	margin: 0 0;
+}
+
 #table-cards {
     display: flex;
     flex-direction: row;
@@ -150,7 +154,6 @@
     display: inline-block;
     text-align: center;
     vertical-align: middle;
-    line-height: 55px;
     font-size: 50px;
     font-weight: bold;
     color: white;
