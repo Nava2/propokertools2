@@ -66,8 +66,8 @@
 .circle {
     /*Circle Drawing*/
     background: rgba(25, 163, 255, 1);
-    width: 100px;
-    height: 100px;
+    width: 8%;
+    height: auto;
     border-radius: 50%;
     z-index: 1;
 }
@@ -76,7 +76,7 @@
     /* Center the + */
     vertical-align: middle;
     text-align: center;
-    line-height: 80px;
+    line-height: 95%;
     height: 100%;
     /*vertical-align: middle;*/
 
