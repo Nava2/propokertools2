@@ -48,17 +48,17 @@ $(window).load(function() {
 (function () {
     var suitDisplayed = suits[0]; // init
 
-    function getCardDisplay(suit) {
-        return $('.card-select .' + suit.toLowerCase());
-    }
-
     suits.forEach(function (suit) {
         $('.suit-select .' + suit).click(function () {
-            getCardDisplay(suitDisplayed).hide();
+            debugger;
 
-            getCardDisplay(suit).show();
+            $('.card-select .' + suitDisplayed).hide();
+
+            $('.card-select .' + suit).show();
             suitDisplayed = suit;
         });
+
+        $('.card-select .' + suit).hide();
     });
 
     $('.suit-select .' + suitDisplayed).click();
