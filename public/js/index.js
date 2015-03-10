@@ -85,10 +85,10 @@ $(window).load(function() {
     ];
 
     var suits = [
-        {short:"C", long:"Clubs"},
-        {short:"D", long:"Diamonds"},
-        {short:"H", long:"Hearts"},
-        {short:"S", long:"Spades"},
+        {short:"C", long:"Clubs", selector:$("#card-selection-clubs")},
+        {short:"D", long:"Diamonds", selector:$("#card-selection-diamonds")},
+        {short:"H", long:"Hearts", selector:$("#card-selection-hearts")},
+        {short:"S", long:"Spades", selector:$("#card-selection-spades")},
     ];
 
     var allCards = [];
@@ -97,7 +97,8 @@ $(window).load(function() {
             var cardObject = {
                 card: card,
                 suit: suit,
-                search: card.short+" "+card.long+" "+suit.short+" "+suit.long
+                search: card.short+" "+card.long+" "+suit.short+" "+suit.long,
+                selector:$("#card-"+suit.long.toLowerCase()+"-"+card.short+""+suit.short)
 
             }
             allCards.push(cardObject);
@@ -119,7 +120,7 @@ $(window).load(function() {
     var $simpleSuitLayout = $("#simple-suit-layout"); //suit and cards div
     var $autocompleteLayout = $("#autocomplete-layout"); //autocomplete layout
 
-    $searchInput.on('input',function(e){
+    /*$searchInput.on('input',function(e){
         var search = $searchInput.val();
         if ( search ){
             $simpleSuitLayout.hide();
@@ -140,6 +141,24 @@ $(window).load(function() {
         }
         
         
+    })*/
+
+    //second way of doing autocomplete display
+    $searchInput.on('input',function(e){
+        var search = $searchInput.val();
+        $.each(allCards,function(index,value){
+            value.selector.hide();
+        });
+
+        cardsEngine.get(search, function(suggestions){
+            $.each(suggestions, function(index,card){
+                card.selector.show();
+            });
+        });
+
+        $.each(suits,function(index,value){
+            value.selector.show();
+        });
     })
 
 
