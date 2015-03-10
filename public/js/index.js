@@ -34,7 +34,7 @@ $("#saveCards").click(function() {
 $(window).load(function() {
     $('#liteAccordion').liteAccordion({
         containerWidth: 700,
-        containerHeight: 500
+        containerHeight: 550
     });
 });
 
@@ -98,7 +98,7 @@ $(window).load(function() {
                 card: card,
                 suit: suit,
                 search: card.short+" "+card.long+" "+suit.short+" "+suit.long,
-                selector:$(".card-select ."+suit.long.toLowerCase() + " ." + card.long.toLowerCase())
+                selector:$("#card-"+card.short+""+suit.short)
             };
             
             allCards.push(cardObject);
@@ -130,23 +130,21 @@ $(window).load(function() {
 
             //show only cards that need to be displayed
             cardsEngine.get(search, function(suggestions){
+                console.log(suggestions);
                 $.each(suggestions, function(index,card){
                     card.selector.show();
                 });
             });
 
-            //show all suits
-            $.each(suits,function(index,value){
-                value.selector.show();
-            });
         }else{
             //no search input, go back to default view
             $.each(allCards,function(index,value){
-                value.selector.show();
+                value.selector.hide();
             });
 
             suits[0].selector.click();
             $(".suit-select").show();
+            $("."+suits[0].long.toLowerCase()).show();
         }
     })
 
