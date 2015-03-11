@@ -24,6 +24,10 @@
 .player {
     position: absolute;
 
+    width: 8%;
+    /*height: auto;*/ /* compute via JS */
+    border-radius: 50%;
+    z-index: 1;
 }
 
 /* Player 1's circle position */
@@ -62,28 +66,22 @@
     bottom: 20%;
 }
 
-/* Player circle class */
-.circle {
-    /*Circle Drawing*/
-    background: rgba(25, 163, 255, 1);
-    width: 8%;
-    height: auto;
-    border-radius: 50%;
-    z-index: 1;
-}
-
 .plus-content {
     /* Center the + */
-    vertical-align: middle;
+    /*vertical-align: middle;*/
     text-align: center;
     line-height: 95%;
     height: 100%;
-    /*vertical-align: middle;*/
 
     /* font style */
     font-size: 75px;
     font-weight: bold;
     color: white;
+}
+
+.plus-content p {
+    margin: 0 0;
+    height: 100%;
 }
 
 #table-cards {
