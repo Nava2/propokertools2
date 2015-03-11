@@ -220,11 +220,13 @@
 .suit-select {
     border-right: 1px solid rgb(229, 229, 229) !important;
     text-align: center;
+    cursor: pointer;
 }
 
 .suit-select img {
     width: 81%; /* 20% * 9 / 3 - 2% padding */
     height: auto;
+
 }
 
 .card-selection {
