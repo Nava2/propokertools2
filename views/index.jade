@@ -9,7 +9,7 @@ mixin card_img(suit, card)
 mixin player_circle(playerNo)
    .player.circle(
       id=            'p' + playerNo
-      class=         (playerNo === 1 ? 'enabled' : 'btn')
+      class=         (playerNo === 1 ? 'enabled' : 'button')
       data-toggle=   'modal'
       data-target=   '#cardPicker'
       data-playerid= playerNo
@@ -47,9 +47,9 @@ body
                         - for (var i = 0; i < 3; ++i)
                            li.table-card.enabled(id="f#{i}") +
                   li#turn
-                     #t1.btn.table-card +
+                     #t1.button.table-card +
                   li#river
-                     #r1.btn.table-card +
+                     #r1.button.table-card +
 
             #sidebar.col-md-3
                h2.enabled Output

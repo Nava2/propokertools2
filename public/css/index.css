@@ -286,7 +286,7 @@
 /*********************
 * Misc CSS
 **********************/
-.btn {
+.button {
     border: 2px solid #a1a1a1;
     background: -webkit-linear-gradient(gray, black); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
