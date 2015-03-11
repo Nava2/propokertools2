@@ -14,18 +14,23 @@ mixin player_circle(playerNo)
       data-playerid= playerNo
       data-numcards= '2'
    )
-      p.plus-content +
+      .plus-content: p +
 
 head
-    title ProPokerTools2 :3
+  title ProPokerTools2 :3
 
-    //- remote scripts
-    script(src='//code.jquery.com/jquery-2.1.3.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js')
-    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
-    link(rel='stylesheet', type='text/css', href='css/index.css')
-    link(rel='stylesheet', type='text/css', href='css/liteAccordion/liteaccordion.css')
+
+   //- remote scripts
+  script(src='//code.jquery.com/jquery-2.1.3.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js')
+
+  link(rel='stylesheet', type='text/css', href='css/vendor/normalize/normalize.css')
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+
+  link(rel='stylesheet', type='text/css', href='css/index.css')
+  link(rel='stylesheet', type='text/css', href='css/vendor/liteAccordion/liteaccordion.css')
+
 
 body
    #content

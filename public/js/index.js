@@ -32,9 +32,25 @@ $("#saveCards").click(function() {
 });
 
 $(window).load(function() {
+    $(window).trigger('resize');
+
     $('#liteAccordion').liteAccordion({
         containerWidth: 700,
         containerHeight: 550
+    });
+});
+
+$(window).resize(function () {
+    var $player = $('.player');
+    $player.css({
+        'height': $player.outerWidth() + 'px'
+    });
+
+    $('.plus-content p', $player).each(function() {
+        var $this = $(this);
+        $this.css({
+            'margin-top': (-($this.parent().parent().outerHeight(true) - $this.height()) / 2) + 'px'
+        });
     });
 });
 
