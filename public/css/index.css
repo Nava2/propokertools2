@@ -211,6 +211,11 @@
     padding-bottom: 0.75em;
     width: 18%;
     height: auto;
+    cursor: pointer;
+}
+
+#disabled {
+    cursor: default;
 }
 
 .card-display img:nth-child(5n) {
