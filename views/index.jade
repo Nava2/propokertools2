@@ -9,7 +9,7 @@ mixin card_img(suit, card)
 mixin player_circle(playerNo)
    .player.circle(
       id=            'p' + playerNo
-      class=         (playerNo === 1 ? 'blue' : 'black') + '-gradient'
+      class=         (playerNo === 1 ? 'enabled' : 'disabled')
       data-toggle=   'modal'
       data-target=   '#cardPicker'
       data-playerid= playerNo
@@ -45,14 +45,14 @@ body
                   li#flop
                      ul
                         - for (var i = 0; i < 3; ++i)
-                           li.table-card.blue-gradient(id="f#{i}") +
+                           li.table-card.enabled(id="f#{i}") +
                   li#turn
-                     #t1.black-gradient.table-card +
+                     #t1.disabled.table-card +
                   li#river
-                     #r1.black-gradient.table-card +
+                     #r1.disabled.table-card +
 
             #sidebar.col-md-3
-               h2.blue-gradient Output
+               h2.enabled Output
 
          #footer.row.col-md-12
             h5 Footer
