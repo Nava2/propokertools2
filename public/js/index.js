@@ -48,7 +48,6 @@ $(window).resize(function () {
 
     $('.plus-content p', $player).each(function() {
         var $this = $(this);
-        console.log('margin =', margin);
         $this.css({
             'margin-top': (-($this.parent().parent().outerHeight(true) - $this.height()) / 2) + 'px'
         });
