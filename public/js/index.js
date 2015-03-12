@@ -178,3 +178,32 @@ $(window).resize(function () {
 })();
 
 
+//modal select card functonality
+(function(){
+    var $selectedCard = null;
+
+    function toggleActiveClass($selected){
+        $selected.toggleClass("black-gradient");
+        $selected.toggleClass("blue-gradient");
+    }
+    //bottom picked cards click event
+    $("#picked-cards>li").click(function(){
+        
+        if ( $selectedCard != null ){
+            toggleActiveClass($selectedCard);
+        }
+
+        $selectedCard = $(this);
+        toggleActiveClass($selectedCard);
+    })
+
+    //all card pick event
+    $(".card-select > img").click(function(){
+        if ( $selectedCard  != null ){
+            $selectedCard.find(".plus-content").hide();
+            $(this).clone().appendTo($selectedCard);
+        }
+
+    })
+})();
+
