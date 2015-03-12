@@ -36,7 +36,7 @@ $('#cardPicker').on('show.bs.modal', function (event) {
 
     
     
-    <!-- TODO: implement num cards functionality -->
+    //TODO: implement load cards functionality
 });
 
 $("#saveCards").click(function() {
