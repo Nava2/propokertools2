@@ -12,17 +12,29 @@ $('#simulate').click(function () {
 
 $('#cardPicker').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
+    // get the data passed in
     var playerId = button.attr('data-playerId');
     var numCards = button.attr('data-numCards');
 
-    console.log(playerId);
-    console.log(numCards);
-
+    
+    //update modal headers
     var $modal = $(this);
     $('#selection-title #currCard', this).text(numCards);
     $('#selection-title #numCards', this).text(numCards);
 
     $modal.data("playerId",playerId);
+    
+
+    //update the number of cards in the footer
+    $.each($modal.find("#picked-cards").children(),function(index){
+        if ( index >= numCards){
+            $(this).hide();
+        }else{
+            $(this).show();
+        }
+    });
+
+    
     
     <!-- TODO: implement num cards functionality -->
 });
