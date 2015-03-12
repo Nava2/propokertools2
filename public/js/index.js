@@ -92,6 +92,8 @@ $(window).resize(function () {
 
 
 
+
+//modal search functionality
 (function(){
 
     var cards = [
@@ -131,7 +133,6 @@ $(window).resize(function () {
         });
     });
 
-    console.log(allCards);
 
     var cardsEngine = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('search'),
@@ -156,7 +157,6 @@ $(window).resize(function () {
 
             //show only cards that need to be displayed
             cardsEngine.get(search, function(suggestions){
-                console.log(suggestions);
                 $.each(suggestions, function(index,card){
                     card.selector.show();
                 });
