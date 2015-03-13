@@ -41,7 +41,7 @@ $(window).load(function() {
 });
 
 $(window).resize(function () {
-    var $player = $('.player');
+    var $player = $('.player .circle');
     $player.css({
         'height': $player.outerWidth() + 'px'
     });
@@ -79,4 +79,25 @@ $(window).resize(function () {
 
     $('.suit-select #suit-' + suitDisplayed).click();
 })();
+
+$('.player .selected').hide();
+
+$('.player .circle').show();
+
+$('#reset').click((function () {
+    var circleShowing = true;
+    return function () {
+        var $player = $('.player');
+        if (circleShowing) {
+            $('.circle', $player).hide();
+            $('.selected', $player).show();
+        } else {
+            $('.circle', $player).show();
+            $('.selected', $player).hide();
+        }
+
+        circleShowing = !circleShowing;
+    };
+})());
+
 

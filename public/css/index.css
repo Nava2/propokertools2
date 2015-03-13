@@ -25,9 +25,39 @@
     position: absolute;
 
     width: 8%;
+    z-index: 1;
+}
+
+.player .circle {
     /*height: auto;*/ /* compute via JS */
     border-radius: 50%;
-    z-index: 1;
+}
+
+.player .selected {
+    width: 180%;
+}
+
+.player .selected .table-card-set {
+    display: inline-block;
+
+    position: relative;
+    left: -25%;
+    padding: 1%;
+}
+
+.player .selected img {
+    width: 48%;
+    height: auto;
+    padding: 0;
+    margin: 1%;
+}
+
+.player .result {
+    margin-left: 4%;
+
+    position: absolute;
+    top: 35%;
+    right: -100%;
 }
 
 /* Player 1's circle position */
@@ -101,12 +131,16 @@
 }
 
 /* Cards On Board */
-#flop {
+.table-card-set {
     border: 2px solid #a1a1a1;
     background-color: rgba(200, 200, 200, 0.5);
+    border-radius: 10px;
+    display: inline-block;
+}
+
+#flop {
     width: 185px;
     height: 80px;
-    border-radius: 10px;
     position: relative;
 }
 
@@ -123,19 +157,13 @@
 }
 
 #turn {
-    border: 2px solid #a1a1a1;
-    background-color: rgba(200, 200, 200, 0.5);
     width: 65px;
     height: 80px;
-    border-radius: 10px;
 }
 
 #river {
-    border: 2px solid #a1a1a1;
-    background-color: rgba(200, 200, 200, 0.5);
     width: 65px;
     height: 80px;
-    border-radius: 10px;
     position: relative;
 }
 
