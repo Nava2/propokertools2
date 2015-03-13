@@ -1,6 +1,7 @@
 /**
  * Created by Yaqzan on 013, Mar 13, 2015.
  */
+
 //playerID should be int, hand should be object of type Hand
 function Player (playerID, hand) {
     this.ID = playerID;
