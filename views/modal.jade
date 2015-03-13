@@ -40,13 +40,10 @@
            .row
 
               ul#picked-cards
-                 li.pick-card.blue-gradient
-                    span.delete-card.glyphicon.glyphicon-remove-circle
-                    .plus-content: p +
-                 li.pick-card.black-gradient
-                    .plus-content: p +
-                 li.pick-card.black-gradient
-                    .plus-content: p +
+                  - for (var i = 0; i < 3; i++)
+                    li.pick-card.blue-gradient
+                        span.delete-card.glyphicon.glyphicon-remove-circle
+                        .plus-content: p +
 
         .modal-footer
            button.btn.btn-default(type='button', data-dismiss='modal') Close
