@@ -283,6 +283,17 @@
     text-align: center;
 }
 
+#picked-cards .delete-card {
+    position: relative;
+    left: 88%;
+    top: -8%;
+    font-size: 20px;
+    color: red;
+    background-color: white;
+    border-radius: 50%;
+    display: none;
+}
+
 /*********************
 * Misc CSS
 **********************/
