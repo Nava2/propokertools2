@@ -214,10 +214,6 @@
     cursor: pointer;
 }
 
-#disabled {
-    cursor: default;
-}
-
 .card-display img:nth-child(5n) {
     clear: both;
 }
