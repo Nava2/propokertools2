@@ -13,6 +13,8 @@ Player.prototype.setPlayerID = function(newID) {
     this.ID = newPlayerID;
 };
 //**********************************************************************************
+// This assumes that only the flop is known initially. So only 3 cards are needed to initialize
+// The TUrn and the River can be added afterwards via the methods
 function Table (card1, card2, card3) {
     this.flop = [card1, card2, card3];
     this.turn = null;
