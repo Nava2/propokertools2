@@ -2,51 +2,51 @@
  * Created by Yaqzan on 013, Mar 13, 2015.
  */
 
-var Player = {
-    playerID: [0, 1, 2, 3, 4, 5],
-    hand: hand,
-
-    setNewHand: function (newHand){
-        this.hand = newHand;
-    },
-    setPlayerID: function (newID){
-        this.playerID = newID;
-    }
+function Player (playerID, hand) {
+    this.ID = playerID;
+    this.hand = hand;
+}
+Player.prototype.setNewHand = function(newHand) {
+    this.hand = newHand;
 };
-
-var Table = {
-    theFlop : [card1, card2, card3],
-    theTurn : card4,
-    theRiver : card5,
-    setFlop: function (newCard1, newCard2, newCard3){
-        this.theFlop = [newCard1, newCard2, newCard3];
-    },
-    setTurn: function (newCard){
-        this.theTurn = newCard;
-    },
-    setRiver: function (newCard){
-        this.theRiver = newCard;
-    }
+Player.prototype.setPlayerID = function(newID) {
+    this.ID = newPlayerID;
 };
-
-var Hand = {
-    first : card1,
-    second : card2,
-    setFirstCard: function (newCard){
-        this.first = newCard;
-    },
-    setCardSuit: function (newCard){
-        this.second = newCard;
-    }
+//**********************************************************************************
+function Table (card1, card2, card3) {
+    this.flop = [card1, card2, card3];
+    this.turn = null;
+    this.river = null;
+}
+Table.prototype.setFlop = function(c1, c2, c3) {
+    this.flop = [c1, c2, c3];
 };
+Table.prototype.setTurn = function(newCard) {
+    this.turn = newCard;
+};
+Table.prototype.setRiver = function(newCard) {
+    this.river = newCard;
+};
+//**********************************************************************************
+// c1 and c2 should be Card objects. So should newCard when calling those functions
+function Hand(c1, c2) {
+    this.cards = [c1, c2];
+}
+Hand.prototype.setFirstCard = function (newCard){
+    this.cards = [newCard, this.cards[1]];
+};
+Hand.prototype.setSecondCard = function (newCard){
+    this.cards = [this.cards[0], newCard];
+};
+//**********************************************************************************
 
-var Card = {
-    suit: ["diamonds", "spades", "hearts", "clubs"],
-    value: ["A", "1", "2", "3", "4", "5" , "6" ,"7" ,"8" ,"9" ,"10" ,"J" ,"Q" , "K"],
-    setCardValue: function (value){
-        this.value = value;
-    },
-    setCardSuit: function (suit){
-        this.suit = suit;
-    }
+function Card(value, suit) {
+    this.suit = suit;
+    this.value = value;
+}
+Hand.prototype.setCardValue = function (newVal){
+    this.value = newVal;
+};
+Hand.prototype.setSuit = function (newSuit){
+    this.suit = newSuit;
 };
