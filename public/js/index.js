@@ -27,6 +27,16 @@ $('#cardPicker').on('show.bs.modal', function (event) {
     <!-- TODO: implement num cards functionality -->
 });
 
+$('#cardPicker').on('shown.bs.modal', _.once(function () {
+    $('.plus-content span', $(this)).each(function() {
+        var $this = $(this);
+
+        $this.css({
+            'top': (($this.parent().parent().height() - $this.height())/2) + 'px'
+        });
+    });
+}));
+
 $("#saveCards").click(function() {
     console.log("Saving changes for player id: " + $("#cardPicker").data("playerId"));
 });

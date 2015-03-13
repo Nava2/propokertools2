@@ -42,8 +42,10 @@
               ul#picked-cards
                   - for (var i = 0; i < 3; i++)
                     li.pick-card.blue-gradient
-                        span.delete-card.glyphicon.glyphicon-remove-circle
-                        .plus-content: p +
+
+                        .plus-content
+                            span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
+                            span.glyphicon.glyphicon-plus
 
         .modal-footer
            button.btn.btn-default(type='button', data-dismiss='modal') Close

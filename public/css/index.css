@@ -70,7 +70,7 @@
     /* Center the + */
     /*vertical-align: middle;*/
     text-align: center;
-    line-height: 95%;
+    line-height: 80%;
     height: 100%;
 
     /* font style */
@@ -82,6 +82,13 @@
 .plus-content p {
     margin: 0 0;
     height: 100%;
+}
+
+.plus-content span {
+    width: 50%;
+    font-size: 50px;
+    margin-left: -5%;
+    position: relative;
 }
 
 #table-cards {
@@ -285,13 +292,13 @@
 
 #picked-cards .delete-card {
     position: relative;
-    left: 88%;
-    top: -8%;
-    font-size: 20px;
-    color: red;
-    background-color: white;
+    left: 83%;
+    top: -10%;
     border-radius: 50%;
-    display: none;
+    padding: 2.5%;
+    font-size: 20px;
+    display:none;
+    /*to show use display: inline-block*/
 }
 
 /*********************
