@@ -1,7 +1,7 @@
 /**
  * Created by Yaqzan on 013, Mar 13, 2015.
  */
-
+//playerID should be int, hand should be object of type Hand
 function Player (playerID, hand) {
     this.ID = playerID;
     this.hand = hand;
@@ -41,7 +41,7 @@ Hand.prototype.setSecondCard = function (newCard){
     this.cards = [this.cards[0], newCard];
 };
 //**********************************************************************************
-
+//value and suit are both strings
 function Card(value, suit) {
     this.suit = suit;
     this.value = value;
