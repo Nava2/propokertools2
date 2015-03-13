@@ -57,7 +57,12 @@
 
     position: absolute;
     top: 35%;
-    right: -100%;
+    right: -120%;
+    border-radius: 10px;
+
+    /* make it look like a badge */
+    border-radius: 10px;
+    font-size: 20px;
 }
 
 /* Player 1's circle position */
