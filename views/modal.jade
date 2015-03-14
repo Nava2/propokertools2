@@ -1,53 +1,50 @@
 
 // Card Picker Modal
 #cardPicker.modal.fade(tabindex='-1', role='dialog', aria-labelledby='Card Picker', aria-hidden='true')
-    .modal-dialog
-        .modal-content
-            .modal-header
-                button.close(type='button', data-dismiss='modal', aria-label='Close')
-                    span(aria-hidden='true') &times;
-                h4#selection-title.modal-title
-                    | Card Selection - (
-                    span#currCard 1
-                    | /
-                    span#numCards 1
-                    | )
+  .modal-dialog
+     .modal-content
+        .modal-header
+           button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') &times;
+           h4#selection-title.modal-title
+              | Card Selection - (
+              span#currCard 1
+              | /
+              span#numCards 1
+              | )
 
-            .modal-body
-                #liteAccordion
-                    ol
-                        li
-                            h2: span Main Card Selection...
+        .modal-body
+           #liteAccordion
+              ol
+                 li
+                    h2: span Main Card Selection...
 
-                            .row.simple-selection
-                                input#search(type="text", placeholder="Search")
-                                #simple-layout
-                                    .col-md-2.suit-select.card-display
-                                        each suit in suits
-                                            img(src='images/Cards/#{suit.long}/A#{suit.short}.svg' class='#{suit.long.toLowerCase()}')
+                    .row.simple-selection
+                       input#search(type="text", placeholder="Search")
+                       .col-md-2.suit-select.card-display
+                          each suit in suits
+                              img(src='images/Suits/#{suit.long}.svg' id='suit-#{suit.long.toLowerCase()}' class='#{suit.long.toLowerCase()}')
 
-                                    .col-md-9
-                                        .card-select.card-display
-                                            each suit in suits
-                                                each card in cards
-                                                    +card_img(suit, card)(id='card-#{card.short}#{suit.short}')
+                       .col-md-9
+                          //- Create hidden entities for all of the cards
+                          .card-select.card-display
+                            each suit in suits
+                                each card in cards
+                                   +card_img(suit, card)(id='card-#{card.short}#{suit.short}')
 
-                        li
-                            h2: span Advanced...
-                            #advanced-content
-                                p Content Here please. :D
-
+                 li
+                    h2: span Advanced...
+                    #advanced-content
+                       p Content Here please. :D
 
               ul#picked-cards
-                 li.pick-card.black-gradient
-
+                 li.pick-card.enabled
                     .plus-content: p +
-                 li.pick-card.black-gradient
+                 li.pick-card.button
                     .plus-content: p +
-                 li.pick-card.black-gradient
+                 li.pick-card.button
                     .plus-content: p +
 
-
-            .modal-footer
-                button.btn.btn-default(type='button', data-dismiss='modal') Close
-                button#saveCards.btn.btn-primary(type='button') Save changes
+        .modal-footer
+           button.btn.btn-default(type='button', data-dismiss='modal') Close
+           button#saveCards.btn.btn-primary(type='button') Save changes
