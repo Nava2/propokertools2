@@ -230,25 +230,27 @@
 
 }
 
+
 .card-selection {
     padding-right: 2%;
     display: none;
 }
 
-#card-selection-spades {
-
+/* All of the cards for a suit: */
+.card-select .clubs {
+	display: none;
 }
 
-#card-selection-hearts {
-
+.card-select .hearts {
+	display: none;
 }
 
-#card-selection-clubs {
-
+.card-select .spades {
+    display: none;
 }
 
-#card-selection-diamonds {
-
+.card-select .diamonds {
+	display: none;
 }
 
 .collapse.width {
@@ -257,6 +259,17 @@
     -moz-transition: width 0.35s ease;
     -o-transition: width 0.35s ease;
     transition: width 0.35s ease;
+}
+
+#search {
+  background-color: #fff;
+  padding:5px;
+  border:2px solid #ccc;
+  border-radius: 8px;
+}
+
+#search:focus {
+    border: 2px solid #0097cf;
 }
 
 #picked-cards {

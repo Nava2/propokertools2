@@ -1,7 +1,7 @@
 var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
 
 $('#simulate').click(function () {
-    boardData = {
+   var boardData = {
             table: { flop: ['ah', 'td', 'jh'] },
             hands: [['ac', 'jd'], ['90%']]
         };
@@ -36,7 +36,7 @@ $(window).load(function() {
 
     $('#liteAccordion').liteAccordion({
         containerWidth: 700,
-        containerHeight: 500
+        containerHeight: 550
     });
 });
 
@@ -64,19 +64,105 @@ $(window).resize(function () {
 (function () {
     var suitDisplayed = suits[0]; // init
 
-    function getCardDisplay(suit) {
-        return $('#card-selection-' + suit.toLowerCase());
-    }
-
     suits.forEach(function (suit) {
-        $('.suit-select #suit-' + suit).click(function () {
-            getCardDisplay(suitDisplayed).hide();
+        $('.suit-select .' + suit).click(function () {
+            $('.card-select .' + suitDisplayed).hide();
 
-            getCardDisplay(suit).show();
+            $('.card-select .' + suit).show();
             suitDisplayed = suit;
+        });
+
+        $('.card-select .' + suit).hide();
+    });
+
+    $('.suit-select .' + suitDisplayed).click();
+})();
+
+
+
+(function(){
+
+    var cards = [
+        {short:"A", long:"Ace"},
+        {short:"2", long:"two"},
+        {short:"3", long:"three"},
+        {short:"4", long:"four"},
+        {short:"5", long:"five"},
+        {short:"6", long:"six"},
+        {short:"7", long:"seven"},
+        {short:"8", long:"eight"},
+        {short:"9", long:"nine"},
+        {short:"T", long:"10 ten"},
+        {short:"J", long:"jack"},
+        {short:"Q", long:"queen"},
+        {short:"K", long:"king"}
+    ];
+
+    var suits = [
+        {short:"C", long:"Clubs", selector:$(".card-select .clubs")},
+        {short:"D", long:"Diamonds", selector:$(".card-select .diamonds")},
+        {short:"H", long:"Hearts", selector:$(".card-select .hearts")},
+        {short:"S", long:"Spades", selector:$(".card-select .spades")}
+    ];
+
+    var allCards = [];
+    $.each(cards,function(index,card){
+        $.each(suits,function(index,suit){
+            var cardObject = {
+                card: card,
+                suit: suit,
+                search: card.short+""+suit.short+" "+card.long+" "+suit.long,
+                selector:$("#card-"+card.short+""+suit.short)
+            };
+            
+            allCards.push(cardObject);
         });
     });
 
-    $('.suit-select #suit-' + suitDisplayed).click();
+    console.log(allCards);
+
+    var cardsEngine = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('search'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      local: allCards,
+      limit: 13
+    });
+     
+    cardsEngine.initialize();
+
+    var $searchInput = $("#search");
+
+    //second way of doing autocomplete display
+    $searchInput.on('input',function(e){
+        var search = $searchInput.val();
+        if ( search ){
+            $(".suit-select").hide();
+            //hide all cards
+            $.each(allCards,function(index,value){
+                value.selector.hide();
+            });
+
+            //show only cards that need to be displayed
+            cardsEngine.get(search, function(suggestions){
+                console.log(suggestions);
+                $.each(suggestions, function(index,card){
+                    card.selector.show();
+                });
+            });
+
+        }else{
+            //no search input, go back to default view
+            $.each(allCards,function(index,value){
+                value.selector.hide();
+            });
+
+            suits[0].selector.click();
+            $(".suit-select").show();
+            $("."+suits[0].long.toLowerCase()).show();
+        }
+    })
+
+
 })();
+
 

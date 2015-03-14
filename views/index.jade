@@ -1,9 +1,8 @@
 doctype html(lang='en')
 
 mixin card_img(suit, card)
-   - var lsuiy = suit.toLowerCase();
-   - var letter = suit[0];
-   img(src='images/Cards/#{suit}/#{card}#{letter}.svg')&attributes(attributes)
+    - var classes = [suit.long.toLowerCase(), card.long.toLowerCase()]
+    img(src='images/Cards/#{suit.long}/#{card.short}#{suit.short}.svg', class=classes)&attributes(attributes)
 
 //- Creates a player circle, if the player number is 1 it will make it blue
 mixin player_circle(playerNo)
@@ -18,18 +17,20 @@ mixin player_circle(playerNo)
       .plus-content: p +
 
 head
-   title ProPokerTools2 :3
+  title ProPokerTools2 :3
+
 
    //- remote scripts
-   script(src='//code.jquery.com/jquery-2.1.3.min.js')
-   script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js')
+  script(src='//code.jquery.com/jquery-2.1.3.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js')
 
-   link(rel='stylesheet', type='text/css', href='css/vendor/normalize/normalize.css')
-   link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
-   script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+  link(rel='stylesheet', type='text/css', href='css/vendor/normalize/normalize.css')
+  link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css')
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
 
-   link(rel='stylesheet', type='text/css', href='css/index.css')
-   link(rel='stylesheet', type='text/css', href='css/vendor/liteAccordion/liteaccordion.css')
+  link(rel='stylesheet', type='text/css', href='css/index.css')
+  link(rel='stylesheet', type='text/css', href='css/vendor/liteAccordion/liteaccordion.css')
+
 
 body
    #content
@@ -59,9 +60,10 @@ body
             button#reset.btn.btn-lg.btn-danger Reset
             button#simulate.btn.btn-lg.btn-success Simulate
 
-      include ./modal.jade
+   include ./modal.jade
 
    //- local scripts:
    script(src='js/server.js')
+   script(src='js/bloodhound.js')
    script(src='js/index.js')
    script(src='js/liteAccordion/liteaccordion.jquery.min.js')
