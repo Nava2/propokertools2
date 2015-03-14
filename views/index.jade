@@ -9,7 +9,7 @@ mixin card_img(suit, card)
 //- Creates a player circle, if the player number is 1 it will make it blue
 mixin player_circle(playerNo)
     .player(id='p' + playerNo)
-        .circle(
+        .no-cards(
             class=         (playerNo === 1 ? 'enabled' : 'button')
             data-toggle=   'modal'
             data-target=   '#cardPicker'
@@ -17,10 +17,14 @@ mixin player_circle(playerNo)
             data-numcards= '2'
         )
             .plus-content: p +
-        .selected
-            .table-card-set
+        ul.selected.table-card-set
+            li
                 +card_img('Clubs', 'A')
-                +card_img('Diamonds', 'A')
+                .enabled.plus-content(style='display: none;'): span.glyphicon.glyphicon-plus
+            li
+                +card_img('Clubs', 'A')(style='display: none;')
+                .enabled.plus-content: span.glyphicon.glyphicon-plus
+
             span.result.label.label-success
 
 head

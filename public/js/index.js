@@ -1,7 +1,8 @@
+
 var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
 
 $('#simulate').click(function () {
-    boardData = {
+   var boardData = {
             table: { flop: ['ah', 'td', 'jh'] },
             hands: [['ac', 'jd'], ['90%']]
         };
@@ -89,10 +90,10 @@ $('#reset').click((function () {
     return function () {
         var $player = $('.player');
         if (circleShowing) {
-            $('.circle', $player).hide();
+            $('.no-cards', $player).hide();
             $('.selected', $player).show();
         } else {
-            $('.circle', $player).show();
+            $('.no-cards', $player).show();
             $('.selected', $player).hide();
         }
 
@@ -100,4 +101,82 @@ $('#reset').click((function () {
     };
 })());
 
+var GameActions = {
+
+    __setHandResult: function (playerNo, handLikelyHood, isBest) {
+
+        var $rspan = $('.player #p' + i + ' .result');
+
+        if (isBest) {
+            $rspan.removeClass('label-primary');
+            $rspan.addClass('label-success');
+        } else {
+            $rspan.addClass('label-primary');
+            $rspan.removeClass('label-success');
+        }
+    },
+
+    setPlayerCards: function (playerNo, cards) {
+        var $player = $('#p' + playerNo);
+
+        if (_.isUndefined(cards)) {
+            cards = [];
+        }
+
+        // TODO Make this actually do something.. instead of showing them
+        if (_.isArray(cards) && cards.length == 0) {
+            // empty hand
+            $('.selected', $player).hide();
+            $('.no-cards', $player).show();
+            return;
+        }
+
+        $('.selected', $player).show();
+        $('.no-cards', $player).hide();
+
+        var imgs = $('.selected img', $player);
+        var selectables = $('.selected .plus-content', $player);
+        cards.forEach(function (card, i) {
+            $(imgs[i]).attr('src', 'images/Cards/' + card.suit + '/' + card.value + card.suit.toUpperCase()[0] + '.svg');
+        });
+
+
+        // show and hide
+        cards.forEach(function (card, i) {
+            $(imgs[i]).show();
+            $(selectables[i]).hide();
+        });
+
+         _.range(cards.length, 2).forEach(function (i) {
+             $(imgs[i]).hide();
+             $(selectables[i]).show();
+        });
+
+        $('.selected .plus-content span', $player).each(function () {
+            var $this = $(this);
+
+            $this.css({
+                'top': (($this.parent().parent().height() - $this.height())/2) + 'px'
+            });
+        });
+    },
+
+    /**
+     * Sets the board to show the result likely hoods.
+     * @param handLikelyHoods
+     */
+    setHandResults: function (handLikelyHoods) {
+        var bestIndex = _(_.range(1, handLikelyHoods.length)).zip(handLikelyHoods).max(function (x) { return x[1]; })[0];
+
+        handLikelyHoods.map(function (likelyHood, i) {
+
+            return [i + 1, likelyHood, i === bestIndex];
+        }).forEach(this.__setHandResult);
+
+        _.range(handLikelyHoods.length, 7).map(function (i) {
+            return [i + 1, undefined, false];
+        })
+
+    }
+};
 

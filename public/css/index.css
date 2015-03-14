@@ -28,12 +28,18 @@
     z-index: 1;
 }
 
-.player .circle {
+.player .no-cards {
     /*height: auto;*/ /* compute via JS */
     border-radius: 50%;
 }
 
 .player .selected {
+    list-style: outside none none;
+    display: flex;
+    flex-direction: row;
+    margin: 0px;
+    padding: 2%;
+
     width: 180%;
 }
 
@@ -45,8 +51,13 @@
     padding: 1%;
 }
 
+.player .selected li {
+    width: 100%;
+    padding: 2%;
+}
+
 .player .selected img {
-    width: 48%;
+    width: 100%;
     height: auto;
     padding: 0;
     margin: 1%;
@@ -57,12 +68,12 @@
 
     position: absolute;
     top: 35%;
-    right: -120%;
-    border-radius: 10px;
+    left: 180%;
 
     /* make it look like a badge */
     border-radius: 10px;
     font-size: 20px;
+    display: none;
 }
 
 /* Player 1's circle position */
@@ -114,6 +125,13 @@
     color: white;
 }
 
+.plus-content span {
+    width: 50%;
+    font-size: 50px;
+    margin-left: -5%;
+    position: relative;
+}
+
 .plus-content p {
     margin: 0 0;
     height: 100%;
@@ -141,6 +159,13 @@
     background-color: rgba(200, 200, 200, 0.5);
     border-radius: 10px;
     display: inline-block;
+}
+
+.table-card-set .plus-content span {
+    width: 50%;
+    font-size: 35px;
+    margin-left: -5%;
+    position: relative;
 }
 
 #flop {
