@@ -211,6 +211,7 @@
     padding-bottom: 0.75em;
     width: 18%;
     height: auto;
+    cursor: pointer;
 }
 
 .card-display img:nth-child(5n) {
@@ -220,11 +221,13 @@
 .suit-select {
     border-right: 1px solid rgb(229, 229, 229) !important;
     text-align: center;
+    cursor: pointer;
 }
 
 .suit-select img {
     width: 81%; /* 20% * 9 / 3 - 2% padding */
     height: auto;
+
 }
 
 
@@ -299,18 +302,21 @@
 /*********************
 * Misc CSS
 **********************/
-.blue-gradient {
-    border: 2px solid #a1a1a1;
-    background: -webkit-linear-gradient(rgba(211, 236, 255, 0.9), rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* Standard syntax */
-}
-
-.black-gradient {
+.button {
     border: 2px solid #a1a1a1;
     background: -webkit-linear-gradient(gray, black); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(gray, black); /* For Firefox 3.6 to 15 */
     background: linear-gradient(gray, black); /* Standard syntax */
+    cursor: default;
+}
+
+
+.enabled {
+    border: 2px solid #a1a1a1;
+    background: -webkit-linear-gradient(rgba(211, 236, 255, 0.9), rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* Standard syntax */
+    cursor: pointer;
 }
