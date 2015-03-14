@@ -1,6 +1,9 @@
 /**
  * Created by Yaqzan on 013, Mar 13, 2015.
  */
+
+
+
 //playerID should be int, hand should be object of type Hand
 function Player (playerID, hand) {
     this.ID = playerID;
@@ -35,10 +38,10 @@ function Hand(c1, c2) {
     this.cards = [c1, c2];
 }
 Hand.prototype.setFirstCard = function (newCard){
-    this.cards = [newCard, this.cards[1]];
+    this.cards[0] = newCard;
 };
 Hand.prototype.setSecondCard = function (newCard){
-    this.cards = [this.cards[0], newCard];
+    this.cards[1] = newCard;
 };
 //**********************************************************************************
 //value and suit are both strings
@@ -46,9 +49,9 @@ function Card(value, suit) {
     this.suit = suit;
     this.value = value;
 }
-Hand.prototype.setCardValue = function (newVal){
+Card.prototype.setCardValue = function (newVal){
     this.value = newVal;
 };
-Hand.prototype.setSuit = function (newSuit){
+Card.prototype.setSuit = function (newSuit){
     this.suit = newSuit;
 };
