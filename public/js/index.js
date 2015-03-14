@@ -103,19 +103,11 @@ $('#reset').click((function () {
 
 var GameActions = {
 
-    __setHandResult: function (playerNo, handLikelyHood, isBest) {
-
-        var $rspan = $('.player #p' + i + ' .result');
-
-        if (isBest) {
-            $rspan.removeClass('label-primary');
-            $rspan.addClass('label-success');
-        } else {
-            $rspan.addClass('label-primary');
-            $rspan.removeClass('label-success');
-        }
-    },
-
+    /**
+     * Set a player's hand on the table to be the cards passed.
+     * @param playerNo Player number
+     * @param {Card} cards Cards for the player
+     */
     setPlayerCards: function (playerNo, cards) {
         var $player = $('#p' + playerNo);
 
@@ -123,7 +115,6 @@ var GameActions = {
             cards = [];
         }
 
-        // TODO Make this actually do something.. instead of showing them
         if (_.isArray(cards) && cards.length == 0) {
             // empty hand
             $('.selected', $player).hide();
@@ -162,20 +153,52 @@ var GameActions = {
     },
 
     /**
+     * Set the labels for a player's result.
+     * @param playerNo
+     * @param handLikelyHood
+     * @param isBest
+     * @private
+     */
+    __setHandResult: function (playerNo, handLikelyHood, isBest) {
+        var $rspan = $('#p' + playerNo + ' .result');
+
+        if ($rspan.length === 0) {
+            return;
+        }
+
+        if (_.isNumber(handLikelyHood)) {
+            $rspan.text(handLikelyHood + '%');
+        }
+
+        if (isBest) {
+            $rspan.removeClass('label-primary');
+            $rspan.addClass('label-success');
+        } else {
+            $rspan.addClass('label-primary');
+            $rspan.removeClass('label-success');
+        }
+    },
+
+    /**
      * Sets the board to show the result likely hoods.
-     * @param handLikelyHoods
+     * @param {Number[]} handLikelyHoods Array of percentages (out of 100).
      */
     setHandResults: function (handLikelyHoods) {
-        var bestIndex = _(_.range(1, handLikelyHoods.length)).zip(handLikelyHoods).max(function (x) { return x[1]; })[0];
+        var bestIndex = _.chain(_.range(handLikelyHoods.length)).zip(handLikelyHoods)
+            .max(function (x) { return x[1]; })
+            .value()[0];
+
+        var setHand = _.bind(function (v) {
+            this.__setHandResult.apply(this, v);
+        }, this);
 
         handLikelyHoods.map(function (likelyHood, i) {
-
             return [i + 1, likelyHood, i === bestIndex];
-        }).forEach(this.__setHandResult);
+        }).forEach(setHand);
 
-        _.range(handLikelyHoods.length, 7).map(function (i) {
+        _.range(handLikelyHoods.length, 6).map(function (i) {
             return [i + 1, undefined, false];
-        })
+        }).forEach(setHand);
 
     }
 };
