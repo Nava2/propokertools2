@@ -36,7 +36,11 @@
                  li
                     h2: span Advanced...
                     #advanced-content
-                       p Content Here please. :D
+                       p
+                        label(for='range') Select a Hand Range then click "Save Changes" to assign to the player:
+                        input#range(type='text', readonly='')
+     
+                       #slider-range
            .row
 
               ul#picked-cards

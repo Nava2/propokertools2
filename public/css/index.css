@@ -283,6 +283,28 @@
     text-align: center;
 }
 
+#range {
+    border:0;
+    color:#f6931f;
+    font-weight:bold;
+    padding-left: 30px;    
+}
+
+#slider-range{
+    width: 400px;
+    margin: 30px;
+    background: -webkit-linear-gradient(gray, black); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(gray, black); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(gray, black); /* Standard syntax */
+}
+
+.ui-slider-range{
+    background: -webkit-linear-gradient(rgba(211, 236, 255, 0.9), rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* Standard syntax */
+}
 /*********************
 * Misc CSS
 **********************/
