@@ -20,24 +20,22 @@
                     h2: span Main Card Selection...
 
                     .row.simple-selection
+                       input#search(type="text", placeholder="Search")
                        .col-md-2.suit-select.card-display
-                          img#suit-clubs(src='images/Suits/Clubs.svg')
-                          img#suit-diamonds(src='images/Suits/Diamonds.svg')
-                          img#suit-hearts(src='images/Suits/Hearts.svg')
-                          img#suit-spades(src='images/Suits/Spades.svg')
+                          each suit in suits
+                              img(src='images/Suits/#{suit.long}.svg' id='suit-#{suit.long.toLowerCase()}' class='#{suit.long.toLowerCase()}')
 
                        .col-md-9
                           //- Create hidden entities for all of the cards
-                          each suit in ['Clubs', 'Diamonds', 'Hearts', 'Spades']
-                             .card-display.card-selection(id='card-selection-#{suit.toLowerCase()}')
-                                each card in ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
-                                   +card_img(suit, card)(id='card-#{suit.toLowerCase()}-#{card}#{suit[0]}')
+                          .card-select.card-display
+                             each suit in suits
+                                each card in cards
+                                   +card_img(suit, card)(id='card-#{card.short}#{suit.short}')
 
                  li
                     h2: span Advanced...
                     #advanced-content
                        p Content Here please. :D
-           .row
 
               ul#picked-cards
                  li.pick-card.enabled
