@@ -42,15 +42,15 @@ $(window).load(function() {
 });
 
 $(window).resize(function () {
-    var $player = $('.player .circle');
+    var $player = $('.player .no-cards');
     $player.css({
         'height': $player.outerWidth() + 'px'
     });
 
-    $('.plus-content p', $player).each(function() {
+    $('.plus-content span', $player).each(function() {
         var $this = $(this);
         $this.css({
-            'margin-top': (-($this.parent().parent().outerHeight(true) - $this.height()) / 2) + 'px'
+            top: (($this.parent().parent().height() - $this.height()) / 2) + 'px'
         });
     });
 });

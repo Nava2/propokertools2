@@ -5,13 +5,13 @@ mixin card_img(suit, card)
     img(src='images/Cards/#{suit.long}/#{card.short}#{suit.short}.svg', class=classes)&attributes(attributes)
 
 
-
 //- Creates a player circle, if the player number is 1 it will make it blue
 mixin player_space(playerNo)
     - console.log(show_modal_attributes(playerNo, 2));
     .player(id='p' + playerNo)
         .no-cards(class = (playerNo === 1 ? 'enabled' : 'button'))&attributes(show_modal_attributes(playerNo, 2))
-            .plus-content: p +
+            .plus-content: span.glyphicon.glyphicon-plus
+
         ul.selected.table-card-set&attributes(show_modal_attributes(playerNo, 2))
             li
                 +card_img(suits[0], cards[0])
@@ -52,12 +52,16 @@ body
                         li#flop.table-card-set
                             ul
                                 - for (var i = 0; i < 3; ++i)
-                                    li.table-card.enabled(id="f#{i}") +
+                                    li.table-card.enabled(id="f#{i}")
+                                        .plus-content: span.glyphicon.glyphicon-plus
+
                         li#turn.table-card-set
-                            #t1.button.table-card +
+                            #t1.button.table-card
+                                .plus-content: span.glyphicon.glyphicon-plus
 
                         li#river.table-card-set
-                            #r1.button.table-card +
+                            #r1.button.table-card
+                                .plus-content: span.glyphicon.glyphicon-plus
 
                 #sidebar.col-md-3
                     h2.blue-gradient Output

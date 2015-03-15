@@ -160,11 +160,17 @@
     display: inline-block;
 }
 
+.table-card-set .plus-content {
+    display: flex;
+    align-content: center;
+    align-items: center;
+
+    text-align: center;
+}
+
 .table-card-set .plus-content span {
-    width: 50%;
     font-size: 35px;
-    margin-left: -5%;
-    position: relative;
+    margin-left: -7%;
 }
 
 #flop {
