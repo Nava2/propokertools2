@@ -18,20 +18,29 @@
               ol
                  li
                     h2: span Main Card Selection...
+                    div
+                      .row.simple-selection
+                         .col-md-2.suit-select.card-display
+                            img#suit-clubs(src='images/Cards/Clubs/AC.svg')
+                            img#suit-diamonds(src='images/Cards/Diamonds/AD.svg')
+                            img#suit-hearts(src='images/Cards/Hearts/AH.svg')
+                            img#suit-spades(src='images/Cards/Spades/AS.svg')
 
-                    .row.simple-selection
-                       .col-md-2.suit-select.card-display
-                          img#suit-clubs(src='images/Cards/Clubs/AC.svg')
-                          img#suit-diamonds(src='images/Cards/Diamonds/AD.svg')
-                          img#suit-hearts(src='images/Cards/Hearts/AH.svg')
-                          img#suit-spades(src='images/Cards/Spades/AS.svg')
-
-                       .col-md-9
-                          //- Create hidden entities for all of the cards
-                          each suit in ['Clubs', 'Diamonds', 'Hearts', 'Spades']
-                             .card-display.card-selection(id='card-selection-#{suit.toLowerCase()}')
-                                each card in ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
-                                   +card_img(suit, card)(id='card-#{suit.toLowerCase()}-#{card}#{suit[0]}')
+                         .col-md-9
+                            //- Create hidden entities for all of the cards
+                            each suit in ['Clubs', 'Diamonds', 'Hearts', 'Spades']
+                               .card-display.card-selection(id='card-selection-#{suit.toLowerCase()}')
+                                  each card in ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
+                                     +card_img(suit, card)(id='card-#{suit.toLowerCase()}-#{card}#{suit[0]}')
+                        
+                       .row
+                         ul#picked-cards
+                           li.pick-card.blue-gradient
+                             .plus-content: p +
+                           li.pick-card.black-gradient
+                             .plus-content: p +
+                           li.pick-card.black-gradient
+                             .plus-content: p +
 
                  li
                     h2: span Advanced...
@@ -41,15 +50,7 @@
                         input#range(type='text', readonly='')
      
                        #slider-range
-           .row
 
-              ul#picked-cards
-                 li.pick-card.blue-gradient
-                    .plus-content: p +
-                 li.pick-card.black-gradient
-                    .plus-content: p +
-                 li.pick-card.black-gradient
-                    .plus-content: p +
 
         .modal-footer
            button.btn.btn-default(type='button', data-dismiss='modal') Close
