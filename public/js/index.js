@@ -348,7 +348,6 @@ var GameActions = {
     var $selectedCard = $(".pick-card.enabled");
 
     function toggleActiveClass($selected){
-        console.log($selected.attr('class'))
         $selected.toggleClass("enabled");
         $selected.toggleClass("button");
     }
@@ -367,7 +366,13 @@ var GameActions = {
     $(".card-select > img").click(function(){
         if ( $selectedCard  != null ){
             $selectedCard.find(".plus-content").hide();
-            $(this).clone().appendTo($selectedCard);
+            $img = $selectedCard.find("img");
+            if ( $img.length == 0){//no previous selection
+                $(this).clone().appendTo($selectedCard);        
+            }else{
+                $img.replaceWith($(this).clone());
+            }
+            
         }
 
     })
