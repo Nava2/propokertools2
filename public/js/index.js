@@ -24,8 +24,27 @@ $('#cardPicker').on('show.bs.modal', function (event) {
     $('#selection-title #numCards', this).text(numCards);
 
     $modal.data("playerId",playerId);
-    
+
+
+
     <!-- TODO: implement num cards functionality -->
+});
+
+$('#cardPicker').on('shown.bs.modal', function () {
+    var $modal = $(this);
+
+    $('.plus-content span', $modal).each(function () {
+        var $this = $(this);
+
+        console.log('$this.parent().parent().height() =', $this.parent().parent().height());
+        console.log('$this.height() =', $this.height());
+        console.log('$this.outerHeight() =', $this.outerHeight(true));
+
+        $this.css({
+            top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
+            width: $this.height() + 'px'
+        });
+    });
 });
 
 $("#saveCards").click(function() {
@@ -50,7 +69,17 @@ $(window).resize(function () {
     $('.plus-content span', $player).each(function() {
         var $this = $(this);
         $this.css({
+            top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
+            width: $this.height() + 'px'
+        });
+    });
+
+    $('.table-card-set .plus-content span').each(function () {
+        var $this = $(this);
+
+        $this.css({
             top: (($this.parent().parent().height() - $this.height()) / 2) + 'px'
+            //width: $this.height() + 'px'
         });
     });
 });

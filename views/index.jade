@@ -15,12 +15,12 @@ mixin player_space(playerNo)
         ul.selected.table-card-set&attributes(show_modal_attributes(playerNo, 2))
             li
                 +card_img(suits[0], cards[0])
-                .enabled.plus-content(style = 'display: none;')
-                    span.glyphicon.glyphicon-plus
+                .card-placeholder.enabled(style = 'display: none;')
+                    .plus-content: span.glyphicon.glyphicon-plus
             li
                 +card_img(suits[0], cards[0])(style='display: none;')
-                .enabled.plus-content
-                    span.glyphicon.glyphicon-plus
+                .card-placeholder.enabled
+                    .plus-content: span.glyphicon.glyphicon-plus
 
             span.result.label.label-success
 
