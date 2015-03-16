@@ -10,6 +10,7 @@ $('#simulate').click(function () {
    });
 });
 
+
 $('#cardPicker').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
     // get the data passed in
@@ -38,6 +39,9 @@ $('#cardPicker').on('show.bs.modal', function (event) {
     <!-- TODO: implement num cards functionality -->
 });
 
+/**
+ * Modal open event listener
+ */
 $('#cardPicker').on('shown.bs.modal', function () {
     var $modal = $(this);
 
@@ -53,7 +57,18 @@ $('#cardPicker').on('shown.bs.modal', function () {
             width: $this.height() + 'px'
         });
     });
+
 });
+
+var $modalOriginalState = null;
+/*
+ * Modal close event listener
+ */
+$('#cardPicker').on('hidden.bs.modal', function () {
+    //reset modal data to default state
+    $(this).replaceWith($modalOriginalState.clone(true,true));
+
+})
 
 $("#saveCards").click(function() {
     console.log("Saving changes for player id: " + $("#cardPicker").data("playerId"));
@@ -66,6 +81,7 @@ $(window).load(function() {
         containerWidth: 700,
         containerHeight: 550
     });
+    $modalOriginalState = $("#cardPicker").clone(true,true);
 });
 
 $(window).resize(function () {
