@@ -329,11 +329,12 @@ var GameActions = {
 
 //modal select card functonality
 (function(){
-    var $selectedCard = null;
+    var $selectedCard = $(".pick-card.enabled");
 
     function toggleActiveClass($selected){
-        $selected.toggleClass("black-gradient");
-        $selected.toggleClass("blue-gradient");
+        console.log($selected.attr('class'))
+        $selected.toggleClass("enabled");
+        $selected.toggleClass("button");
     }
     //bottom picked cards click event
     $("#picked-cards>li").click(function(){
