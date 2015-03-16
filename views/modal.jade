@@ -19,31 +19,34 @@
                  li
                     h2: span Main Card Selection...
 
-                    .row.simple-selection
-                       input#search(type="text", placeholder="Search")
-                       .col-md-2.suit-select.card-display
-                          each suit in suits
-                              img(src='images/Suits/#{suit.long}.svg' id='suit-#{suit.long.toLowerCase()}' class='#{suit.long.toLowerCase()}')
+                    .simple-selection
+                       .row.col-md-12
+                          input#search(type="text", placeholder="Search")
+                       .row
+                          .col-md-2.suit-select.card-display
+                             each suit in suits
+                                img(src='images/Suits/#{suit.long}.svg' id='suit-#{suit.long.toLowerCase()}' class='#{suit.long.toLowerCase()}')
 
-                       .col-md-9
-                          //- Create hidden entities for all of the cards
-                          .card-select.card-display
-                            each suit in suits
-                                each card in cards
-                                   +card_img(suit, card)(id='card-#{card.short}#{suit.short}')
-
+                          .col-md-9
+                             //- Create hidden entities for all of the cards
+                             .card-select.card-display
+                                each suit in suits
+                                    each card in cards
+                                       +card_img(suit, card)(id='card-#{card.short}#{suit.short}')
                  li
                     h2: span Advanced...
                     #advanced-content
                        p Content Here please. :D
-
+           .row.col-md-12
               ul#picked-cards
                  li.pick-card.enabled
-                    .plus-content: p +
+                    .plus-content: span.glyphicon.glyphicon-plus
                  li.pick-card.button
-                    .plus-content: p +
+                    .plus-content: span.glyphicon.glyphicon-plus
                  li.pick-card.button
-                    .plus-content: p +
+                    .plus-content: span.glyphicon.glyphicon-plus
+
+
 
         .modal-footer
            button.btn.btn-default(type='button', data-dismiss='modal') Close

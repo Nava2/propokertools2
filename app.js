@@ -22,7 +22,7 @@ app.use(express.static(__dirname + '/public'));
 
 var indexModel = {
     cards : [
-        {short:"A", long:"Ace"},
+        {short:"A", long:"ace"},
         {short:"2", long:"two"},
         {short:"3", long:"three"},
         {short:"4", long:"four"},
@@ -42,7 +42,16 @@ var indexModel = {
         {short:"D", long:"Diamonds" },
         {short:"H", long:"Hearts" },
         {short:"S", long:"Spades" }
-    ]
+    ],
+
+    show_modal_attributes: function (id, numCards) {
+        return {
+            'data-toggle': 'modal',
+            'data-target': '#cardPicker',
+            'data-playerid': id,
+            'data-numcards': numCards
+        };
+    }
 };
 
  app.get('/', function (err, res) {
