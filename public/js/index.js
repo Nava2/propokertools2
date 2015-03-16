@@ -175,7 +175,6 @@ $(window).resize(function () {
         });
     });
 
-    console.log(allCards);
 
     var cardsEngine = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('search'),
@@ -186,11 +185,10 @@ $(window).resize(function () {
      
     cardsEngine.initialize();
 
-    var $searchInput = $("#search");
 
     //second way of doing autocomplete display
-    $searchInput.on('input',function(e){
-        var search = $searchInput.val();
+    $("#search").on('input',function(e){
+        var search = $(this).val();
         if ( search ){
             $(".suit-select").hide();
             //hide all cards
@@ -200,7 +198,6 @@ $(window).resize(function () {
 
             //show only cards that need to be displayed
             cardsEngine.get(search, function(suggestions){
-                console.log(suggestions);
                 $.each(suggestions, function(index,card){
                     card.selector.show();
                 });
