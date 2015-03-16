@@ -48,10 +48,6 @@ $('#cardPicker').on('shown.bs.modal', function () {
     $('.plus-content span', $modal).each(function () {
         var $this = $(this);
 
-        console.log('$this.parent().parent().height() =', $this.parent().parent().height());
-        console.log('$this.height() =', $this.height());
-        console.log('$this.outerHeight() =', $this.outerHeight(true));
-
         $this.css({
             top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
             width: $this.height() + 'px'
