@@ -212,7 +212,6 @@ $(window).resize(function () {
                 value.selector.hide();
             });
 
-            suits[0].selector.click();
             $(".suit-select").show();
             $("."+suits[0].long.toLowerCase()).show();
         }
