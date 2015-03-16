@@ -345,25 +345,32 @@ var GameActions = {
 
 //modal select card functonality
 (function(){
-    var $selectedCard = $(".pick-card.enabled");
+    
+    function getSelectedCard(){
+        var $selectedCard = $(".pick-card.enabled");
+        if ( $selectedCard.length == 0 ){
+            return null;
+        }
+        return $selectedCard;
+    }
 
     function toggleActiveClass($selected){
+        if ( $selected == null){
+            return;
+        }
         $selected.toggleClass("enabled");
         $selected.toggleClass("button");
     }
     //bottom picked cards click event
     $("#picked-cards>li").click(function(){
         
-        if ( $selectedCard != null ){
-            toggleActiveClass($selectedCard);
-        }
-
-        $selectedCard = $(this);
-        toggleActiveClass($selectedCard);
+        toggleActiveClass(getSelectedCard());
+        toggleActiveClass($(this));
     })
 
     //all card pick event
     $(".card-select > img").click(function(){
+        var $selectedCard = getSelectedCard();
         if ( $selectedCard  != null ){
             $selectedCard.find(".plus-content").hide();
             $img = $selectedCard.find("img");
