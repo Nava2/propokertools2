@@ -353,25 +353,24 @@ var GameActions = {
         $selected.toggleClass("enabled");
         $selected.toggleClass("button");
     }
-    //bottom picked cards click event
-    $("#picked-cards>li").click(function(){
-        
-        toggleActiveClass(getSelectedCard());
-        toggleActiveClass($(this));
-    })
+
+    function selectNextActiveCard(){
+        var $selectedCard = getSelectedCard();
+        if($selectedCard == null ){
+            return;
+        }
+        toggleActiveClass($selectedCard);
+        toggleActiveClass($selectedCard.next())
+    }
 
     //all card pick event
     $(".card-select > img").click(function(){
         var $selectedCard = getSelectedCard();
+        //set the card image to the bottom selected card 
         if ( $selectedCard  != null ){
             $selectedCard.find(".plus-content").hide();
-            $img = $selectedCard.find("img");
-            if ( $img.length == 0){//no previous selection
-                $(this).clone().appendTo($selectedCard);        
-            }else{
-                $img.replaceWith($(this).clone());
-            }
-            
+            $(this).clone().appendTo($selectedCard);        
+            selectNextActiveCard();
         }
 
     })
