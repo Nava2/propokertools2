@@ -346,21 +346,16 @@ var GameActions = {
         return $selectedCard;
     }
 
-    function toggleActiveClass($selected){
-        if ( $selected == null){
-            return;
-        }
-        $selected.toggleClass("enabled");
-        $selected.toggleClass("button");
-    }
-
     function selectNextActiveCard(){
         var $selectedCard = getSelectedCard();
         if($selectedCard == null ){
             return;
         }
-        toggleActiveClass($selectedCard);
-        toggleActiveClass($selectedCard.next())
+
+        $selectedCard.removeClass("enabled");
+        $selectedCard = $selectedCard.next();
+        $selectedCard.removeClass("button")
+        $selectedCard.addClass("enabled");
     }
 
     //all card pick event
@@ -369,7 +364,9 @@ var GameActions = {
         //set the card image to the bottom selected card 
         if ( $selectedCard  != null ){
             $selectedCard.find(".plus-content").hide();
-            $(this).clone().appendTo($selectedCard);        
+            $(this).clone().appendTo($selectedCard);     
+
+            //remove button class from parent
             selectNextActiveCard();
         }
 
