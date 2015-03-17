@@ -80,6 +80,9 @@ body
     //- Application scripts
     script(src='js/cards.js')
     script(src='js/server.js')
+<<<<<<< HEAD
     script(src = 'js/bloodhound.js')
-    script(src='js/index.js')
     script(src='js/liteAccordion/liteaccordion.jquery.min.js')
+=======
+>>>>>>> master
+    script(src='js/index.js')
