@@ -19,33 +19,31 @@
                  li
                     h2: span Main Card Selection...
 
-                    .row.simple-selection
-                       .col-md-2.suit-select.card-display
-                          img#suit-clubs(src='images/Cards/Clubs/AC.svg')
-                          img#suit-diamonds(src='images/Cards/Diamonds/AD.svg')
-                          img#suit-hearts(src='images/Cards/Hearts/AH.svg')
-                          img#suit-spades(src='images/Cards/Spades/AS.svg')
+                    .simple-selection
+                       .row.col-md-12
+                          input#search(type="text", placeholder="Search")
+                       .row
+                          .col-md-2.suit-select.card-display
+                             each suit in suits
+                                img(src='images/Suits/#{suit.long}.svg' id='suit-#{suit.long.toLowerCase()}' class='#{suit.long.toLowerCase()}')
 
-                       .col-md-9
-                          //- Create hidden entities for all of the cards
-                          each suit in ['Clubs', 'Diamonds', 'Hearts', 'Spades']
-                             .card-display.card-selection(id='card-selection-#{suit.toLowerCase()}')
-                                each card in ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K']
-                                   +card_img(suit, card)(id='card-#{suit.toLowerCase()}-#{card}#{suit[0]}')
-
+                          .col-md-9
+                             //- Create hidden entities for all of the cards
+                             .card-select.card-display
+                                each suit in suits
+                                    each card in cards
+                                       +card_img(suit, card)(id='card-#{card.short}#{suit.short}')
                  li
                     h2: span Advanced...
                     #advanced-content
                        p Content Here please. :D
-           .row
-
+           .row.col-md-12
               ul#picked-cards
-                  - for (var i = 0; i < 3; i++)
-                    li.pick-card.blue-gradient
-
+                  - for (var i = 0; i < 2; i++)
+                     li.pick-card.enabled
                         .plus-content
-                            span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
-                            span.glyphicon.glyphicon-plus
+                           span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
+                           span.glyphicon.glyphicon-plus
 
         .modal-footer
            button.btn.btn-default(type='button', data-dismiss='modal') Close
