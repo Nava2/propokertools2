@@ -48,7 +48,7 @@ var indexModel = {
         return {
             'data-toggle': 'modal',
             'data-target': '#cardPicker',
-            'data-playerid': id,
+            'data-playerid': 'p' + id,
             'data-numcards': numCards
         };
     }

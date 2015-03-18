@@ -8,11 +8,12 @@ $('#simulate').click(function () {
    });
 });
 
+var $cardPicker = $('#cardPicker');
 
 /**
  * Modal open event listener
  */
-$('#cardPicker').on('shown.bs.modal', function () {
+$cardPicker.on('shown.bs.modal', function () {
     var $modal = $(this);
 
     $('.plus-content span', $modal).each(function () {
@@ -27,26 +28,59 @@ $('#cardPicker').on('shown.bs.modal', function () {
 });
 
 var $modalOriginalState = null;
+
 /*
  * Modal close event listener
  */
-$('#cardPicker').on('hidden.bs.modal', function () {
+$cardPicker.on('hidden.bs.modal', function () {
     //reset modal data to default state
     $(this).replaceWith($modalOriginalState.clone(true,true));
 
 });
 
+$cardPicker.on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget); // Button that triggered the modal
+    // get the data passed in
+    var playerId = button.attr('data-playerId');
+    var numCards = button.attr('data-numCards');
+
+
+    //update modal headers
+    var $modal = $(this);
+    $('#selection-title #currCard', this).text(numCards);
+    $('#selection-title #numCards', this).text(numCards);
+
+    $modal.data("playerId",playerId);
+
+    //update the number of cards in the footer
+    $.each($modal.find("#picked-cards").children(),function(index){
+        if ( index >= numCards){
+            $(this).hide();
+        }else{
+            $(this).show();
+        }
+    });
+
+    //get saved cards
+    var hand = pp2.board.player(playerId).hand();
+    hand.forEach(function(card){
+        modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
+    });
+
+});
+
 $("#saveCards").click(function() {
-    var playerId = $("#cardPicker").data("playerId");
-    var hand = []
-    $.each($("#picked-cards>.pick-card>img"),function(index,card){
+    var $cardPicker = $('#cardPicker');
+    var playerId = $cardPicker.data("playerId");
+    var hand = [];
+    $("#picked-cards > .pick-card > img", $cardPicker).each(function(index, card) {
         var suit = $(card).data("card-suit");
         var value = $(card).data("card-value");
         hand.push(pp2.Cards[suit][value]);
     });
 
-    pp2.board.player("p"+playerId).hand(hand);
-    $("#cardPicker").modal("hide");
+    pp2.board.player("p" + playerId).hand(hand);
+    $cardPicker.modal("hide");
 });
 
 $(window).load(function() {
@@ -293,7 +327,7 @@ var GameActions = {
 };
 
 //modal select card functonality
-modalSearch = (function(){
+var modalSearch = (function(){
     
     function getSelectedCard(){
         var $selectedCard = $(".pick-card.enabled");
@@ -323,7 +357,7 @@ modalSearch = (function(){
         
         setCard($(this));
 
-    })
+    });
 
     var setCard = function($cardElement){
         var $selectedCard = getSelectedCard();
@@ -339,43 +373,9 @@ modalSearch = (function(){
 
         //remove button class from parent
         selectNextActiveCard();
-    }
+    };
 
     var Globals = {};
     Globals.setCard = setCard;
     return Globals;
 })();
-
-
-$('#cardPicker').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Button that triggered the modal
-    // get the data passed in
-    var playerId = button.attr('data-playerId');
-    var numCards = button.attr('data-numCards');
-
-    
-    //update modal headers
-    var $modal = $(this);
-    $('#selection-title #currCard', this).text(numCards);
-    $('#selection-title #numCards', this).text(numCards);
-
-    $modal.data("playerId",playerId);
-    
-
-    //update the number of cards in the footer
-    $.each($modal.find("#picked-cards").children(),function(index){
-        if ( index >= numCards){
-            $(this).hide();
-        }else{
-            $(this).show();
-        }
-    });
-
-
-    //get saved cards
-    var hand = pp2.board.player("p"+playerId).hand();
-    hand.forEach(function(card){
-        modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
-    })
-
-});
