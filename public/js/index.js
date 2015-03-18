@@ -34,7 +34,7 @@ $('#cardPicker').on('hidden.bs.modal', function () {
     //reset modal data to default state
     $(this).replaceWith($modalOriginalState.clone(true,true));
 
-})
+});
 
 $("#saveCards").click(function() {
     var playerId = $("#cardPicker").data("playerId");
