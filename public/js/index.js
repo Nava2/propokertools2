@@ -1,4 +1,3 @@
-
 var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
 
 $('#simulate').click(function () {
@@ -11,40 +10,60 @@ $('#simulate').click(function () {
    });
 });
 
+
 $('#cardPicker').on('show.bs.modal', function (event) {
     var button = $(event.relatedTarget); // Button that triggered the modal
+    // get the data passed in
     var playerId = button.attr('data-playerId');
     var numCards = button.attr('data-numCards');
 
-    console.log(playerId);
-    console.log(numCards);
-
+    
+    //update modal headers
     var $modal = $(this);
     $('#selection-title #currCard', this).text(numCards);
     $('#selection-title #numCards', this).text(numCards);
 
     $modal.data("playerId",playerId);
+    
 
+    //update the number of cards in the footer
+    $.each($modal.find("#picked-cards").children(),function(index){
+        if ( index >= numCards){
+            $(this).hide();
+        }else{
+            $(this).show();
+        }
+    });
 
 
     <!-- TODO: implement num cards functionality -->
 });
 
+/**
+ * Modal open event listener
+ */
 $('#cardPicker').on('shown.bs.modal', function () {
     var $modal = $(this);
 
     $('.plus-content span', $modal).each(function () {
         var $this = $(this);
 
-        console.log('$this.parent().parent().height() =', $this.parent().parent().height());
-        console.log('$this.height() =', $this.height());
-        console.log('$this.outerHeight() =', $this.outerHeight(true));
-
         $this.css({
             top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
             width: $this.height() + 'px'
         });
     });
+
+});
+
+var $modalOriginalState = null;
+/*
+ * Modal close event listener
+ */
+$('#cardPicker').on('hidden.bs.modal', function () {
+    //reset modal data to default state
+    $(this).replaceWith($modalOriginalState.clone(true,true));
+
 });
 
 $("#saveCards").click(function() {
@@ -58,6 +77,7 @@ $(window).load(function() {
         containerWidth: 700,
         containerHeight: 550
     });
+    $modalOriginalState = $("#cardPicker").clone(true,true);
 });
 
 $(window).resize(function () {
@@ -110,6 +130,8 @@ $(window).resize(function () {
 
 
 
+
+//modal search functionality
 (function(){
 
     var cards = [
@@ -149,7 +171,6 @@ $(window).resize(function () {
         });
     });
 
-    console.log(allCards);
 
     var cardsEngine = new Bloodhound({
       datumTokenizer: Bloodhound.tokenizers.obj.whitespace('search'),
@@ -160,11 +181,10 @@ $(window).resize(function () {
      
     cardsEngine.initialize();
 
-    var $searchInput = $("#search");
 
     //second way of doing autocomplete display
-    $searchInput.on('input',function(e){
-        var search = $searchInput.val();
+    $("#search").on('input',function(e){
+        var search = $(this).val();
         if ( search ){
             $(".suit-select").hide();
             //hide all cards
@@ -174,7 +194,6 @@ $(window).resize(function () {
 
             //show only cards that need to be displayed
             cardsEngine.get(search, function(suggestions){
-                console.log(suggestions);
                 $.each(suggestions, function(index,card){
                     card.selector.show();
                 });
@@ -186,7 +205,6 @@ $(window).resize(function () {
                 value.selector.hide();
             });
 
-            suits[0].selector.click();
             $(".suit-select").show();
             $("."+suits[0].long.toLowerCase()).show();
         }
@@ -316,4 +334,42 @@ var GameActions = {
 
     }
 };
+
+//modal select card functonality
+(function(){
+    
+    function getSelectedCard(){
+        var $selectedCard = $(".pick-card.enabled");
+        if ( $selectedCard.length == 0 ){
+            return null;
+        }
+        return $selectedCard;
+    }
+
+    function selectNextActiveCard(){
+        var $selectedCard = getSelectedCard();
+        if($selectedCard == null ){
+            return;
+        }
+
+        $selectedCard.removeClass("enabled");
+        $selectedCard = $selectedCard.next();
+        $selectedCard.removeClass("button")
+        $selectedCard.addClass("enabled");
+    }
+
+    //all card pick event
+    $(".card-select > img").click(function(){
+        var $selectedCard = getSelectedCard();
+        //set the card image to the bottom selected card 
+        if ( $selectedCard  != null ){
+            $selectedCard.find(".plus-content").hide();
+            $(this).clone().appendTo($selectedCard);     
+
+            //remove button class from parent
+            selectNextActiveCard();
+        }
+
+    })
+})();
 
