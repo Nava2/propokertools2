@@ -37,7 +37,7 @@
     list-style: outside none none;
     display: flex;
     flex-direction: row;
-    margin: 0px;
+    margin: 0;
     padding: 2%;
 
     width: 180%;
@@ -127,7 +127,7 @@
     color: white;
 }
 
-.plus-content span {
+.plus-content .glyphicon-plus {
     width: 50%;
     font-size: 50px;
     margin-left: 4%;
@@ -335,6 +335,7 @@
     margin-top: 2%;
 
     list-style: none;
+    padding-top: 2%;
 
 }
 
@@ -345,6 +346,7 @@
 
     float: left;
     margin: 5px;
+    margin-right: 2%;
 }
 
 
@@ -361,6 +363,22 @@
     text-align: center;
 }
 
+#picked-cards .delete-card {
+    border-radius: 50%;
+    padding: 2.5%;
+    font-size: 20px;
+    height: 19.1%;
+    margin-top: -16%;
+    margin-right: -16%;
+    float: right;
+    display: inherit;
+    /*to show use display: inline-block*/
+}
+
+#picked-cards .plus-content{
+    float:left;
+}
+
 /*********************
 * Misc CSS
 **********************/
@@ -370,6 +388,7 @@
     background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(gray, black); /* For Firefox 3.6 to 15 */
     background: linear-gradient(gray, black); /* Standard syntax */
+
     cursor: default;
 }
 
