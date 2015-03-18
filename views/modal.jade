@@ -41,9 +41,10 @@
               ul#picked-cards
                   - for (var i = 0; i < 2; i++)
                      li.pick-card.enabled
+                        span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
                         .plus-content
-                           span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
                            span.glyphicon.glyphicon-plus
+
 
         .modal-footer
            button.btn.btn-default(type='button', data-dismiss='modal') Close
