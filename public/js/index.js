@@ -79,7 +79,8 @@ $("#saveCards").click(function() {
         hand.push(pp2.Cards[suit][value]);
     });
 
-    pp2.board.player("p" + playerId).hand(hand);
+    pp2.board.player(playerId).hand(hand);
+    GameActions.setPlayerCards(playerId, hand);
     $cardPicker.modal("hide");
 });
 
@@ -228,11 +229,11 @@ var GameActions = {
 
     /**
      * Set a player's hand on the table to be the cards passed.
-     * @param playerNo Player number
-     * @param {Card} cards Cards for the player
+     * @param playerId Player number
+     * @param {Card[]} cards Cards for the player
      */
-    setPlayerCards: function (playerNo, cards) {
-        var $player = $('#p' + playerNo);
+    setPlayerCards: function (playerId, cards) {
+        var $player = $('#' + playerId);
 
         if (_.isUndefined(cards)) {
             cards = [];
@@ -249,11 +250,10 @@ var GameActions = {
         $('.no-cards', $player).hide();
 
         var imgs = $('.selected img', $player);
-        var selectables = $('.selected .plus-content', $player);
+        var selectables = $('.selected .card-placeholder', $player);
         cards.forEach(function (card, i) {
-            $(imgs[i]).attr('src', 'images/Cards/' + card.suit + '/' + card.value + card.suit.toUpperCase()[0] + '.svg');
+            $(imgs[i]).attr('src', 'images/Cards/' + card.suit.long + '/' + card.value.short + card.suit.long[0] + '.svg');
         });
-
 
         // show and hide
         cards.forEach(function (card, i) {
