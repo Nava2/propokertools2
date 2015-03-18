@@ -1,13 +1,8 @@
-<<<<<<< HEAD
 
 (function (window) {
-=======
-var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
->>>>>>> master
 
     var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
 
-<<<<<<< HEAD
     $('#simulate').click(function () {
        var boardData = {
                 table: { flop: ['ah', 'td', 'jh'] },
@@ -31,49 +26,14 @@ var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
         var $modal = $(this);
         $('#selection-title #currCard', this).text(numCards);
         $('#selection-title #numCards', this).text(numCards);
-=======
-
-$('#cardPicker').on('show.bs.modal', function (event) {
-    var button = $(event.relatedTarget); // Button that triggered the modal
-    // get the data passed in
-    var playerId = button.attr('data-playerId');
-    var numCards = button.attr('data-numCards');
-
-    
-    //update modal headers
-    var $modal = $(this);
-    $('#selection-title #currCard', this).text(numCards);
-    $('#selection-title #numCards', this).text(numCards);
-
-    $modal.data("playerId",playerId);
-    
-
-    //update the number of cards in the footer
-    $.each($modal.find("#picked-cards").children(),function(index){
-        if ( index >= numCards){
-            $(this).hide();
-        }else{
-            $(this).show();
-        }
-    });
->>>>>>> master
 
         $modal.data("playerId",playerId);
 
 
-<<<<<<< HEAD
-=======
-/**
- * Modal open event listener
- */
-$('#cardPicker').on('shown.bs.modal', function () {
-    var $modal = $(this);
->>>>>>> master
 
         <!-- TODO: implement num cards functionality -->
     });
 
-<<<<<<< HEAD
     $cardPicker.on('shown.bs.modal', function () {
         var $modal = $(this);
 
@@ -86,25 +46,6 @@ $('#cardPicker').on('shown.bs.modal', function () {
             });
         });
     });
-=======
-        $this.css({
-            top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
-            width: $this.height() + 'px'
-        });
-    });
-
-});
-
-var $modalOriginalState = null;
-/*
- * Modal close event listener
- */
-$('#cardPicker').on('hidden.bs.modal', function () {
-    //reset modal data to default state
-    $(this).replaceWith($modalOriginalState.clone(true,true));
-
-});
->>>>>>> master
 
     $("#saveCards").click(function() {
         console.log("Saving changes for player id: " + $("#cardPicker").data("playerId"));
@@ -118,11 +59,6 @@ $('#cardPicker').on('hidden.bs.modal', function () {
             containerHeight: 550
         });
     });
-<<<<<<< HEAD
-=======
-    $modalOriginalState = $("#cardPicker").clone(true,true);
-});
->>>>>>> master
 
     $(window).resize(function () {
         var $player = $('.player .no-cards');
@@ -166,56 +102,9 @@ $('#cardPicker').on('hidden.bs.modal', function () {
                 suitDisplayed = suit;
             });
 
-<<<<<<< HEAD
             $('.card-select .' + suit).hide();
-=======
-    $('.suit-select .' + suitDisplayed).click();
-})();
-
-
-
-
-//modal search functionality
-(function(){
-
-    var cards = [
-        {short:"A", long:"Ace"},
-        {short:"2", long:"two"},
-        {short:"3", long:"three"},
-        {short:"4", long:"four"},
-        {short:"5", long:"five"},
-        {short:"6", long:"six"},
-        {short:"7", long:"seven"},
-        {short:"8", long:"eight"},
-        {short:"9", long:"nine"},
-        {short:"T", long:"10 ten"},
-        {short:"J", long:"jack"},
-        {short:"Q", long:"queen"},
-        {short:"K", long:"king"}
-    ];
-
-    var suits = [
-        {short:"C", long:"Clubs", selector:$(".card-select .clubs")},
-        {short:"D", long:"Diamonds", selector:$(".card-select .diamonds")},
-        {short:"H", long:"Hearts", selector:$(".card-select .hearts")},
-        {short:"S", long:"Spades", selector:$(".card-select .spades")}
-    ];
-
-    var allCards = [];
-    $.each(cards,function(index,card){
-        $.each(suits,function(index,suit){
-            var cardObject = {
-                card: card,
-                suit: suit,
-                search: card.short+""+suit.short+" "+card.long+" "+suit.long,
-                selector:$("#card-"+card.short+""+suit.short)
-            };
-            
-            allCards.push(cardObject);
->>>>>>> master
         });
 
-<<<<<<< HEAD
         $('.suit-select .' + suitDisplayed).click();
     })();
 
@@ -257,40 +146,10 @@ $('#cardPicker').on('hidden.bs.modal', function () {
                 };
 
                 allCards.push(cardObject);
-=======
-
-    var cardsEngine = new Bloodhound({
-      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('search'),
-      queryTokenizer: Bloodhound.tokenizers.whitespace,
-      local: allCards,
-      limit: 13
-    });
-     
-    cardsEngine.initialize();
-
-
-    //second way of doing autocomplete display
-    $("#search").on('input',function(e){
-        var search = $(this).val();
-        if ( search ){
-            $(".suit-select").hide();
-            //hide all cards
-            $.each(allCards,function(index,value){
-                value.selector.hide();
->>>>>>> master
             });
         });
 
-<<<<<<< HEAD
         console.log(allCards);
-=======
-            //show only cards that need to be displayed
-            cardsEngine.get(search, function(suggestions){
-                $.each(suggestions, function(index,card){
-                    card.selector.show();
-                });
-            });
->>>>>>> master
 
         var cardsEngine = new Bloodhound({
           datumTokenizer: Bloodhound.tokenizers.obj.whitespace('search'),
@@ -299,14 +158,7 @@ $('#cardPicker').on('hidden.bs.modal', function () {
           limit: 13
         });
 
-<<<<<<< HEAD
         cardsEngine.initialize();
-=======
-            $(".suit-select").show();
-            $("."+suits[0].long.toLowerCase()).show();
-        }
-    })
->>>>>>> master
 
         var $searchInput = $("#search");
 
@@ -467,42 +319,3 @@ $('#cardPicker').on('hidden.bs.modal', function () {
 
 
 })(window);
-
-//modal select card functonality
-(function(){
-    
-    function getSelectedCard(){
-        var $selectedCard = $(".pick-card.enabled");
-        if ( $selectedCard.length == 0 ){
-            return null;
-        }
-        return $selectedCard;
-    }
-
-    function selectNextActiveCard(){
-        var $selectedCard = getSelectedCard();
-        if($selectedCard == null ){
-            return;
-        }
-
-        $selectedCard.removeClass("enabled");
-        $selectedCard = $selectedCard.next();
-        $selectedCard.removeClass("button")
-        $selectedCard.addClass("enabled");
-    }
-
-    //all card pick event
-    $(".card-select > img").click(function(){
-        var $selectedCard = getSelectedCard();
-        //set the card image to the bottom selected card 
-        if ( $selectedCard  != null ){
-            $selectedCard.find(".plus-content").hide();
-            $(this).clone().appendTo($selectedCard);     
-
-            //remove button class from parent
-            selectNextActiveCard();
-        }
-
-    })
-})();
-
