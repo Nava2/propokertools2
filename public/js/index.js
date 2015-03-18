@@ -134,32 +134,9 @@ $(window).resize(function () {
 //modal search functionality
 (function(){
 
-    var cards = [
-        {short:"A", long:"Ace"},
-        {short:"2", long:"two"},
-        {short:"3", long:"three"},
-        {short:"4", long:"four"},
-        {short:"5", long:"five"},
-        {short:"6", long:"six"},
-        {short:"7", long:"seven"},
-        {short:"8", long:"eight"},
-        {short:"9", long:"nine"},
-        {short:"T", long:"10 ten"},
-        {short:"J", long:"jack"},
-        {short:"Q", long:"queen"},
-        {short:"K", long:"king"}
-    ];
-
-    var suits = [
-        {short:"C", long:"Clubs", selector:$(".card-select .clubs")},
-        {short:"D", long:"Diamonds", selector:$(".card-select .diamonds")},
-        {short:"H", long:"Hearts", selector:$(".card-select .hearts")},
-        {short:"S", long:"Spades", selector:$(".card-select .spades")}
-    ];
-
     var allCards = [];
-    $.each(cards,function(index,card){
-        $.each(suits,function(index,suit){
+    $.each(pp2.Values,function(index,card){
+        $.each(pp2.Suits,function(index,suit){
             var cardObject = {
                 card: card,
                 suit: suit,
