@@ -375,6 +375,10 @@
     /*to show use display: inline-block*/
 }
 
+#picked-cards .plus-content{
+    float:left;
+}
+
 /*********************
 * Misc CSS
 **********************/

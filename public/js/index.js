@@ -42,7 +42,8 @@
 
             $this.css({
                 top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
-                width: $this.height() + 'px'
+                width: $this.height() + 'px',
+                left: (($this.parent().parent().width() - $this.width()) / 4) + 'px',
             });
         });
     });
@@ -73,6 +74,7 @@
                 width: $this.height() + 'px'
             });
         });
+
 
         $('.table-card-set .plus-content .glyphicon-plus').each(function () {
             var $this = $(this);
@@ -319,3 +321,8 @@
 
 
 })(window);
+
+
+$(".delete-card").click(function(){
+    $(this).hide();
+})
