@@ -349,6 +349,11 @@
     margin-right: 2%;
 }
 
+
+#picked-cards .pick-card img{
+    width: inherit;
+    height: inherit;
+}
 #picked-cards .pick-card p {
     /* + sign */
     font-size: 50px;
