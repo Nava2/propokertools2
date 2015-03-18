@@ -159,14 +159,18 @@ var pp2 = (function () {
 
     Player.prototype.hand = function(newHand) {
         if (_.isArray(newHand)) {
-            var that = this;
+            if (newHand.length > 2) {
+                throw new TypeError("hand is more than two cards, hand=" + newHand);
+            }
 
+            var that = this;
             newHand.forEach(function (c) {
                 that._deck.setCardUnavailable(c);
             });
             this._hand.forEach(function (c) {
                 that._deck.setCardAvailable(c);
             });
+
             this._hand = newHand;
         }
 
@@ -215,6 +219,10 @@ var pp2 = (function () {
 
     Table.prototype.flop = function(flop) {
         if (_.isArray(flop)) {
+            if (flop.length !== 3 && flop.length !== 0) {
+                throw new TypeError('Flop must be zero or three cards, flop=' + flop);
+            }
+
             var that = this;
             flop.forEach(function (c) {
                 that._deck.setCardUnavailable(c);
@@ -229,7 +237,20 @@ var pp2 = (function () {
         return this._flop;
     };
 
+    /**
+     * Set the turn of the table to `newCard`.
+     * @param {Card|Card[]} newCard Set the turn to the new value, if it is an Array, the first value is used.
+     * @returns {Card|undefined} Return the current turn card or undefined if unset.
+     */
     Table.prototype.turn = function(newCard) {
+        if (_.isArray(newCard)) {
+            if (newCard.length !== 1 && newCard.length !== 0) {
+                throw new TypeError('turn must be zero or one cards (passed an array), turn=' + newCard);
+            }
+
+            newCard = newCard[0];
+        }
+
         if (_.isObject(newCard)) {
             this._deck.setCardUnavailable(newCard);
             this._deck.setCardAvailable(newCard);
@@ -239,7 +260,20 @@ var pp2 = (function () {
         return this._turn;
     };
 
+    /**
+     * Set the river of the table to `newCard`.
+     * @param {Card|Card[]} newCard Set the turn to the new value, if it is an Array, the first value is used.
+     * @returns {Card|undefined} Return the current turn card or undefined if unset.
+     */
     Table.prototype.river = function(newCard) {
+        if (_.isArray(newCard)) {
+            if (newCard.length !== 1 && newCard.length !== 0) {
+                throw new TypeError('river must be zero or one cards (passed an array), river=' + newCard);
+            }
+
+            newCard = newCard[0];
+        }
+
         if (_.isObject(newCard)) {
             this._deck.setCardUnavailable(newCard);
             this._deck.setCardAvailable(newCard);
@@ -284,7 +318,7 @@ var pp2 = (function () {
 
 
     Globals.Game = Game;
-    Globals.board = new Game();
+    Globals.board = new Game(); // preinitialize a game.
 
     return Globals;
 
