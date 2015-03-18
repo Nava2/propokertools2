@@ -336,11 +336,16 @@ var GameActions = {
 
     //all card pick event
     $(".card-select > img").click(function(){
+        if ( $(this).hasClass("disabled")){
+            return;
+        }
+        
         var $selectedCard = getSelectedCard();
         //set the card image to the bottom selected card 
         if ( $selectedCard  != null ){
             $selectedCard.find(".plus-content").hide();
             $(this).clone().appendTo($selectedCard);     
+            $(this).addClass("disabled");
 
             //remove button class from parent
             selectNextActiveCard();
