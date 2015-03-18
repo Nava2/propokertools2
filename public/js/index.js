@@ -67,7 +67,7 @@ $cardPicker.on('show.bs.modal', function (event) {
         modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
     });
 
-    
+
     $('#liteAccordion').liteAccordion({
         containerWidth: 700,
         containerHeight: 550
@@ -347,8 +347,10 @@ var modalSearch = (function(){
 
         $selectedCard.removeClass("enabled");
         $selectedCard = $selectedCard.next();
-        $selectedCard.removeClass("button")
-        $selectedCard.addClass("enabled");
+        if ( $selectedCard.is(":visible") ){
+            $selectedCard.removeClass("button")
+            $selectedCard.addClass("enabled");
+        }
     }
 
     //all card pick event
