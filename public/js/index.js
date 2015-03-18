@@ -75,10 +75,27 @@ $(window).load(function() {
 
     $('#liteAccordion').liteAccordion({
         containerWidth: 700,
-        containerHeight: 550
+        containerHeight: 650
     });
     $modalOriginalState = $("#cardPicker").clone(true,true);
 });
+
+      /*
+   * JQueryUI advanced tab % slider
+   */
+  $(function() {
+    $( "#slider-range" ).slider({
+      range: true,
+      min: 0,
+      max: 100,
+      values: [ 0, 100 ],
+      slide: function( event, ui ) {
+        $( "#range" ).val(" " + ui.values[ 0 ] + "% - " + ui.values[ 1 ] + "%");
+      }
+    });
+    $( "#range" ).val(" " + $( "#slider-range" ).slider( "values", 0 ) +
+      "% - " + $( "#slider-range" ).slider( "values", 1 ) + "%" );
+  });
 
 $(window).resize(function () {
     var $player = $('.player .no-cards');
