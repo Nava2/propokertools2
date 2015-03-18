@@ -25,6 +25,20 @@ $cardPicker.on('shown.bs.modal', function () {
         });
     });
 
+    var playerId = $modal.data("playerId");
+    //get saved cards
+    var hand = pp2.board.player(playerId).hand();
+    hand.forEach(function(card){
+        modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
+    });
+
+
+    $('#liteAccordion').liteAccordion({
+        containerWidth: 700,
+        containerHeight: 550
+    });
+
+
 });
 
 var $modalOriginalState = null;
@@ -60,19 +74,6 @@ $cardPicker.on('show.bs.modal', function (event) {
             $(this).show();
         }
     });
-
-    //get saved cards
-    var hand = pp2.board.player(playerId).hand();
-    hand.forEach(function(card){
-        modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
-    });
-
-
-    $('#liteAccordion').liteAccordion({
-        containerWidth: 700,
-        containerHeight: 550
-    });
-
 });
 
 $("#saveCards").click(function() {
@@ -83,7 +84,10 @@ $("#saveCards").click(function() {
         var suit = $(card).data("card-suit");
         var value = $(card).data("card-value");
         hand.push(pp2.Cards[suit][value]);
+        console.log(card.id);
+        $modalOriginalState.find("#"+card.id).addClass("disabled");
     });
+
 
     pp2.board.player(playerId).hand(hand);
     GameActions.setPlayerCards(playerId, hand);
@@ -373,7 +377,6 @@ var modalSearch = (function(){
         $selectedCard.find(".plus-content").hide();
         $cardElement.clone().appendTo($selectedCard);     
         $cardElement.addClass("disabled");
-        $modalOriginalState.find("#"+$cardElement[0].id).addClass("disabled");
 
         //remove button class from parent
         selectNextActiveCard();
