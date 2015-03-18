@@ -1,5 +1,3 @@
-var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
-
 $('#simulate').click(function () {
    var boardData = {
             table: { flop: ['ah', 'td', 'jh'] },
@@ -112,9 +110,10 @@ $(window).resize(function () {
  * When you click on a suit image, it will display the cards associated with the suit and hide the old display.
  */
 (function () {
-    var suitDisplayed = suits[0]; // init
+    var suitDisplayed = pp2.Suits.Clubs.long; // init
 
-    suits.forEach(function (suit) {
+    $.each(pp2.Suits,function (index,suitObject) {
+        var suit = suitObject.long;
         $('.suit-select .' + suit).click(function () {
             $('.card-select .' + suitDisplayed).hide();
 
