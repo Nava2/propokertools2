@@ -395,19 +395,25 @@
             selectNextActiveCard();
         };
 
+        function recalculateActiveCard(){
+            console.log("recalculating route");
+            $(".pick-card.enabled").removeClass("enabled").addClass("button");
+            $(".pick-card.button").first().removeClass("button").addClass("enabled");
+            return false;
+        }
+
         $(".delete-card").click(function(){
             $(this).hide();
 
-            //get card and renable it
+            //get card and re-enable it
             var $card = $(this).parent().find("img");
-            console.log($card.attr('id'));
-            console.log($(".card-select.card-display"))
             $(".card-select.card-display").find('#'+$card.attr('id')).removeClass("disabled");
             $card.remove();
 
             //change the selection back into a button
             $(this).parent().find(".plus-content").show();
             $(this).parent().addClass("button");
+            return recalculateActiveCard();
         })
 
         var Globals = {};
