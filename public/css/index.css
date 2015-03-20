@@ -371,7 +371,7 @@
     margin-top: -16%;
     margin-right: -16%;
     float: right;
-    display: inherit;
+    display: none;
     /*to show use display: inline-block*/
 }
 

@@ -379,6 +379,7 @@
             }
 
             $selectedCard.find(".plus-content").hide();
+            $selectedCard.find(".delete-card").show();
             $cardElement.clone().appendTo($selectedCard);     
             $cardElement.addClass("disabled");
 
@@ -386,14 +387,24 @@
             selectNextActiveCard();
         };
 
+        $(".delete-card").click(function(){
+            $(this).hide();
+
+            //get card and renable it
+            var $card = $(this).parent().find("img");
+            console.log($card.attr('id'));
+            console.log($(".card-select.card-display"))
+            $(".card-select.card-display").find('#'+$card.attr('id')).removeClass("disabled");
+            $card.remove();
+
+            //change the selection back into a button
+            $(this).parent().find(".plus-content").show();
+            $(this).parent().addClass("button");
+        })
+
         var Globals = {};
         Globals.setCard = setCard;
         return Globals;
     })();
 
 })(window);
-
-
-$(".delete-card").click(function(){
-    $(this).hide();
-})
