@@ -353,6 +353,8 @@
 #picked-cards .pick-card img{
     width: inherit;
     height: inherit;
+    margin-top:-10%;
+    margin-right:-10%;
 }
 #picked-cards .pick-card p {
     /* + sign */
