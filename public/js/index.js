@@ -1,8 +1,6 @@
 
 (function (window) {
 
-    var suits = ['clubs', 'spades', 'diamonds', 'hearts'];
-
     $('#simulate').click(function () {
        var boardData = {
                 table: { flop: ['ah', 'td', 'jh'] },
@@ -17,23 +15,29 @@
 
     $cardPicker.on('show.bs.modal', function (event) {
         var button = $(event.relatedTarget); // Button that triggered the modal
+        // get the data passed in
         var playerId = button.attr('data-playerId');
         var numCards = button.attr('data-numCards');
 
-        console.log(playerId);
-        console.log(numCards);
 
+        //update modal headers
         var $modal = $(this);
         $('#selection-title #currCard', this).text(numCards);
         $('#selection-title #numCards', this).text(numCards);
 
         $modal.data("playerId",playerId);
 
-
-
-        <!-- TODO: implement num cards functionality -->
+        //update the number of cards in the footer
+        $.each($modal.find("#picked-cards").children(),function(index){
+            if ( index >= numCards){
+                $(this).hide();
+            }else{
+                $(this).show();
+            }
+        });
     });
 
+    var $modalOriginalState = null;
     $cardPicker.on('shown.bs.modal', function () {
         var $modal = $(this);
 
@@ -50,19 +54,51 @@
             })
 
         });
-    });
 
-    $("#saveCards").click(function() {
-        console.log("Saving changes for player id: " + $("#cardPicker").data("playerId"));
-    });
+        var playerId = $modal.data("playerId");
+        //get saved cards
+        var hand = pp2.board.player(playerId).hand();
+        hand.forEach(function(card){
+            modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
+        });
 
-    $(window).load(function() {
-        $(window).trigger('resize');
 
         $('#liteAccordion').liteAccordion({
             containerWidth: 700,
             containerHeight: 550
         });
+    });
+    
+    $("#saveCards").click(function() {
+        var $cardPicker = $('#cardPicker');
+        var playerId = $cardPicker.data("playerId");
+        var hand = [];
+        $("#picked-cards > .pick-card > img", $cardPicker).each(function(index, card) {
+            var suit = $(card).data("card-suit");
+            var value = $(card).data("card-value");
+            hand.push(pp2.Cards[suit][value]);
+            $modalOriginalState.find("#"+card.id).addClass("disabled");
+        });
+
+        console.log(playerId);
+        console.log("saved clicked");
+        pp2.board.player(playerId).hand(hand);
+        GameActions.setPlayerCards(playerId, hand);
+        $cardPicker.modal("hide");
+    });
+    /*
+     * Modal close event listener
+     */
+    $cardPicker.on('hidden.bs.modal', function () {
+        //reset modal data to default state
+        $(this).replaceWith($modalOriginalState.clone(true,true));
+
+    });
+
+    $(window).load(function() {
+        $(window).trigger('resize');
+        $modalOriginalState = $("#cardPicker").clone(true,true);
+
     });
 
     $(window).resize(function () {
@@ -97,10 +133,12 @@
     /*
      * When you click on a suit image, it will display the cards associated with the suit and hide the old display.
      */
+     
     (function () {
-        var suitDisplayed = suits[0]; // init
+        var suitDisplayed = pp2.Suits.Clubs.long; // init
 
-        suits.forEach(function (suit) {
+        $.each(pp2.Suits,function (index,suitObject) {
+            var suit = suitObject.long;
             $('.suit-select .' + suit).click(function () {
                 $('.card-select .' + suitDisplayed).hide();
 
@@ -114,48 +152,23 @@
         $('.suit-select .' + suitDisplayed).click();
     })();
 
-
-
+    //modal search functionality
     (function(){
 
-        var cards = [
-            {short:"A", long:"Ace"},
-            {short:"2", long:"two"},
-            {short:"3", long:"three"},
-            {short:"4", long:"four"},
-            {short:"5", long:"five"},
-            {short:"6", long:"six"},
-            {short:"7", long:"seven"},
-            {short:"8", long:"eight"},
-            {short:"9", long:"nine"},
-            {short:"T", long:"10 ten"},
-            {short:"J", long:"jack"},
-            {short:"Q", long:"queen"},
-            {short:"K", long:"king"}
-        ];
-
-        var suits = [
-            {short:"C", long:"Clubs", selector:$(".card-select .clubs")},
-            {short:"D", long:"Diamonds", selector:$(".card-select .diamonds")},
-            {short:"H", long:"Hearts", selector:$(".card-select .hearts")},
-            {short:"S", long:"Spades", selector:$(".card-select .spades")}
-        ];
-
         var allCards = [];
-        $.each(cards,function(index,card){
-            $.each(suits,function(index,suit){
+        $.each(pp2.Values,function(index,card){
+            $.each(pp2.Suits,function(index,suit){
                 var cardObject = {
                     card: card,
                     suit: suit,
                     search: card.short+""+suit.short+" "+card.long+" "+suit.long,
-                    selector:$("#card-"+card.short+""+suit.short)
+                    selector:"#card-"+card.short+""+suit.short
                 };
-
+                
                 allCards.push(cardObject);
             });
         });
 
-        console.log(allCards);
 
         var cardsEngine = new Bloodhound({
           datumTokenizer: Bloodhound.tokenizers.obj.whitespace('search'),
@@ -163,43 +176,41 @@
           local: allCards,
           limit: 13
         });
-
+         
         cardsEngine.initialize();
 
-        var $searchInput = $("#search");
 
         //second way of doing autocomplete display
-        $searchInput.on('input',function(e){
-            var search = $searchInput.val();
+        $("#search").on('input',function(e){
+            var search = $(this).val();
             if ( search ){
                 $(".suit-select").hide();
                 //hide all cards
                 $.each(allCards,function(index,value){
-                    value.selector.hide();
+                    $(value.selector).hide();
                 });
 
                 //show only cards that need to be displayed
                 cardsEngine.get(search, function(suggestions){
-                    console.log(suggestions);
+
                     $.each(suggestions, function(index,card){
-                        card.selector.show();
+                        $(card.selector).show();
                     });
                 });
 
             }else{
                 //no search input, go back to default view
                 $.each(allCards,function(index,value){
-                    value.selector.hide();
+                    $(value.selector).hide();
                 });
 
-                suits[0].selector.click();
                 $(".suit-select").show();
-                $("."+suits[0].long.toLowerCase()).show();
+                $("."+pp2.Suits.Clubs.long.toLowerCase()).show();
             }
         })
 
 
-    })();
+    })();   
 
     $('.player .selected').hide();
 
@@ -228,8 +239,8 @@
          * @param playerNo Player number
          * @param {Card} cards Cards for the player
          */
-        setPlayerCards: function (playerNo, cards) {
-            var $player = $('#p' + playerNo);
+        setPlayerCards: function (playerId, cards) {
+            var $player = $('#' + playerId);
 
             if (_.isUndefined(cards)) {
                 cards = [];
@@ -246,9 +257,10 @@
             $('.no-cards', $player).hide();
 
             var imgs = $('.selected img', $player);
-            var selectables = $('.selected .plus-content', $player);
+            var selectables = $('.selected .card-placeholder', $player);
             cards.forEach(function (card, i) {
-                $(imgs[i]).attr('src', 'images/Cards/' + card.suit + '/' + card.value + card.suit.toUpperCase()[0] + '.svg');
+                console.log(card);
+                $(imgs[i]).attr('src', 'images/Cards/' + card.suit.long + '/' + card.value.short + card.suit.short + '.svg');
             });
 
 
@@ -324,9 +336,83 @@
     };
 
 
+    //modal select card functonality
+    var modalSearch = (function(){
+        
+        function getSelectedCard(){
+            var $selectedCard = $(".pick-card.enabled");
+            if ( $selectedCard.length == 0 ){
+                return null;
+            }
+            return $selectedCard;
+        }
+
+        function selectNextActiveCard(){
+            var $selectedCard = getSelectedCard();
+            if($selectedCard == null ){
+                return;
+            }
+
+            $selectedCard.removeClass("enabled");
+            $selectedCard = $selectedCard.next();
+            if ( $selectedCard.is(":visible") && $selectedCard.hasClass("button") ){
+                $selectedCard.removeClass("button")
+                $selectedCard.addClass("enabled");
+            }
+        }
+
+        //all card pick event
+        $(".card-select > img").click(function(){
+            if ( $(this).hasClass("disabled")){
+                return;
+            }
+            
+            setCard($(this));
+
+        });
+
+        $(".pick-card").click(function(){
+            if ( $(this).hasClass("button")){
+                $(this).parent().find(".enabled").removeClass("enabled").addClass("button");
+
+                $(this).removeClass("button").addClass("enabled");
+            }
+        });
+
+        var setCard = function($cardElement){
+            var $selectedCard = getSelectedCard();
+            //set the card image to the bottom selected card 
+            if ( $selectedCard  == null ){
+               return;
+            }
+
+            $selectedCard.find(".plus-content").hide();
+            $selectedCard.find(".delete-card").show();
+            $cardElement.clone().appendTo($selectedCard);     
+            $cardElement.addClass("disabled");
+
+            //remove button class from parent
+            selectNextActiveCard();
+        };
+
+        $(".delete-card").click(function(){
+            $(this).hide();
+
+            //get card and renable it
+            var $card = $(this).parent().find("img");
+            console.log($card.attr('id'));
+            console.log($(".card-select.card-display"))
+            $(".card-select.card-display").find('#'+$card.attr('id')).removeClass("disabled");
+            $card.remove();
+
+            //change the selection back into a button
+            $(this).parent().find(".plus-content").show();
+            $(this).parent().addClass("button");
+        })
+
+        var Globals = {};
+        Globals.setCard = setCard;
+        return Globals;
+    })();
+
 })(window);
-
-
-$(".delete-card").click(function(){
-    $(this).hide();
-})
