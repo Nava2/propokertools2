@@ -184,11 +184,6 @@ app.post('/submit', function (req, res) {
             });
             result.hands[maxEquity.idx].winner = true;
 
-
-            //console.log('STATUS: ' + _res.statusCode);
-            //console.log('HEADERS: ' + JSON.stringify(_res.headers));
-
-
             sessions[sessionId] = result;
         });
 

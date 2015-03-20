@@ -237,11 +237,11 @@
     text-align: center;
 }
 
-.outputTable .cards .red {
+#output .red {
     color: red;
 }
 
-.outputTable .cards .black {
+#output .black {
     color: #000000;
 }
 

@@ -47,8 +47,8 @@
 
             var table = {
                 flop: _.map(gtable.flop(), Card2Tag),
-                turn: gtable.turn(),
-                river: gtable.river()
+                turn: gtable.turn().tag,
+                river: gtable.river().tag
             };
 
             var hands = _.chain(pp2.board.players()).map(function (player) {
@@ -71,10 +71,39 @@
             return board;
         }
 
+        var suit2Unicode = {
+            h: '&#9829;',
+            d: '&#9830;',
+            c: '&#9827;',
+            s: '&#9824;'
+        };
+
+        function tag2ColorClass(tag) {
+            if (tag[1] == 'h' || tag[1] == 'd') {
+                return "red";
+            } else {
+                return "black";
+            }
+        }
+
+        var tableTemplate = $("#outputTemplate").html();
+        function appendSimulationResult(result) {
+            var $output = $('#output');
+            if ($output.children().length > 1) {
+                $output.prepend('<hr />');
+            }
+
+            $output.prepend(_.template(tableTemplate)({
+                result: result,
+                suit2Unicode: suit2Unicode,
+                tag2ColorClass: tag2ColorClass
+            }));
+        }
 
         // Module:
         return {
             buildBoardData: buildBoardData,
+            appendSimulationResult: appendSimulationResult,
 
             submit: submitData
         };
@@ -85,6 +114,7 @@
     $('#simulate').click(function () {
         Simulate.submit(Simulate.buildBoardData(), function (results) {
             console.log("Got results: ", results);
+            Simulate.appendSimulationResult(results);
         });
     });
 
@@ -135,37 +165,9 @@
         GameActions.setPlayerCards('p2', pp2.board.player('p2').hand());
 
         pp2.board.table().flop([pp2.Cards.Two.Spades, pp2.Cards.Two.Clubs, pp2.Cards.Three.Spades]);
+        pp2.board.table().river(pp2.Cards.Five.Diamonds);
+        pp2.board.table().turn(pp2.Cards.King.Clubs);
 
-        var result = {
-            trials: 990,
-            exhaustive: true,
-            board: {
-                flop: [ '2s', '3s', '3c' ]
-            },
-
-            hands: [ {
-                winner: true,
-                equity: 65.56,
-                hand: ['ac', 'ad'],
-                ties: 10,
-                wins: 644
-            }, {
-                equity: 34.44,
-                hand: ['as', 'ks'],
-                ties: 10,
-                wins: 336
-            } ]
-        };
-
-        var suit2Unicode = {
-            h: '&#9829;',
-            d: '&#9830;',
-            c: '&#9827;',
-            s: '&#9824;'
-        };
-
-        var template = $("#outputTemplate").html();
-        $("#output").html(_.template(template)({result: result, suit2Unicode: suit2Unicode}));
 
     });
 

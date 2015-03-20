@@ -68,38 +68,59 @@ body
 
                 #sidebar.col-md-3
                     h2.blue-gradient Output
-                        #output
+                    #output
                         script(type="template" id="outputTemplate").
-                            <table class="outputTable table">
-                                <tr>
-                                    <th>Player</th>
-                                    <th>Hand</th>
-                                    <th>Equity</th>
-                                    <th>Wins </th>
-                                    <th>Ties </th>
-                                </tr>
-                                <% _.each(result.hands, function (player, i) { %>
-                                    <tr class="<%= (player.winner ? "success" : "") %>" >
-                                        <td class="playerId"><%= i+1 %></td>
-                                        <td class="cards">
-                                            <% _.each(player.hand, function (c) { %>
-                                                <span class="
-                                                <% if (c[1] == 'h' || c[1] == 'd') { %>
-                                                    red
-                                                <% } else { %>
-                                                    black
-                                                <% } %>
-                                                ">
-                                                    <%= c[0].toUpperCase() + suit2Unicode[c[1]] %>
+                            <div class="simulateResult">
+                                <div>
+                                    <p>Table: &nbsp;
+                                        <% _.each(result.board.flop, function (c) { %>
+                                        <span class="<%= tag2ColorClass(c) %>">
+                                            <%= c[0].toUpperCase() + suit2Unicode[c[1]] %>
+                                        </span>
+                                        <% }); %>
+                                        <% if (result.board.turn) { %>
+                                            &nbsp;
+                                            <span class="<%= tag2ColorClass(result.board.turn) %>">
+                                                <%= result.board.turn[0].toUpperCase() + suit2Unicode[result.board.turn[1]] %>
+                                            </span>
+
+                                            <% if (result.board.river) { %>
+                                                &nbsp;
+                                                <span class="<%= tag2ColorClass(result.board.river) %>">
+                                                    <%= result.board.river[0].toUpperCase() + suit2Unicode[result.board.river[1]] %>
                                                 </span>
-                                            <% }); %>
-                                        </td>
-                                        <td><%= player.equity %>%</td>
-                                        <td><%= player.wins %></td>
-                                        <td><%= player.ties %></td>
+                                            <% } %>
+
+                                        <% } %>
+
+
+                                    </p>
+                                </div>
+                                <table class="outputTable table">
+                                    <tr>
+                                        <th>Player</th>
+                                        <th>Hand</th>
+                                        <th>Equity</th>
+                                        <th>Wins </th>
+                                        <th>Ties </th>
                                     </tr>
-                                <% }); %>
-                            </table>
+                                    <% _.each(result.hands, function (player, i) { %>
+                                        <tr class="<%= (player.winner ? "success" : "") %>" >
+                                            <td class="playerId"><%= i+1 %></td>
+                                            <td class="cards">
+                                                <% _.each(player.hand, function (c) { %>
+                                                    <span class="<%= tag2ColorClass(c) %>">
+                                                        <%= c[0].toUpperCase() + suit2Unicode[c[1]] %>
+                                                    </span>
+                                                <% }); %>
+                                            </td>
+                                            <td><%= player.equity %>%</td>
+                                            <td><%= player.wins %></td>
+                                            <td><%= player.ties %></td>
+                                        </tr>
+                                    <% }); %>
+                                </table>
+                            <div>
 
             #footer.row.col-md-12
                 h5 Footer
