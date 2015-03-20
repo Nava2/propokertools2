@@ -33,6 +33,17 @@
                                 each suit in suits
                                     each card in cards
                                        +card_img(suit, card)(id='card-#{card.short}#{suit.short}' data-card-value='#{card.long}' data-card-suit='#{suit.long}')
+                        .row.col-md-11.col-md-push-1
+                          ul#picked-cards
+                             li.pick-card.enabled
+                                span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
+                                .plus-content: span.glyphicon.glyphicon-plus
+                             li.pick-card.button
+                                span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
+                                .plus-content: span.glyphicon.glyphicon-plus
+                             li.pick-card.button
+                                span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
+                                .plus-content: span.glyphicon.glyphicon-plus
                  li
                     h2: span Advanced...
                     #advanced-content
@@ -41,17 +52,7 @@
                         input#range(type='text', readonly='')
      
                        #slider-range
-           .row.col-md-12
-              ul#picked-cards
-                 li.pick-card.enabled
-                    span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
-                    .plus-content: span.glyphicon.glyphicon-plus
-                 li.pick-card.button
-                    span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
-                    .plus-content: span.glyphicon.glyphicon-plus
-                 li.pick-card.button
-                    span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
-                    .plus-content: span.glyphicon.glyphicon-plus
+           
 
 
         .modal-footer

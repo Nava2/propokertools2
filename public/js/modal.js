@@ -57,7 +57,7 @@
 
         $('#liteAccordion').liteAccordion({
             containerWidth: 700,
-            containerHeight: 550
+            containerHeight: 750
         });
     });
 
