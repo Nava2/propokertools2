@@ -32,7 +32,7 @@
                              .card-select.card-display
                                 each suit in suits
                                     each card in cards
-                                       +card_img(suit, card)(id='card-#{card.short}#{suit.short}')
+                                       +card_img(suit, card)(id='card-#{card.short}#{suit.short}' data-card-value='#{card.long}' data-card-suit='#{suit.long}')
                  li
                     h2: span Advanced...
                     #advanced-content
@@ -44,12 +44,14 @@
            .row.col-md-12
               ul#picked-cards
                  li.pick-card.enabled
+                    span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
                     .plus-content: span.glyphicon.glyphicon-plus
                  li.pick-card.button
+                    span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
                     .plus-content: span.glyphicon.glyphicon-plus
                  li.pick-card.button
+                    span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
                     .plus-content: span.glyphicon.glyphicon-plus
-
 
 
         .modal-footer

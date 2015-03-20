@@ -22,19 +22,19 @@ app.use(express.static(__dirname + '/public'));
 
 var indexModel = {
     cards : [
-        {short:"A", long:"ace"},
-        {short:"2", long:"two"},
-        {short:"3", long:"three"},
-        {short:"4", long:"four"},
-        {short:"5", long:"five"},
-        {short:"6", long:"six"},
-        {short:"7", long:"seven"},
-        {short:"8", long:"eight"},
-        {short:"9", long:"nine"},
-        {short:"T", long:"ten"},
-        {short:"J", long:"jack"},
-        {short:"Q", long:"queen"},
-        {short:"K", long:"king"}
+        {short:"A", long:"Ace"},
+        {short:"2", long:"Two"},
+        {short:"3", long:"Three"},
+        {short:"4", long:"Four"},
+        {short:"5", long:"Five"},
+        {short:"6", long:"Six"},
+        {short:"7", long:"Seven"},
+        {short:"8", long:"Eight"},
+        {short:"9", long:"Nine"},
+        {short:"T", long:"Ten"},
+        {short:"J", long:"Jack"},
+        {short:"Q", long:"Queen"},
+        {short:"K", long:"King"}
     ],
 
     suits : [
@@ -48,7 +48,7 @@ var indexModel = {
         return {
             'data-toggle': 'modal',
             'data-target': '#cardPicker',
-            'data-playerid': id,
+            'data-playerid': 'p' + id,
             'data-numcards': numCards
         };
     }
