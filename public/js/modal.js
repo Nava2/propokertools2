@@ -258,6 +258,7 @@
             //get card and re-enable it
             var $card = $(this).parent().find("img");
             $(".card-select.card-display").find('#'+$card.attr('id')).removeClass("disabled");
+            $modalOriginalState.find('#'+$card.attr('id')).removeClass("disabled");
             $card.remove();
 
             //change the selection back into a button
