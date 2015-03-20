@@ -24,7 +24,7 @@
                         $.get("/status/" + id, function (data) {
                             if (!/^(?:Error|Running)/.test(data.message)) {
                                 if (_.isFunction(callback)) {
-                                    callback(data.message);
+                                    callback(data.message, boardData);
                                 }
                             } else {
                                 setTimeout(reqStatus, 30);
@@ -37,8 +37,12 @@
             });
         }
 
-        function Card2Tag(card) {
-            return card.tag;
+        function card2Tag(card) {
+            if (_.isObject(card)) {
+                return card.tag;
+            } else {
+                return undefined;
+            }
         }
 
 
@@ -46,16 +50,16 @@
             var gtable = pp2.board.table();
 
             var table = {
-                flop: _.map(gtable.flop(), Card2Tag),
-                turn: gtable.turn().tag,
-                river: gtable.river().tag
+                flop: _.map(gtable.flop(), card2Tag),
+                turn: card2Tag(gtable.turn()),
+                river: card2Tag(gtable.river())
             };
 
             var hands = _.chain(pp2.board.players()).map(function (player) {
                 return player.hand();
             }).map(function (hand) {
                if (_.isArray(hand)) {
-                   return _.map(hand, Card2Tag);
+                   return _.map(hand, card2Tag);
                } else if (_.isNumber(hand)) {
                    return [hand + '%'];
                } else {
@@ -87,7 +91,7 @@
         }
 
         var tableTemplate = $("#outputTemplate").html();
-        function appendSimulationResult(result) {
+        function appendSimulationResult(result, input) {
             var $output = $('#output');
             if ($output.children().length > 1) {
                 $output.prepend('<hr />');
@@ -95,6 +99,7 @@
 
             $output.prepend(_.template(tableTemplate)({
                 result: result,
+                submitData: input,
                 suit2Unicode: suit2Unicode,
                 tag2ColorClass: tag2ColorClass
             }));
@@ -112,9 +117,12 @@
     })();
 
     $('#simulate').click(function () {
-        Simulate.submit(Simulate.buildBoardData(), function (results) {
+        Simulate.submit( Simulate.buildBoardData(), function (results, input) {
             console.log("Got results: ", results);
-            Simulate.appendSimulationResult(results);
+            Simulate.appendSimulationResult(results, input);
+
+            var equities = _.pluck(results.hands, 'equity');
+            GameActions.setHandResults(equities);
         });
     });
 
@@ -165,8 +173,7 @@
         GameActions.setPlayerCards('p2', pp2.board.player('p2').hand());
 
         pp2.board.table().flop([pp2.Cards.Two.Spades, pp2.Cards.Two.Clubs, pp2.Cards.Three.Spades]);
-        pp2.board.table().river(pp2.Cards.Five.Diamonds);
-        pp2.board.table().turn(pp2.Cards.King.Clubs);
+        pp2.board.table().turn(pp2.Cards.Five.Diamonds);
 
 
     });
