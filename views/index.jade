@@ -68,6 +68,38 @@ body
 
                 #sidebar.col-md-3
                     h2.blue-gradient Output
+                        #output
+                        script(type="template" id="outputTemplate").
+                            <table class="outputTable table">
+                                <tr>
+                                    <th>Player</th>
+                                    <th>Hand</th>
+                                    <th>Equity</th>
+                                    <th>Wins </th>
+                                    <th>Ties </th>
+                                </tr>
+                                <% _.each(result.hands, function (player, i) { %>
+                                    <tr class="<%= (player.winner ? "success" : "") %>" >
+                                        <td class="playerId"><%= i+1 %></td>
+                                        <td class="cards">
+                                            <% _.each(player.hand, function (c) { %>
+                                                <span class="
+                                                <% if (c[1] == 'h' || c[1] == 'd') { %>
+                                                    red
+                                                <% } else { %>
+                                                    black
+                                                <% } %>
+                                                ">
+                                                    <%= c[0].toUpperCase() + suit2Unicode[c[1]] %>
+                                                </span>
+                                            <% }); %>
+                                        </td>
+                                        <td><%= player.equity %>%</td>
+                                        <td><%= player.wins %></td>
+                                        <td><%= player.ties %></td>
+                                    </tr>
+                                <% }); %>
+                            </table>
 
             #footer.row.col-md-12
                 h5 Footer
