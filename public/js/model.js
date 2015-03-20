@@ -65,7 +65,8 @@ var pp2 = (function () {
     function Card(suit, value) {
         return {
             suit: suit,
-            value: value
+            value: value,
+            tag: ('' + value.short + suit.short).toLowerCase()
         };
     }
 

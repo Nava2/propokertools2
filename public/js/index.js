@@ -1,14 +1,92 @@
 
 (function (window) {
 
-    $('#simulate').click(function () {
-       var boardData = {
-                table: { flop: ['ah', 'td', 'jh'] },
-                hands: [['ac', 'jd'], ['90%']]
+
+
+    var Simulate = (function () {
+
+        /**
+         * Submits data to the server.
+         * @param boardData
+         * @param {Function} [callback]
+         */
+        function submitData(boardData, callback) {
+            $.ajax({
+                url : '/submit',
+                type : "POST",
+                data : JSON.stringify(boardData),
+                contentType : "application/json; charset=utf-8",
+                dataType : "json",
+                success: function (data) {
+                    var id = data.id;
+
+                    function reqStatus() {
+                        $.get("/status/" + id, function (data) {
+                            if (!/^(?:Error|Running)/.test(data.message)) {
+                                if (_.isFunction(callback)) {
+                                    callback(data.message);
+                                }
+                            } else {
+                                setTimeout(reqStatus, 30);
+                            }
+                        });
+                    }
+
+                    setTimeout(reqStatus, 30);
+                }
+            });
+        }
+
+        function Card2Tag(card) {
+            return card.tag;
+        }
+
+
+        function buildBoardData() {
+            var gtable = pp2.board.table();
+
+            var table = {
+                flop: _.map(gtable.flop(), Card2Tag),
+                turn: gtable.turn(),
+                river: gtable.river()
             };
-       submitData(boardData, function(data){
-            $('#output').append($('<pre>').text(JSON.stringify(data, null, '  ')));
-       });
+
+            var hands = _.chain(pp2.board.players()).map(function (player) {
+                return player.hand();
+            }).map(function (hand) {
+               if (_.isArray(hand)) {
+                   return _.map(hand, Card2Tag);
+               } else if (_.isNumber(hand)) {
+                   return [hand + '%'];
+               } else {
+                   return undefined;
+               }
+            }).value();
+
+            var board = {
+                table: table,
+                hands: hands
+            };
+
+            return board;
+        }
+
+
+
+
+        return {
+            buildBoardData: buildBoardData,
+
+            submit: submitData
+        };
+
+
+    })();
+
+    $('#simulate').click(function () {
+        Simulate.submit(Simulate.buildBoardData(), function (results) {
+            console.log("Got results: ", results);
+        });
     });
 
    /*
@@ -51,6 +129,13 @@
     $(window).load(function() {
         $(window).trigger('resize');
         $modalOriginalState = $("#cardPicker").clone(true,true);
+
+        pp2.board.player('p1').hand([pp2.Cards.Ace.Clubs, pp2.Cards.Ace.Diamonds]);
+        pp2.board.player('p2').hand([pp2.Cards.Ace.Spades, pp2.Cards.King.Spades]);
+        GameActions.setPlayerCards('p1', pp2.board.player('p1').hand());
+        GameActions.setPlayerCards('p2', pp2.board.player('p2').hand());
+
+        pp2.board.table().flop([pp2.Cards.Two.Spades, pp2.Cards.Two.Clubs, pp2.Cards.Three.Spades]);
 
     });
 
@@ -98,5 +183,4 @@
             circleShowing = !circleShowing;
         };
     })());
-
 })(window);
