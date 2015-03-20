@@ -355,7 +355,7 @@
 
             $selectedCard.removeClass("enabled");
             $selectedCard = $selectedCard.next();
-            if ( $selectedCard.is(":visible") ){
+            if ( $selectedCard.is(":visible") && $selectedCard.hasClass("button") ){
                 $selectedCard.removeClass("button")
                 $selectedCard.addClass("enabled");
             }
@@ -369,6 +369,14 @@
             
             setCard($(this));
 
+        });
+
+        $(".pick-card").click(function(){
+            if ( $(this).hasClass("button")){
+                $(this).parent().find(".enabled").removeClass("enabled").addClass("button");
+
+                $(this).removeClass("button").addClass("enabled");
+            }
         });
 
         var setCard = function($cardElement){
