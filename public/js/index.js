@@ -41,6 +41,8 @@
     $cardPicker.on('shown.bs.modal', function () {
         var $modal = $(this);
 
+        $("#search").focus();
+
         $('.plus-content .glyphicon-plus', $modal).each(function () {
             var $this = $(this);
 
@@ -209,6 +211,19 @@
             }
         })
 
+        $("#search").keyup(function(e){
+            if ( e.keyCode != 13 || $(this).val() == ''){ //enter was not pressed
+                 return;
+            }
+            
+            var $card = $(".card-select.card-display>img:visible:not(.disabled)").first();
+            if ( $card.length == 0){
+                return;
+            }
+
+            modalSearch.setCard($card);
+
+        })
 
     })();   
 
