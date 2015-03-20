@@ -27,7 +27,6 @@
         });
     });
 
-    var $modalOriginalState = null;
     $cardPicker.on('shown.bs.modal', function () {
         var $modal = $(this);
 
@@ -62,6 +61,13 @@
         });
     });
 
+
+    var $modalOriginalState = null;
+    $(window).load(function() {
+        $modalOriginalState = $("#cardPicker").clone(true,true);
+
+    });
+
     /*
      * Modal close event listener
      */
@@ -81,9 +87,6 @@
             hand.push(pp2.Cards[suit][value]);
             $modalOriginalState.find("#"+card.id).addClass("disabled");
         });
-
-        console.log(playerId);
-        console.log("saved clicked");
         pp2.board.player(playerId).hand(hand);
         GameActions.setPlayerCards(playerId, hand);
         $cardPicker.modal("hide");
@@ -243,7 +246,7 @@
         };
 
         function recalculateActiveCard(){
-            console.log("recalculating route");
+
             $(".pick-card.enabled").removeClass("enabled").addClass("button");
             $(".pick-card.button").first().removeClass("button").addClass("enabled");
             return false;
