@@ -37,11 +37,11 @@
 
             $this.css({
                 top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
-                width: $this.height() + 'px',
+                width: $this.height() + 'px'
             });
 
             $this.css({
-                left: (($this.parent().parent().width() - $this.width()) / 2) + 'px',
+                left: (($this.parent().parent().width() - $this.width()) / 2) + 'px'
             })
 
         });
@@ -53,7 +53,6 @@
         hand.forEach(function(card){
             modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
         });
-
 
         $('#liteAccordion').liteAccordion({
             containerWidth: 700,
@@ -87,8 +86,11 @@
             hand.push(pp2.Cards[suit][value]);
             $modalOriginalState.find("#"+card.id).addClass("disabled");
         });
+
         pp2.board.player(playerId).hand(hand);
         GameActions.setPlayerCards(playerId, hand);
+
+        GameActions.setHandResults([]);
         $cardPicker.modal("hide");
     });
 
@@ -167,7 +169,7 @@
                 $(".suit-select").show();
                 $("."+pp2.Suits.Clubs.long.toLowerCase()).show();
             }
-        })
+        });
 
         $("#search").keyup(function(e){
             if ( e.keyCode != 13 || $(this).val() == ''){ //enter was not pressed
@@ -265,7 +267,7 @@
             $(this).parent().find(".plus-content").show();
             $(this).parent().addClass("button");
             return recalculateActiveCard();
-        })
+        });
 
         var Globals = {};
         Globals.setCard = setCard;
