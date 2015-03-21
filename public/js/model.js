@@ -437,8 +437,8 @@ var pp2 = (function () {
         });
 
         this.table().flop([]);
-        this.table().river(null);
         this.table().turn(null);
+        this.table().river(null);
     };
 
     /**
