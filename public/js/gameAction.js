@@ -132,11 +132,11 @@
 
         handLikelyHoods.map(function (likelyHood, i) {
             return [i + 1, likelyHood, i === bestIndex];
-        }).forEach(__setHandResult);
+        }).forEach(function (args) { __setHandResult.apply(null, args); });
 
         _.range(handLikelyHoods.length, 6).map(function (i) {
             return [i + 1, undefined, false];
-        }).forEach(__setHandResult);
+        }).forEach(function (args) { __setHandResult.apply(null, args); });
     };
 
     window.GameActions = ga;
