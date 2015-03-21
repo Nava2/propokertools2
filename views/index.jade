@@ -8,7 +8,7 @@ mixin card_img(suit, card)
 //- Creates a player circle, if the player number is 1 it will make it blue
 mixin player_space(playerNo)
     - console.log(show_modal_attributes(playerNo, 2));
-    .player(id='p' + playerNo)
+    .player(id='p' + playerNo tabIndex=playerNo)
         .no-cards(class = (playerNo === 1 ? 'enabled' : 'button'))&attributes(show_modal_attributes(playerNo, 2))
             .plus-content: span.glyphicon.glyphicon-plus
 
@@ -52,17 +52,17 @@ body
                         +player_space(i)
 
                     ul#table-cards
-                        li#flop.table-card-set
+                        li#flop.table-card-set(tabIndex=7)
                             ul
                                 - for (var i = 0; i < 3; ++i)
                                     li.table-card.enabled(id="f#{i}")
                                         .plus-content: span.glyphicon.glyphicon-plus
 
-                        li#turn.table-card-set
+                        li#turn.table-card-set(tabIndex=8)
                             #t1.button.table-card
                                 .plus-content: span.glyphicon.glyphicon-plus
 
-                        li#river.table-card-set
+                        li#river.table-card-set(tabIndex=9)
                             #r1.button.table-card
                                 .plus-content: span.glyphicon.glyphicon-plus
 
@@ -130,8 +130,8 @@ body
 
             #footer.row.col-md-12
                 h5 Footer
-                button#reset.btn.btn-lg.btn-danger Reset
-                button#simulate.btn.btn-lg.btn-success Simulate
+                button#reset.btn.btn-lg.btn-danger(tabIndex=11) Reset
+                button#simulate.btn.btn-lg.btn-success(tabIndex=10) Simulate
 
         include ./modal.jade
 
