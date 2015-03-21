@@ -159,7 +159,7 @@ var pp2 = (function () {
     };
 
     /**
-     * Get the available cards of `suit`, or if unspecified all unavailable cards.
+     * Get the available cards of `suit`, or if unspecified all available cards.
      * @param {Object} suit
      * @returns {Card[]}
      */
@@ -169,6 +169,19 @@ var pp2 = (function () {
         }
 
         return _.where(this.cardsAvailable, {suit: suit});
+    };
+
+    /**
+     * Get the cards in use of `suit`, or if unspecified all cards in use.
+     * @param {Object} suit
+     * @returns {Card[]}
+     */
+    Deck.prototype.getCardsInUse = function(suit) {
+        if (_.isUndefined(suit)) {
+            return this.cardsInUse;
+        }
+
+        return _.where(this.cardsInUse, {suit: suit});
     };
 
     /**
