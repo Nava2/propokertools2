@@ -232,6 +232,7 @@ var pp2 = (function () {
             });
 
             this._hand = newHand;
+            GameActions.setPlayerCards(this._id, this._hand);
         }
 
         return this._hand;

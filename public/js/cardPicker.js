@@ -88,7 +88,6 @@
         });
 
         pp2.board.player(playerId).hand(hand);
-        GameActions.setPlayerCards(playerId, hand);
 
         GameActions.setHandResults([]);
         $cardPicker.modal("hide");
