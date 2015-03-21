@@ -244,20 +244,25 @@
     text-align: center;
 }
 
-#output .red {
+#output-tables {
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+#output-tables .red {
     color: red;
 }
 
-#output .black {
+#output-tables .black {
     color: #000000;
 }
 
-#output .topRow p {
+#output-tables .topRow p {
     padding-left: 2.5%;
     padding-top: 7%;
 }
 
-#output .resetBtn {
+#output-tables .resetBtn {
     margin: 6px;
     padding: 3px 6px;
 }

@@ -84,7 +84,7 @@
 
     var tableTemplate = $("#outputTemplate").html();
     function appendSimulationResult(result, input) {
-        var $output = $('#output');
+        var $output = $('#output-tables');
         if ($output.children().length > 1) {
             $output.prepend('<hr />');
         }
