@@ -78,15 +78,22 @@
     });
 
     $("#saveCards").click(function() {
+       
         var $cardPicker = $('#cardPicker');
-        var playerId = $cardPicker.data("playerId");
         var hand = [];
-        $("#picked-cards > .pick-card > img", $cardPicker).each(function(index, card) {
-            var suit = $(card).data("card-suit");
-            var value = $(card).data("card-value");
-            hand.push(pp2.Cards[suit][value]);
-            $modalOriginalState.find("#"+card.id).addClass("disabled");
-        });
+        var playerId = $cardPicker.data("playerId");
+
+        if($("#advanced").hasClass("selected")){
+            hand = $("#slider-range").slider( "values" );
+        }
+        else{
+            $("#picked-cards > .pick-card > img", $cardPicker).each(function(index, card) {
+                var suit = $(card).data("card-suit");
+                var value = $(card).data("card-value");
+                hand.push(pp2.Cards[suit][value]);
+                $modalOriginalState.find("#"+card.id).addClass("disabled");
+            });
+        }
         pp2.board.player(playerId).hand(hand);
         GameActions.setPlayerCards(playerId, hand);
         $cardPicker.modal("hide");
