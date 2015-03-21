@@ -294,6 +294,8 @@ var pp2 = (function () {
 
             this._flop = flop;
 
+            GameActions.setBoard("flop", this._flop);
+
         }
 
         return this._flop;
@@ -324,6 +326,8 @@ var pp2 = (function () {
             this._turn = undefined;
         }
 
+        GameActions.setBoard("turn", this._turn);
+
         return this._turn;
     };
 
@@ -351,6 +355,8 @@ var pp2 = (function () {
             this._deck.setCardAvailable(this._river);
             this._river = undefined;
         }
+
+        GameActions.setBoard("river", this._river);
 
         return this._river;
     };

@@ -51,6 +51,30 @@
             });
         },
 
+        setBoard: function(boardTypeId, cards){
+            var $boardType = $("#"+boardTypeId);
+            if (_.isUndefined(cards)) {
+                cards = [];
+            }
+            
+            if (_.isArray(cards) && cards.length == 0) {
+                // empty hand
+                $('img', $boardType).remove();
+                $('.plus-content', $boardType).show();
+                return;
+            }else if ( !_.isArray(cards)){
+                cards = [cards];
+            }
+
+            $('.plus-content', $boardType).hide();
+
+            
+            cards.forEach(function(card,i){
+                $boardType.find(".table-card:nth-child("+(i+1)+")").append("<img src='images/Cards/" + card.suit.long + '/' + card.value.short + card.suit.short + ".svg' />");
+            });
+
+        },
+
         /**
          * Set the labels for a player's result.
          * @param playerNo
