@@ -1,12 +1,6 @@
 
 #content {
-    margin-left: 10%;
-    margin-right: 10%;
-}
-
-#container {
-    width: 100%;
-    height: 100%;
+    width: 80%;
 }
 
 /*********************
@@ -15,7 +9,7 @@
 #table {
     background: url(../images/table.svg) center no-repeat;
     background-size: contain;
-    min-height: 620px;
+    height: 100%;
     border: solid 1px blue;
 
     overflow: auto;
@@ -214,9 +208,7 @@
 * Sidebar CSS
 **********************/
 #sidebar {
-    position: relative;
     border: 2px solid red;
-    float: right;
     height: 100%;
 }
 
@@ -274,7 +266,7 @@
 }
 
 #output-tables .resetBtn {
-    margin: 6px;
+    margin: 8px;
     padding: 3px 6px;
     float: right;
 }
@@ -283,16 +275,16 @@
 * Footer CSS
 **********************/
 #footer {
-    /*position: relative;*/
-    /*float: left;*/
     border: 2px solid green;
-    /*height: 20%;*/
-    /*width: 68%;*/
 }
 
-#simulate, #reset {
+#footer .controls {
     float: right;
     margin: 5px;
+}
+
+#footer .controls button {
+    margin-right: 5px;
 }
 
 /*********************
@@ -479,8 +471,8 @@
 }
 
 .card-select .disabled{
-  -webkit-filter: grayscale(100%) contrast(30%);
-   -ms-filter: grayscale(100%) contrast(30%);
-   filter: grayscale(100%) contrast(30%);
+    -webkit-filter: grayscale(100%) contrast(30%);
+    -ms-filter: grayscale(100%) contrast(30%);
+    filter: grayscale(100%) contrast(30%);
     cursor: not-allowed;
 }
