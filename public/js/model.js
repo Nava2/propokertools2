@@ -232,6 +232,7 @@ var pp2 = (function () {
             });
 
             this._hand = newHand;
+            GameActions.setPlayerCards(this._id, this._hand);
         }
 
         return this._hand;
@@ -264,9 +265,9 @@ var pp2 = (function () {
 
         this._deck = deck;
 
-        this.flop(flop);
+        /*(this.flop(flop);
         this.turn(turn);
-        this.river(river);
+        this.river(river);*/
 
         return this;
     }
@@ -292,6 +293,8 @@ var pp2 = (function () {
             });
 
             this._flop = flop;
+
+            GameActions.setBoard("flop", this._flop);
 
         }
 
@@ -323,6 +326,8 @@ var pp2 = (function () {
             this._turn = undefined;
         }
 
+        GameActions.setBoard("turn", this._turn);
+
         return this._turn;
     };
 
@@ -350,6 +355,8 @@ var pp2 = (function () {
             this._deck.setCardAvailable(this._river);
             this._river = undefined;
         }
+
+        GameActions.setBoard("river", this._river);
 
         return this._river;
     };
@@ -429,9 +436,11 @@ var pp2 = (function () {
             p.hand([]);
         });
 
-        this.table().flop([]);
         this.table().river(null);
         this.table().turn(null);
+        this.table().flop([]);
+        
+        
     };
 
     /**

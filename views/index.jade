@@ -55,15 +55,15 @@ body
                         li#flop.table-card-set(tabIndex=7)
                             ul
                                 - for (var i = 0; i < 3; ++i)
-                                    li.table-card.enabled(id="f#{i}")
+                                    li.table-card.enabled(id="f#{i}")&attributes(show_modal_attributes('flop', 3))
                                         .plus-content: span.glyphicon.glyphicon-plus
 
                         li#turn.table-card-set(tabIndex=8)
-                            #t1.button.table-card
+                            #t1.button.table-card&attributes(show_modal_attributes('turn', 1))
                                 .plus-content: span.glyphicon.glyphicon-plus
 
                         li#river.table-card-set(tabIndex=9)
-                            #r1.button.table-card
+                            #r1.button.table-card&attributes(show_modal_attributes('river', 1))
                                 .plus-content: span.glyphicon.glyphicon-plus
 
                 #sidebar.col-md-3

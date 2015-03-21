@@ -64,7 +64,6 @@
         console.log(playerId);
         console.log("saved clicked");
         pp2.board.player(playerId).hand(hand);
-        GameActions.setPlayerCards(playerId, hand);
         $cardPicker.modal("hide");
     });
 
@@ -72,11 +71,6 @@
     $(window).load(function() {
         $(window).trigger('resize');
         $modalOriginalState = $("#cardPicker").clone(true,true);
-
-        pp2.board.player('p1').hand([pp2.Cards.Ace.Clubs, pp2.Cards.Ace.Diamonds]);
-        pp2.board.player('p2').hand([pp2.Cards.Ace.Spades, pp2.Cards.King.Spades]);
-        GameActions.setPlayerCards('p1', pp2.board.player('p1').hand());
-        GameActions.setPlayerCards('p2', pp2.board.player('p2').hand());
 
         pp2.board.table().flop([pp2.Cards.Two.Spades, pp2.Cards.Two.Clubs, pp2.Cards.Three.Spades]);
         pp2.board.table().turn(pp2.Cards.Five.Diamonds);
