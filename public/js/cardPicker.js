@@ -1,5 +1,5 @@
 (function (window){  
-    boardMap = {
+    var boardMap = {
         pflop: "flop",
         pturn:  "turn",
         priver: "river"
@@ -35,6 +35,12 @@
         pp2.board.deck().getCardsInUse().forEach(function(card){
             $("#card-"+card.value.short+""+card.suit.short,$modal).addClass("disabled");
         });
+
+        if (playerId in boardMap) {
+            $("#advanced-accordion").hide();
+        }else{
+            $("#advanced-accordion").show();
+        }
     });
 
     $cardPicker.on('shown.bs.modal', function () {
@@ -60,12 +66,10 @@
         //get saved cards
         var playerId = $modal.data("playerId");
         var hand = [];
-        if (playerId in boardMap){
+        if (playerId in boardMap) {
             hand = pp2.board.table().setCards(boardMap[playerId]);
-            $("#advanced-accordion").hide();
         }else{
             hand = pp2.board.player(playerId).hand();
-            $("#advanced-accordion").show();
         }
         
         hand.forEach(function(card){

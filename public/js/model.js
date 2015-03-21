@@ -181,7 +181,7 @@ var pp2 = (function () {
             return this.cardsInUse;
         }
 
-        return _.where(this.cardsInUseq, {suit: suit});
+        return _.where(this.cardsInUse, {suit: suit});
     };
 
     /**
@@ -194,7 +194,7 @@ var pp2 = (function () {
             throw new TypeError('card must be defined.');
         }
 
-        return _.indexOf(this.cardsAvailable, card) > -1;
+        return _.indexOf(this.cardsInUse, card) == -1;
     };
 
     /**
@@ -369,23 +369,26 @@ var pp2 = (function () {
             this._river = undefined;
         }
 
-        GameActions.setBoard("river", this._river);
+        GameActions.setBoard('river', this._river);
 
         return this._river;
     };
 
-
+    /**
+     * Set the cards of a type of the table, i.e. the board type.
+     * @param {flop|turn|river} boardTypeId
+     * @param {Card|Card[]} newCard
+     */
     Table.prototype.setCards = function(boardTypeId, newCard){
         switch(boardTypeId){
-            case "flop": 
+            case "flop":
                 return this.flop(newCard);
-                break;
+
             case "turn":
                 return this.turn(newCard);
-                break;
+
             case "river":
                 return this.river(newCard);
-                break;
         }
     };
 
