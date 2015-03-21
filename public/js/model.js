@@ -7,35 +7,63 @@ var pp2 = (function () {
     /**
      * Defines global constants.
      */
-    var Globals = {
+    var Globals = { };
+
+
         /**
          * Values for card information.
          */
-        Values : {
-            Ace:   { short:"A", long: "Ace" },
-            Two:   { short:"2", long: "Two" },
-            Three: { short:"3", long: "Three" },
-            Four:  { short:"4", long: "Four" },
-            Five:  { short:"5", long: "Five" },
-            Six:   { short:"6", long: "Six" },
-            Seven: { short:"7", long: "Seven" },
-            Eight: { short:"8", long: "Eight" },
-            Nine:  { short:"9", long: "Nine" },
-            Ten:   { short:"T", long: "Ten" },
-            Jack:  { short:"J", long: "Jack" },
-            Queen: { short:"Q", long: "Queen" },
-            King:  { short:"K", long: "King" }
+    Globals.Values = {
+        Ace:   { short:"A", long: "Ace" },
+        Two:   { short:"2", long: "Two" },
+        Three: { short:"3", long: "Three" },
+        Four:  { short:"4", long: "Four" },
+        Five:  { short:"5", long: "Five" },
+        Six:   { short:"6", long: "Six" },
+        Seven: { short:"7", long: "Seven" },
+        Eight: { short:"8", long: "Eight" },
+        Nine:  { short:"9", long: "Nine" },
+        Ten:   { short:"T", long: "Ten" },
+        Jack:  { short:"J", long: "Jack" },
+        Queen: { short:"Q", long: "Queen" },
+        King:  { short:"K", long: "King" }
+    };
+
+    Globals.Suits = {
+        Clubs:    { short: "C", long: "Clubs" },
+        Diamonds: { short: "D", long: "Diamonds" },
+        Hearts:   { short: "H", long: "Hearts" },
+        Spades:   { short: "S", long: "Spades" }
+    };
+
+    Globals.Cards = {
+        All: [],
+
+        /**
+         * Converts a card to it's tag or undefined if its undefined.
+         * @param {Card} card
+         * @returns {undefined|String}
+         */
+        toTag: function (card) {
+            if (_.has(card, 'tag')) {
+                return card.tag;
+            } else {
+                return undefined;
+            }
         },
 
-        Suits: {
-            Clubs:    { short: "C", long: "Clubs" },
-            Diamonds: { short: "D", long: "Diamonds" },
-            Hearts:   { short: "H", long: "Hearts" },
-            Spades:   { short: "S", long: "Spades" }
-        },
-
-        Cards: { }
-
+        /**
+         * Convert a tag back to a Card
+         * @param {String} tag
+         * @returns {undefined|Card}
+         */
+        fromTag: function (tag) {
+            if (!tag) {
+                return undefined;
+            } else {
+                return _.findWhere(Globals.Cards.All, { tag: tag });
+            }
+        }
     };
 
     _.forEach(Globals.Values, function (value) {
@@ -52,6 +80,7 @@ var pp2 = (function () {
 
             Globals.Cards[suit.long][value.long] = c;
             Globals.Cards[value.long][suit.long] = c;
+            Globals.Cards.All.push(c);
         });
     });
 
@@ -95,7 +124,7 @@ var pp2 = (function () {
 
     Deck.prototype.setCardAvailable = function (card) {
         var inUseIdx = _.indexOf(this.cardsInUse, card);
-        if (inUseIdx !== -1) {
+        if (inUseIdx != -1) {
             this.cardsInUse.splice(inUseIdx, 1);
         }
 
@@ -108,7 +137,7 @@ var pp2 = (function () {
 
     Deck.prototype.setCardUnavailable = function (card) {
         var unavIdx = _.indexOf(this.cardsAvailable, card);
-        if (unavIdx !== -1) {
+        if (unavIdx != -1) {
             this.cardsAvailable.splice(unavIdx, 1);
         }
 
@@ -117,6 +146,11 @@ var pp2 = (function () {
         }
     };
 
+    /**
+     * Get the available cards of `suit`, or if unspecified all unavailable cards.
+     * @param {Object} suit
+     * @returns {Card[]}
+     */
     Deck.prototype.getAvailableCards = function(suit) {
         if (_.isUndefined(suit)) {
             return this.cardsAvailable;
@@ -125,12 +159,26 @@ var pp2 = (function () {
         return _.where(this.cardsAvailable, {suit: suit});
     };
 
+    /**
+     * Check if a card is available
+     * @param {Card} card
+     * @returns {boolean} True if the card is available
+     */
     Deck.prototype.isCardAvailable = function (card) {
         if (_.isUndefined(card)) {
             throw new TypeError('card must be defined.');
         }
 
         return _.indexOf(this.cardsAvailable, card) > -1;
+    };
+
+    /**
+     * Reset all cards to be available.
+     */
+    Deck.prototype.resetDeck = function () {
+        var that = this;
+
+        this.cardsInUse.forEach(function (c) { that.setCardAvailable(c); });
     };
 
     /**
@@ -225,10 +273,10 @@ var pp2 = (function () {
             }
 
             var that = this;
-            flop.forEach(function (c) {
+            _.each(flop, function (c) {
                 that._deck.setCardUnavailable(c);
             });
-            this._flop.forEach(function (c) {
+            _.each(this._flop, function (c) {
                 that._deck.setCardAvailable(c);
             });
             this._flop = flop;
@@ -240,7 +288,7 @@ var pp2 = (function () {
 
     /**
      * Set the turn of the table to `newCard`.
-     * @param {Card|Card[]} newCard Set the turn to the new value, if it is an Array, the first value is used.
+     * @param {Card|Card[]} [newCard] Set the turn to the new value, if it is an Array, the first value is used.
      * @returns {Card|undefined} Return the current turn card or undefined if unset.
      */
     Table.prototype.turn = function(newCard) {
@@ -263,7 +311,7 @@ var pp2 = (function () {
 
     /**
      * Set the river of the table to `newCard`.
-     * @param {Card|Card[]} newCard Set the turn to the new value, if it is an Array, the first value is used.
+     * @param {Card|Card[]} [newCard] Set the turn to the new value, if it is an Array, the first value is used.
      * @returns {Card|undefined} Return the current turn card or undefined if unset.
      */
     Table.prototype.river = function(newCard) {
@@ -301,10 +349,18 @@ var pp2 = (function () {
     Game.prototype = Object.create(Object.prototype);
     Game.prototype.constructor = Game;
 
+    /**
+     * Get the table of the board.
+     * @returns {Table}
+     */
     Game.prototype.table = function () {
         return this._table;
     };
 
+    /**
+     * Get the deak of cards for the table.
+     * @returns {Deck}
+     */
     Game.prototype.deck = function () {
         return this._deck;
     };
@@ -315,6 +371,48 @@ var pp2 = (function () {
 
     Game.prototype.players = function () {
         return this._players;
+    };
+
+    function cardArrToTags(cards) {
+        return _.map(cards, Globals.Cards.toTag);
+    }
+
+    function tagsToCardArr(tags) {
+        return _.map(tags, Globals.Cards.fromTag);
+    }
+
+    /**
+     * Create a saved "state" for loading later.
+     * @returns {{players: String[][], table: {flop: String[], turn: (undefined|String), river: (undefined|String)}}}
+     */
+    Game.prototype.saveState = function () {
+        var table = this.table();
+
+        return {
+            players : _.map(this.players(), function (p) { return cardArrToTags(p.hand()); }),
+            table: {
+                flop: cardArrToTags(table.flop()),
+                turn: Globals.Cards.toTag(table.turn()),
+                river: Globals.Cards.toTag(table.river())
+            }
+        };
+    };
+
+    /**
+     * Load a state from #saveState.
+     * @param {{players: String[][], table: {flop: String[], turn: (undefined|String), river: (undefined|String)}}} state
+     */
+    Game.prototype.loadState = function (state) {
+        this.deck().resetDeck();
+
+        var that = this;
+        _.each(state.players, function (hand, i) {
+            that.player('p' + (i + 1)).hand(tagsToCardArr(hand));
+        });
+
+        this.table().flop(tagsToCardArr(state.table.flop));
+        this.table().turn(Globals.Cards.fromTag(state.table.turn));
+        this.table().river(Globals.Cards.fromTag(state.table.river));
     };
 
 
