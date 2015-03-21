@@ -83,8 +83,13 @@
             ga.updateBoardEnabledState(boardTypeId, false);
         } else {
             $('.plus-content', $boardType).hide();
-        }
 
+            cards.forEach(function (card, i) {
+                $boardType.find(".table-card:nth-child("+(i+1)+")")
+                    .append("<img src='images/Cards/" + card.suit.long + '/' + card.value.short + card.suit.short + ".svg' />");
+            });
+            ga.updateBoardEnabledState(boardTypeId, true);
+        }
     };
 
     /**
