@@ -265,9 +265,9 @@ var pp2 = (function () {
 
         this._deck = deck;
 
-        this.flop(flop);
+        /*(this.flop(flop);
         this.turn(turn);
-        this.river(river);
+        this.river(river);*/
 
         return this;
     }

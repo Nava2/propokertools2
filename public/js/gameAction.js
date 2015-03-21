@@ -51,27 +51,48 @@
             });
         },
 
+        updateBoardEnabledState: function(boardTypeId, isSet){
+            state = {
+                flop: "turn",
+                turn: "river"
+            }
+
+            if ( isSet ){
+                $("#"+boardTypeId+" .enabled").removeClass("enabled").addClass("button");
+                if ( boardTypeId in state){
+                    $("#"+state[boardTypeId]+" .button").removeClass("button").addClass("enabled");
+                }
+            }else{
+                $("#"+boardTypeId+" .enabled").removeClass("enabled").addClass("button");
+            }
+
+
+        },
+
         setBoard: function(boardTypeId, cards){
             var $boardType = $("#"+boardTypeId);
-            if (_.isUndefined(cards)) {
-                cards = [];
+            if (_.isUndefined(cards) || !_.isArray(cards)) {
+                cards = [cards];
             }
             
             if (_.isArray(cards) && cards.length == 0) {
                 // empty hand
                 $('img', $boardType).remove();
                 $('.plus-content', $boardType).show();
+                updateBoardEnabledState(boardTypeId, false);
                 return;
-            }else if ( !_.isArray(cards)){
-                cards = [cards];
             }
 
             $('.plus-content', $boardType).hide();
 
             
+            //set the cards
             cards.forEach(function(card,i){
                 $boardType.find(".table-card:nth-child("+(i+1)+")").append("<img src='images/Cards/" + card.suit.long + '/' + card.value.short + card.suit.short + ".svg' />");
             });
+
+            this.updateBoardEnabledState(boardTypeId, true);
+           
 
         },
 
