@@ -63,7 +63,7 @@
                     $("#"+state[boardTypeId]+" .button").removeClass("button").addClass("enabled");
                 }
             }else{
-                $("#"+boardTypeId+" .enabled").removeClass("enabled").addClass("button");
+                $("#"+boardTypeId+" .button").removeClass("button").addClass("enabled");
             }
 
 
@@ -71,15 +71,17 @@
 
         setBoard: function(boardTypeId, cards){
             var $boardType = $("#"+boardTypeId);
-            if (_.isUndefined(cards) || !_.isArray(cards)) {
-                cards = [cards];
+            if (_.isUndefined(cards)) {
+                cards = [];
+            }else if ( !_.isArray(cards)){
+                 cards = [cards];
             }
             
+            $('img', $boardType).remove();
             if (_.isArray(cards) && cards.length == 0) {
                 // empty hand
-                $('img', $boardType).remove();
                 $('.plus-content', $boardType).show();
-                updateBoardEnabledState(boardTypeId, false);
+                this.updateBoardEnabledState(boardTypeId, false);
                 return;
             }
 
