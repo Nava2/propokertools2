@@ -50,27 +50,10 @@
             "% - " + $sliderRange.slider( "values", 1 ) + "%" );
     });
     
-    $("#saveCards").click(function() {
-        var $cardPicker = $('#cardPicker');
-        var playerId = $cardPicker.data("playerId");
-        var hand = [];
-        $("#picked-cards > .pick-card > img", $cardPicker).each(function(index, card) {
-            var suit = $(card).data("card-suit");
-            var value = $(card).data("card-value");
-            hand.push(pp2.Cards[suit][value]);
-            $modalOriginalState.find("#"+card.id).addClass("disabled");
-        });
-
-        console.log(playerId);
-        console.log("saved clicked");
-        pp2.board.player(playerId).hand(hand);
-        $cardPicker.modal("hide");
-    });
 
 
     $(window).load(function() {
         $(window).trigger('resize');
-        $modalOriginalState = $("#cardPicker").clone(true,true);
 
         pp2.board.table().flop([pp2.Cards.Two.Spades, pp2.Cards.Two.Clubs, pp2.Cards.Three.Spades]);
         pp2.board.table().turn(pp2.Cards.Five.Diamonds);
