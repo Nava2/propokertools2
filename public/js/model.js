@@ -436,9 +436,11 @@ var pp2 = (function () {
             p.hand([]);
         });
 
-        this.table().flop([]);
-        this.table().turn(null);
         this.table().river(null);
+        this.table().turn(null);
+        this.table().flop([]);
+        
+        
     };
 
     /**

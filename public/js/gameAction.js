@@ -64,6 +64,9 @@
             }
         } else {
             $("#"+boardTypeId+" .button").removeClass("button").addClass("enabled");
+            if ( boardTypeId in state){
+                $("#"+state[boardTypeId]+" .enabled").removeClass("enabled").addClass("button");
+            }
         }
 
     };
