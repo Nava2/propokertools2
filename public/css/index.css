@@ -1,3 +1,7 @@
+:focus {
+    outline: solid;
+    outline-color: #bebbbc;
+}
 
 #content {
     margin-left: 10%;
@@ -297,6 +301,16 @@
 #simulate, #reset {
     float: right;
     margin: 5px;
+}
+
+#simulate:focus {
+    outline: solid;
+    outline-color: #bebbbc;
+}
+
+#reset:focus {
+    outline: solid;
+    outline-color: #bebbbc;
 }
 
 /*********************
