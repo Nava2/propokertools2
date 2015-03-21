@@ -1,5 +1,9 @@
 (function (window){  
-
+    boardMap = {
+        pflop: "flop",
+        pturn:  "turn",
+        priver: "river"
+    };
 
     var $cardPicker = $('#cardPicker');
     //event listeners
@@ -52,9 +56,16 @@
 
         });
 
-        var playerId = $modal.data("playerId");
+
         //get saved cards
-        var hand = pp2.board.player(playerId).hand();
+        var playerId = $modal.data("playerId");
+        var hand = [];
+        if (playerId in boardMap){
+            hand = pp2.board.table().setCards(boardMap[playerId]);
+        }else{
+            hand = pp2.board.player(playerId).hand();
+        }
+        
         hand.forEach(function(card){
             modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
         });
@@ -73,6 +84,7 @@
         //reset modal data to default state
         $("#search").val("").trigger('input');
         $(".delete-card").click();
+        $('.suit-select .' + pp2.Suits.Clubs.long).click();
 
 
     });
@@ -87,7 +99,12 @@
             hand.push(pp2.Cards[suit][value]);
         });
 
-        pp2.board.player(playerId).hand(hand);
+        if (playerId in boardMap){
+            pp2.board.table().setCards(boardMap[playerId],hand);
+        }else{
+            pp2.board.player(playerId).hand(hand);
+        }
+        
 
         GameActions.setHandResults([]);
         $cardPicker.modal("hide");
@@ -239,7 +256,7 @@
 
             $selectedCard.find(".plus-content").hide();
             $selectedCard.find(".delete-card").show();
-            $cardElement.clone().appendTo($selectedCard);     
+            $cardElement.clone().show().appendTo($selectedCard);     
             $cardElement.addClass("disabled");
 
             //remove button class from parent

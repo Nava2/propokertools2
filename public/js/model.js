@@ -181,7 +181,7 @@ var pp2 = (function () {
             return this.cardsInUse;
         }
 
-        return _.where(this.cardsInUse, {suit: suit});
+        return _.where(this.cardsInUseq, {suit: suit});
     };
 
     /**
@@ -372,6 +372,21 @@ var pp2 = (function () {
         GameActions.setBoard("river", this._river);
 
         return this._river;
+    };
+
+
+    Table.prototype.setCards = function(boardTypeId, newCard){
+        switch(boardTypeId){
+            case "flop": 
+                return this.flop(newCard);
+                break;
+            case "turn":
+                return this.turn(newCard);
+                break;
+            case "river":
+                return this.river(newCard);
+                break;
+        }
     };
 
     /**
