@@ -222,7 +222,7 @@
 
 #sidebar h2 {
     text-align: center;
-    height: 50px;
+    height: 10%;
     background: -webkit-linear-gradient(white, rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(white, rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(white, rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
@@ -245,8 +245,19 @@
 }
 
 #output-tables {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
+
+    max-height: 80%;
+}
+
+#output-tables h5 {
+    font-weight: bold;
+}
+
+#output-tables h5 span {
+    font-weight: 400;
+    float: right;
 }
 
 #output-tables .red {
@@ -265,6 +276,7 @@
 #output-tables .resetBtn {
     margin: 6px;
     padding: 3px 6px;
+    float: right;
 }
 
 /*********************

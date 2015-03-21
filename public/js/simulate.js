@@ -59,12 +59,10 @@
             }
         }).value();
 
-        var board = {
+        return {
             table: table,
             hands: hands
         };
-
-        return board;
     }
 
     var suit2Unicode = {
@@ -89,9 +87,11 @@
             $output.prepend('<hr />');
         }
 
+        var now = new Date();
         $output.prepend(_.template(tableTemplate)({
             result: result,
             submitData: input,
+            timeStr: now.today() + ' ' + now.timeNow(),
             suit2Unicode: suit2Unicode,
             tag2ColorClass: tag2ColorClass
         }));
