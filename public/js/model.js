@@ -105,16 +105,8 @@ var pp2 = (function () {
      * @constructor
      */
     function Deck() {
-        this.allCards = _.flatten(_.map(Globals.Suits, function (obj) {
-            return _.map(Globals.Values, function (cobj) {
-                return Globals.Cards[obj.long][cobj.long];
-            });
-        }));
 
-        this.cardsAvailable = [];
-        var that = this;
-        this.allCards.forEach(function (v) { that.cardsAvailable.push(v); });
-
+        this.cardsAvailable = _.map(Globals.Cards.All, function (c) { return c; });
         this.cardsInUse = [];
 
         return this;
@@ -123,25 +115,34 @@ var pp2 = (function () {
     Deck.prototype.constructor = Deck;
 
     Deck.prototype.setCardAvailable = function (card) {
-        var inUseIdx = _.indexOf(this.cardsInUse, card);
-        if (inUseIdx != -1) {
+        if (_.isUndefined(card)) {
+            return;
+        }
+
+        var inUseIdx = _.findIndex(this.cardsInUse, function(c) { return card.tag === c.tag; });
+        if (inUseIdx > -1) {
             this.cardsInUse.splice(inUseIdx, 1);
         }
 
-        var avIdx = _.indexOf(this.cardsAvailable, card);
+        var unavIdx = _.findIndex(this.cardsAvailable, function(c) { return card.tag === c.tag; });
 
-        if (avIdx == -1) {
+        if (unavIdx < 0) {
             this.cardsAvailable.push(card);
         }
     };
 
     Deck.prototype.setCardUnavailable = function (card) {
-        var unavIdx = _.indexOf(this.cardsAvailable, card);
-        if (unavIdx != -1) {
+        if (_.isUndefined(card)) {
+            return;
+        }
+
+        var unavIdx = _.findIndex(this.cardsAvailable, function(c) { return card.tag === c.tag; });
+        if (unavIdx > -1) {
             this.cardsAvailable.splice(unavIdx, 1);
         }
 
-        if (_.indexOf(this.cardsInUse, card) == -1) {
+        var avIdx = _.findIndex(this.cardsInUse, function(c) { return card.tag === c.tag; });
+        if (avIdx < 0) {
             this.cardsInUse.push(card);
         }
     };
@@ -176,9 +177,8 @@ var pp2 = (function () {
      * Reset all cards to be available.
      */
     Deck.prototype.resetDeck = function () {
-        var that = this;
-
-        this.cardsInUse.forEach(function (c) { that.setCardAvailable(c); });
+        this.cardsInUse = [];
+        this.cardsAvailable = _.map(Globals.Cards.All, function (c) { return c; });
     };
 
     /**
@@ -213,11 +213,11 @@ var pp2 = (function () {
             }
 
             var that = this;
-            newHand.forEach(function (c) {
-                that._deck.setCardUnavailable(c);
-            });
             this._hand.forEach(function (c) {
                 that._deck.setCardAvailable(c);
+            });
+            newHand.forEach(function (c) {
+                that._deck.setCardUnavailable(c);
             });
 
             this._hand = newHand;
@@ -231,7 +231,7 @@ var pp2 = (function () {
     };
 
     Player.prototype.deck = function () {
-        return _deck;
+        return this._deck;
     };
 
     /**
@@ -273,12 +273,13 @@ var pp2 = (function () {
             }
 
             var that = this;
-            _.each(flop, function (c) {
-                that._deck.setCardUnavailable(c);
-            });
             _.each(this._flop, function (c) {
                 that._deck.setCardAvailable(c);
             });
+            _.each(flop, function (c) {
+                that._deck.setCardUnavailable(c);
+            });
+
             this._flop = flop;
 
         }
@@ -301,8 +302,8 @@ var pp2 = (function () {
         }
 
         if (_.isObject(newCard)) {
+            this._deck.setCardAvailable(this._turn);
             this._deck.setCardUnavailable(newCard);
-            this._deck.setCardAvailable(newCard);
             this._turn = newCard;
         }
 
@@ -324,8 +325,8 @@ var pp2 = (function () {
         }
 
         if (_.isObject(newCard)) {
+            this._deck.setCardAvailable(this._river);
             this._deck.setCardUnavailable(newCard);
-            this._deck.setCardAvailable(newCard);
             this._river = newCard;
         }
 
@@ -339,10 +340,11 @@ var pp2 = (function () {
     function Game() {
         this._deck = new Deck();
         this._players = {};
-        _.range(1, 7).forEach(_.bind(function (i) {
-            this._players['p' + i] = new Player(this._deck, 'p' + i);
-        }, this));
-        this._table = new Table(this._deck);
+        var that = this;
+        _.range(1, 7).forEach(function (i) {
+            that._players['p' + i] = new Player(that._deck, 'p' + i);
+        });
+        this._table = new Table(that._deck);
 
         return this;
     }
@@ -403,11 +405,12 @@ var pp2 = (function () {
      * @param {{players: String[][], table: {flop: String[], turn: (undefined|String), river: (undefined|String)}}} state
      */
     Game.prototype.loadState = function (state) {
-        this.deck().resetDeck();
+        //this.deck().resetDeck();
 
         var that = this;
         _.each(state.players, function (hand, i) {
             that.player('p' + (i + 1)).hand(tagsToCardArr(hand));
+            console.log('Player ' + (i + 1), that.player('p' + (i + 1)));
         });
 
         this.table().flop(tagsToCardArr(state.table.flop));

@@ -87,6 +87,7 @@
             hand.push(pp2.Cards[suit][value]);
             $modalOriginalState.find("#"+card.id).addClass("disabled");
         });
+
         pp2.board.player(playerId).hand(hand);
         GameActions.setPlayerCards(playerId, hand);
         $cardPicker.modal("hide");
@@ -167,7 +168,7 @@
                 $(".suit-select").show();
                 $("."+pp2.Suits.Clubs.long.toLowerCase()).show();
             }
-        })
+        });
 
         $("#search").keyup(function(e){
             if ( e.keyCode != 13 || $(this).val() == ''){ //enter was not pressed
@@ -265,7 +266,7 @@
             $(this).parent().find(".plus-content").show();
             $(this).parent().addClass("button");
             return recalculateActiveCard();
-        })
+        });
 
         var Globals = {};
         Globals.setCard = setCard;
