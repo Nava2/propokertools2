@@ -300,7 +300,8 @@ var pp2 = (function () {
 
     /**
      * Set the turn of the table to `newCard`.
-     * @param {Card|Card[]} [newCard] Set the turn to the new value, if it is an Array, the first value is used.
+     * @param {Card|Card[]} [newCard] Set the turn to the new value, if it is an Array, the first value is used. If
+     *      the parameter is null, it will set the stored value to undefined.
      * @returns {Card|undefined} Return the current turn card or undefined if unset.
      */
     Table.prototype.turn = function(newCard) {
@@ -316,6 +317,10 @@ var pp2 = (function () {
             this._deck.setCardAvailable(this._turn);
             this._deck.setCardUnavailable(newCard);
             this._turn = newCard;
+        } else if (_.isNull(newCard)) {
+
+            this._deck.setCardAvailable(this._turn);
+            this._turn = undefined;
         }
 
         return this._turn;
@@ -323,7 +328,8 @@ var pp2 = (function () {
 
     /**
      * Set the river of the table to `newCard`.
-     * @param {Card|Card[]} [newCard] Set the turn to the new value, if it is an Array, the first value is used.
+     * @param {Card|Card[]|null} [newCard] Set the turn to the new value, if it is an Array, the first value is used. If
+     *      the parameter is null, it will set the stored value to undefined.
      * @returns {Card|undefined} Return the current turn card or undefined if unset.
      */
     Table.prototype.river = function(newCard) {
@@ -339,6 +345,10 @@ var pp2 = (function () {
             this._deck.setCardAvailable(this._river);
             this._deck.setCardUnavailable(newCard);
             this._river = newCard;
+        } else if (_.isNull(newCard)) {
+
+            this._deck.setCardAvailable(this._river);
+            this._river = undefined;
         }
 
         return this._river;
@@ -409,6 +419,19 @@ var pp2 = (function () {
                 river: Globals.Cards.toTag(table.river())
             }
         };
+    };
+
+    /**
+     * Reset the current game to have no cards selected and clean slate (i.e. as if new game).
+     */
+    Game.prototype.resetState = function () {
+        _.each(this.players(), function (p) {
+            p.hand([]);
+        });
+
+        this.table().flop([]);
+        this.table().river(null);
+        this.table().turn(null);
     };
 
     /**

@@ -13,6 +13,14 @@
         });
     });
 
+    $('#reset').click(function () {
+        // TODO confirm dialog
+        console.log('TODO Confirmation dialog');
+
+        GameActions.setHandResults([]);
+        pp2.board.resetState();
+    });
+
     $('#output').click(function (event) {
         var $this = $(event.target);
         if ($this.hasClass('resetBtn')) {
@@ -103,20 +111,4 @@
     $('.player .selected').hide();
 
     $('.player .circle').show();
-
-    $('#reset').click((function () {
-        var circleShowing = true;
-        return function () {
-            var $player = $('.player');
-            if (circleShowing) {
-                $('.no-cards', $player).hide();
-                $('.selected', $player).show();
-            } else {
-                $('.no-cards', $player).show();
-                $('.selected', $player).hide();
-            }
-
-            circleShowing = !circleShowing;
-        };
-    })());
 })(window);
