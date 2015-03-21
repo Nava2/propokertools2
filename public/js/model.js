@@ -105,7 +105,6 @@ var pp2 = (function () {
      * @constructor
      */
     function Deck() {
-
         this.cardsAvailable = _.map(Globals.Cards.All, function (c) { return c; });
         this.cardsInUse = [];
 
@@ -410,7 +409,6 @@ var pp2 = (function () {
         var that = this;
         _.each(state.players, function (hand, i) {
             that.player('p' + (i + 1)).hand(tagsToCardArr(hand));
-            console.log('Player ' + (i + 1), that.player('p' + (i + 1)));
         });
 
         this.table().flop(tagsToCardArr(state.table.flop));

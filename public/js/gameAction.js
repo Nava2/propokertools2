@@ -67,6 +67,8 @@
 
             if (_.isNumber(handLikelyHood)) {
                 $rspan.text(handLikelyHood + '%');
+            } else {
+                $rspan.text('');
             }
 
             if (isBest) {

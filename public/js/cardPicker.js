@@ -37,11 +37,11 @@
 
             $this.css({
                 top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
-                width: $this.height() + 'px',
+                width: $this.height() + 'px'
             });
 
             $this.css({
-                left: (($this.parent().parent().width() - $this.width()) / 2) + 'px',
+                left: (($this.parent().parent().width() - $this.width()) / 2) + 'px'
             })
 
         });
@@ -53,7 +53,6 @@
         hand.forEach(function(card){
             modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
         });
-
 
         $('#liteAccordion').liteAccordion({
             containerWidth: 700,
@@ -90,6 +89,8 @@
 
         pp2.board.player(playerId).hand(hand);
         GameActions.setPlayerCards(playerId, hand);
+
+        GameActions.setHandResults([]);
         $cardPicker.modal("hide");
     });
 

@@ -16,10 +16,9 @@
     $('#output').click(function (event) {
         var $this = $(event.target);
         if ($this.hasClass('resetBtn')) {
-            console.log($this.data('value'));
             var board = $this.data('value');
 
-            debugger;
+            GameActions.setHandResults([]);
             pp2.board.loadState(board);
         }
     });
@@ -90,7 +89,6 @@
                 width: $this.height() + 'px'
             });
         });
-
 
         $('.table-card-set .plus-content .glyphicon-plus').each(function () {
             var $this = $(this);
