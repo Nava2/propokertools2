@@ -62,8 +62,10 @@
         var hand = [];
         if (playerId in boardMap){
             hand = pp2.board.table().setCards(boardMap[playerId]);
+            $("#advanced-accordion").hide();
         }else{
             hand = pp2.board.player(playerId).hand();
+            $("#advanced-accordion").show();
         }
         
         hand.forEach(function(card){
