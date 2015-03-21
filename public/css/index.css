@@ -145,7 +145,7 @@
     list-style: none;
 
     position: absolute;
-    left: 35%;
+    left: 34%;
     top: 40%;
 
     padding: 2%;
@@ -176,9 +176,10 @@
 }
 
 #flop {
-    width: 185px;
+    width: 192px;
     height: 80px;
     position: relative;
+
 }
 
 #flop ul {
@@ -187,6 +188,7 @@
     list-style: outside none none;
     margin: 0 0;
     padding: 2%;
+    margin-top: 1%
 }
 
 #flop ul li {
@@ -206,8 +208,9 @@
 
 .table-card {
     width: 50px;
-    height: 70px;
+    height: 68px;
     margin: 5px;
+    border-radius:10%
 }
 
 .table-card img{
