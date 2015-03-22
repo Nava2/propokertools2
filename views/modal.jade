@@ -21,18 +21,20 @@
 
                     .simple-selection
                        .row.col-md-12
-                          input#search(type="text", placeholder="Search")
+                          input#search(type="text" tabIndex='40' placeholder="Search")
                        .row
                           .col-md-2.suit-select.card-display
+                             - var i = 50
                              each suit in suits
-                                img(src='images/Suits/#{suit.long}.svg' id='suit-#{suit.long.toLowerCase()}' class='#{suit.long.toLowerCase()}')
+                                img(src='images/Suits/#{suit.long}.svg' tabIndex=i++ id='suit-#{suit.long.toLowerCase()}' class='#{suit.long.toLowerCase()}')
 
                           .col-md-9
                              //- Create hidden entities for all of the cards
                              .card-select.card-display
+                                - var i = 100
                                 each suit in suits
                                     each card in cards
-                                       +card_img(suit, card)(id='card-#{card.short}#{suit.short}' data-card-value='#{card.long}' data-card-suit='#{suit.long}')
+                                       +card_img(suit, card)(id='card-#{card.short}#{suit.short}' tabIndex=i++ data-card-value='#{card.long}' data-card-suit='#{suit.long}')
                         .row.col-md-11.col-md-push-1
                           ul#picked-cards
                              li.pick-card.enabled
@@ -44,7 +46,7 @@
                              li.pick-card.button
                                 span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
                                 .plus-content: span.glyphicon.glyphicon-plus
-                 li
+                 li#advanced-accordion
                     h2#advanced: span Advanced...
                     #advanced-content
                        p
@@ -56,5 +58,5 @@
 
 
         .modal-footer
-           button.btn.btn-default(type='button', data-dismiss='modal') Close
-           button#saveCards.btn.btn-primary(type='button') Save changes
+           button.btn.btn-default(type='button', data-dismiss='modal' tabIndex='200' ) Close
+           button#saveCards.btn.btn-primary(type='button'  tabIndex='200') Save changes

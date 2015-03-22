@@ -8,7 +8,7 @@ mixin card_img(suit, card)
 //- Creates a player circle, if the player number is 1 it will make it blue
 mixin player_space(playerNo)
     - console.log(show_modal_attributes(playerNo, 2));
-    .player(id='p' + playerNo)
+    .player(id='p' + playerNo tabIndex=playerNo)
         .no-cards(class = (playerNo === 1 ? 'enabled' : 'button'))&attributes(show_modal_attributes(playerNo, 2))
             .plus-content: span.glyphicon.glyphicon-plus
 
@@ -43,36 +43,98 @@ head
   link(rel='stylesheet', type='text/css', href='css/vendor/liteAccordion/liteaccordion.css')
 
 body
-    #content
-        h1 ProPokerTools2
-        #container
+    #content.container
+            h1 ProPokerTools2
             .row
-                #table.col-md-9
+                #table.col-md-8
                     - for (var i = 1; i <= 6; ++i)
                         +player_space(i)
 
                     ul#table-cards
-                        li#flop.table-card-set
+                        li#flop.table-card-set(tabIndex=7)
                             ul
                                 - for (var i = 0; i < 3; ++i)
-                                    li.table-card.enabled(id="f#{i}")
+                                    li.table-card.enabled(id="f#{i}")&attributes(show_modal_attributes('flop', 3))
                                         .plus-content: span.glyphicon.glyphicon-plus
 
-                        li#turn.table-card-set
-                            #t1.button.table-card
+                        li#turn.table-card-set(tabIndex=8)
+                            #t1.button.table-card&attributes(show_modal_attributes('turn', 1))
                                 .plus-content: span.glyphicon.glyphicon-plus
 
-                        li#river.table-card-set
-                            #r1.button.table-card
+                        li#river.table-card-set(tabIndex=9)
+                            #r1.button.table-card&attributes(show_modal_attributes('river', 1))
                                 .plus-content: span.glyphicon.glyphicon-plus
 
-                #sidebar.col-md-3
+                #sidebar.col-md-4
                     h2.blue-gradient Output
+                    #output-tables
+                        script(type="template" id="outputTemplate").
+                            <div class="simulateResult">
+                                <h5>Simulation: <span style='float: right'><%= timeStr %></span></h5>
+                                <div class="row topRow">
+                                    <div class="col-md-6">
+                                        <p> Table: &nbsp;
+                                        <% _.each(result.board.flop, function (c) { %>
+                                        <span class="<%= tag2ColorClass(c) %>">
+                                            <%= c[0].toUpperCase() + suit2Unicode[c[1]] %>
+                                        </span>
+                                        <% }); %>
+                                        <% if (result.board.turn) { %>
+                                            &nbsp;
+                                            <span class="<%= tag2ColorClass(result.board.turn) %>">
+                                                <%= result.board.turn[0].toUpperCase() + suit2Unicode[result.board.turn[1]] %>
+                                            </span>
 
-            #footer.row.col-md-12
-                h5 Footer
-                button#reset.btn.btn-lg.btn-danger Reset
-                button#simulate.btn.btn-lg.btn-success Simulate
+                                            <% if (result.board.river) { %>
+                                                &nbsp;
+                                                <span class="<%= tag2ColorClass(result.board.river) %>">
+                                                    <%= result.board.river[0].toUpperCase() + suit2Unicode[result.board.river[1]] %>
+                                                </span>
+                                            <% } %>
+
+                                        <% } %>
+
+                                        </p>
+                                    </div>
+                                    <div class="col-md-4 col-md-offset-2">
+                                        <button class="resetBtn btn btn-warning"
+                                                data-value='<%= JSON.stringify(submitData) %>'>
+                                            Replay
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <table class="outputTable table">
+                                        <tr>
+                                            <th>Player</th>
+                                            <th>Hand</th>
+                                            <th>Equity</th>
+                                            <th>Wins </th>
+                                            <th>Ties </th>
+                                        </tr>
+                                        <% _.each(result.hands, function (player, i) { %>
+                                            <tr class="<%= (player.winner ? "success" : "") %>" >
+                                                <td class="playerId"><%= i+1 %></td>
+                                                <td class="cards">
+                                                    <% _.each(player.hand, function (c) { %>
+                                                        <span class="<%= tag2ColorClass(c) %>">
+                                                            <%= c[0].toUpperCase() + suit2Unicode[c[1]] %>
+                                                        </span>
+                                                    <% }); %>
+                                                </td>
+                                                <td><%= player.equity %>%</td>
+                                                <td><%= player.wins %></td>
+                                                <td><%= player.ties %></td>
+                                            </tr>
+                                        <% }); %>
+                                    </table>
+                                </div>
+                            <div>
+
+            #footer.row
+                .controls
+                    button#simulate.btn.btn-lg.btn-success(tabIndex=10) Simulate
+                    button#reset.btn.btn-lg.btn-danger(tabIndex=11) Reset
 
         include ./modal.jade
 
@@ -82,7 +144,7 @@ body
 
     //- Application scripts
     script(src='js/model.js')
-    script(src='js/server.js')
     script(src='js/gameAction.js')
-    script(src='js/modal.js')
+    script(src='js/simulate.js')
+    script(src='js/cardPicker.js')
     script(src='js/index.js')

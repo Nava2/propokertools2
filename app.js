@@ -126,7 +126,7 @@ var parseHTMLResult = (function () {
 /**
  * Expected input: {
  *  table: ['ah', 'td', 'jh'],
- *  hands: [['ac', 'jd'], ['as, 'qs]]
+ *  hands: [['ac', 'jd'], ['as', 'qs']]
  * }
  */
 app.post('/submit', function (req, res) {
@@ -173,10 +173,24 @@ app.post('/submit', function (req, res) {
             if (res.error)
                 throw res.error;
 
-            sessions[sessionId] = parseHTMLResult(res.text); // html
+            try {
 
-            //console.log('STATUS: ' + _res.statusCode);
-            //console.log('HEADERS: ' + JSON.stringify(_res.headers));
+                var result = parseHTMLResult(res.text); // html
+                var maxEquity = { idx: -1, value: 0 };
+                _.each(result.hands, function (hand, i) {
+                    if (hand.equity > maxEquity.value) {
+                        maxEquity.value = hand.equity;
+                        maxEquity.idx = i;
+                    }
+                });
+                result.hands[maxEquity.idx].winner = true;
+
+                sessions[sessionId] = result;
+            } catch (err) {
+                sessions[sessionId] = "Error: Invalid response from server";
+            }
+
+
         });
 
     res.json({'id' : sessionId});

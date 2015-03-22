@@ -1,12 +1,6 @@
 
 #content {
-    margin-left: 10%;
-    margin-right: 10%;
-}
-
-#container {
-    width: 100%;
-    height: 100%;
+    width: 80%;
 }
 
 /*********************
@@ -15,7 +9,8 @@
 #table {
     background: url(../images/table.svg) center no-repeat;
     background-size: contain;
-    min-height: 620px;
+    height: 100%;
+    max-height: 625px;
     border: solid 1px blue;
 
     overflow: auto;
@@ -210,39 +205,92 @@
     margin: 5px;
 }
 
+.table-card img{
+    width: 100%;
+}
+
 /*********************
 * Sidebar CSS
 **********************/
 #sidebar {
-    position: relative;
     border: 2px solid red;
-    float: right;
     height: 100%;
+    max-height: 625px;
 }
 
 #sidebar h2 {
     text-align: center;
-    height: 50px;
+    height: 10%;
     background: -webkit-linear-gradient(white, rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(white, rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(white, rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
     background: linear-gradient(white, rgba(117, 200, 255, 1)); /* Standard syntax */
 }
 
+.outputTable {
+    padding: 6px;
+    margin-left: 2.5%;
+    width: 95%;
+    margin-right: 2.5%;
+}
+
+.outputTable td {
+    text-align: right;
+}
+
+.outputTable .playerId {
+    text-align: center;
+}
+
+#output-tables {
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    max-height: 80%;
+}
+
+#output-tables h5 {
+    font-weight: bold;
+}
+
+#output-tables h5 span {
+    font-weight: 400;
+    float: right;
+}
+
+#output-tables .red {
+    color: red;
+}
+
+#output-tables .black {
+    color: #000000;
+}
+
+#output-tables .topRow p {
+    padding-left: 2.5%;
+    padding-top: 7%;
+}
+
+#output-tables .resetBtn {
+    margin: 8px;
+    padding: 3px 6px;
+    float: right;
+}
+
 /*********************
 * Footer CSS
 **********************/
 #footer {
-    /*position: relative;*/
-    /*float: left;*/
     border: 2px solid green;
-    /*height: 20%;*/
-    /*width: 68%;*/
 }
 
-#simulate, #reset {
+#footer .controls {
     float: right;
     margin: 5px;
+}
+
+#footer .controls button {
+    margin-right: 5px;
 }
 
 /*********************
@@ -346,7 +394,6 @@
 
     float: left;
     margin: 5px;
-    margin-right: 2%;
 }
 
 
@@ -429,8 +476,8 @@
 }
 
 .card-select .disabled{
-  -webkit-filter: grayscale(100%) contrast(30%);
-   -ms-filter: grayscale(100%) contrast(30%);
-   filter: grayscale(100%) contrast(30%);
+    -webkit-filter: grayscale(100%) contrast(30%);
+    -ms-filter: grayscale(100%) contrast(30%);
+    filter: grayscale(100%) contrast(30%);
     cursor: not-allowed;
 }
