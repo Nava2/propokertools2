@@ -100,8 +100,13 @@
         var $cardPicker = $('#cardPicker');
         var hand = [];
         var playerId = $cardPicker.data("playerId");
+
+
         if($("#advanced").hasClass("selected")){
+            $cardPicker.modal("hide");
             hand = $("#slider-range").slider( "values" );
+            pp2.board.player(playerId).hand(hand);
+            GameActions.setHandResults([]);
         }
         else {
             $("#picked-cards > .pick-card > img", $cardPicker).each(function(index, card) {
@@ -116,10 +121,9 @@
                 pp2.board.player(playerId).hand(hand);
             }
             
-
+            $cardPicker.modal("hide");
             GameActions.setHandResults([]);
         }
-        $cardPicker.modal("hide");
     });
 
 

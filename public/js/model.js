@@ -240,9 +240,12 @@ var pp2 = (function () {
             this._hand.forEach(function (c) {
                 that._deck.setCardAvailable(c);
             });
-            newHand.forEach(function (c) {
-                that._deck.setCardUnavailable(c);
-            });
+            //hand is not a hand range
+            if(typeof(newHand[0]) != "number"){
+                newHand.forEach(function (c) {
+                    that._deck.setCardUnavailable(c);
+                });
+            }
 
             this._hand = newHand;
             GameActions.setPlayerCards(this._id, this._hand);

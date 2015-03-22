@@ -23,14 +23,25 @@
         $('.selected', $player).show();
         $('.no-cards', $player).hide();
 
+        var $imgs = $('.selected img', $player);
+        var $selectables = $('.selected .card-placeholder', $player);
+        var $low = $('.selected .low-range', $player)
+        var $high = $('.selected .high-range', $player);
+
         //hand range given
         if(typeof(cards[0]) == "number"){
-                
+            $low.text(cards[0]+"% -");
+            $high.text(cards[1]+"%");
+            $imgs.hide();
+            $selectables.hide();
         }
         //standard card selection
         else{
+            $low.text("");
+            $high.text("");
+
             var $imgs = $('.selected img', $player);
-            var $selectables = $('.selected .card-placeholder', $player);
+
             cards.forEach(function (card, i) {
                 console.log(card);
                 $($imgs[i]).attr('src', 'images/Cards/' + card.suit.long + '/' + card.value.short + card.suit.short + '.svg');

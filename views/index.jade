@@ -17,10 +17,12 @@ mixin player_space(playerNo)
                 +card_img(suits[0], cards[0])
                 .card-placeholder.enabled(style = 'display: none;')
                     .plus-content: span.glyphicon.glyphicon-plus
+                b.low-range
             li
                 +card_img(suits[0], cards[0])(style='display: none;')
                 .card-placeholder.enabled
                     .plus-content: span.glyphicon.glyphicon-plus
+                b.high-range
 
             span.result.label.label-success
 
