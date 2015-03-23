@@ -26,7 +26,10 @@
                           .col-md-2.suit-select.card-display
                              - var i = 50
                              each suit in suits
-                                img(src='images/Suits/#{suit.long}.svg' tabIndex=i++ id='suit-#{suit.long.toLowerCase()}' class='#{suit.long.toLowerCase()}')
+                                img(src='images/Suits/#{suit.long}.svg'
+                                    tabIndex=(i++)
+                                    id='suit-#{suit.long.toLowerCase()}'
+                                    class='#{suit.long.toLowerCase()}')
 
                           .col-md-9
                              //- Create hidden entities for all of the cards
@@ -34,7 +37,10 @@
                                 - var i = 100
                                 each suit in suits
                                     each card in cards
-                                       +card_img(suit, card)(id='card-#{card.short}#{suit.short}' tabIndex=i++ data-card-value='#{card.long}' data-card-suit='#{suit.long}')
+                                       +card_img(suit, card)(id='card-#{card.short}#{suit.short}'
+                                                             tabIndex=(i++)
+                                                             data-card-value='#{card.long}'
+                                                             data-card-suit='#{suit.long}')
                  li#advanced-accordion
                     h2: span Advanced...
                     #advanced-content
