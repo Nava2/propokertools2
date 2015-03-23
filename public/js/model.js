@@ -159,7 +159,7 @@ var pp2 = (function () {
     };
 
     /**
-     * Get the available cards of `suit`, or if unspecified all unavailable cards.
+     * Get the available cards of `suit`, or if unspecified all available cards.
      * @param {Object} suit
      * @returns {Card[]}
      */
@@ -172,6 +172,19 @@ var pp2 = (function () {
     };
 
     /**
+     * Get the cards in use of `suit`, or if unspecified all cards in use.
+     * @param {Object} suit
+     * @returns {Card[]}
+     */
+    Deck.prototype.getCardsInUse = function(suit) {
+        if (_.isUndefined(suit)) {
+            return this.cardsInUse;
+        }
+
+        return _.where(this.cardsInUse, {suit: suit});
+    };
+
+    /**
      * Check if a card is available
      * @param {Card} card
      * @returns {boolean} True if the card is available
@@ -181,7 +194,7 @@ var pp2 = (function () {
             throw new TypeError('card must be defined.');
         }
 
-        return _.indexOf(this.cardsAvailable, card) > -1;
+        return _.indexOf(this.cardsInUse, card) == -1;
     };
 
     /**
@@ -356,9 +369,27 @@ var pp2 = (function () {
             this._river = undefined;
         }
 
-        GameActions.setBoard("river", this._river);
+        GameActions.setBoard('river', this._river);
 
         return this._river;
+    };
+
+    /**
+     * Set the cards of a type of the table, i.e. the board type.
+     * @param {flop|turn|river} boardTypeId
+     * @param {Card|Card[]} newCard
+     */
+    Table.prototype.setCards = function(boardTypeId, newCard){
+        switch(boardTypeId){
+            case "flop":
+                return this.flop(newCard);
+
+            case "turn":
+                return this.turn(newCard);
+
+            case "river":
+                return this.river(newCard);
+        }
     };
 
     /**

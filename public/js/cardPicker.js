@@ -1,5 +1,9 @@
 (function (window){  
-
+    var boardMap = {
+        pflop: "flop",
+        pturn:  "turn",
+        priver: "river"
+    };
 
     var $cardPicker = $('#cardPicker');
     //event listeners
@@ -24,7 +28,19 @@
             }else{
                 $(this).show();
             }
+
         });
+
+        //disable cards
+        pp2.board.deck().getCardsInUse().forEach(function(card){
+            $("#card-"+card.value.short+""+card.suit.short,$modal).addClass("disabled");
+        });
+
+        if (playerId in boardMap) {
+            $("#advanced-accordion").hide();
+        }else{
+            $("#advanced-accordion").show();
+        }
     });
 
     $cardPicker.on('shown.bs.modal', function () {
@@ -47,9 +63,15 @@
         });
 
 
-        var playerId = $modal.data("playerId");
         //get saved cards
-        var hand = pp2.board.player(playerId).hand();
+        var playerId = $modal.data("playerId");
+        var hand = [];
+        if (playerId in boardMap) {
+            hand = pp2.board.table().setCards(boardMap[playerId]);
+        }else{
+            hand = pp2.board.player(playerId).hand();
+        }
+        
         hand.forEach(function(card){
             modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
         });
@@ -61,18 +83,15 @@
     });
 
 
-    var $modalOriginalState = null;
-    $(window).load(function() {
-        $modalOriginalState = $("#cardPicker").clone(true,true);
-
-    });
-
     /*
      * Modal close event listener
      */
-    $cardPicker.on('hidden.bs.modal', function () {
+    $cardPicker.on('hide.bs.modal', function () {
         //reset modal data to default state
-        $(this).replaceWith($modalOriginalState.clone(true,true));
+        $("#search").val("").trigger('input');
+        $(".delete-card").click();
+        $('.suit-select .' + pp2.Suits.Clubs.long).click();
+
 
     });
 
@@ -84,10 +103,14 @@
             var suit = $(card).data("card-suit");
             var value = $(card).data("card-value");
             hand.push(pp2.Cards[suit][value]);
-            $modalOriginalState.find("#"+card.id).addClass("disabled");
         });
 
-        pp2.board.player(playerId).hand(hand);
+        if (playerId in boardMap){
+            pp2.board.table().setCards(boardMap[playerId],hand);
+        }else{
+            pp2.board.player(playerId).hand(hand);
+        }
+        
 
         GameActions.setHandResults([]);
         $cardPicker.modal("hide");
@@ -239,7 +262,7 @@
 
             $selectedCard.find(".plus-content").hide();
             $selectedCard.find(".delete-card").show();
-            $cardElement.clone().appendTo($selectedCard);     
+            $cardElement.clone().show().appendTo($selectedCard);     
             $cardElement.addClass("disabled");
 
             //remove button class from parent
@@ -259,7 +282,6 @@
             //get card and re-enable it
             var $card = $(this).parent().find("img");
             $(".card-select.card-display").find('#'+$card.attr('id')).removeClass("disabled");
-            $modalOriginalState.find('#'+$card.attr('id')).removeClass("disabled");
             $card.remove();
 
             //change the selection back into a button
