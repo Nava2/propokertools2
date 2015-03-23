@@ -1,7 +1,3 @@
-:focus {
-    outline: solid;
-    outline-color: #bebbbc;
-}
 
 #content {
     width: 80%;
@@ -485,4 +481,9 @@
     -ms-filter: grayscale(100%) contrast(30%);
     filter: grayscale(100%) contrast(30%);
     cursor: not-allowed;
+}
+
+.controls button:focus, #flop:focus, #turn:focus, #river:focus, .player:focus {
+    outline: solid;
+    outline-color: lightgrey;
 }
