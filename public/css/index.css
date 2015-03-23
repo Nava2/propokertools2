@@ -36,6 +36,11 @@
     padding: 2%;
 
     width: 180%;
+
+    position: absolute;
+    left: -37%;
+    bottom: 100%;
+
 }
 
 .player .selected .table-card-set {
@@ -63,11 +68,22 @@
 
     position: absolute;
     top: 35%;
-    left: 180%;
+    left: 100%;
 
     /* make it look like a badge */
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 1.2em;
+}
+
+.player .player-label {
+    position: relative;
+    top: 100%;
+
+    left: -8px;
+    margin-top: 10px;
+    margin-left: 5px;
+
+    font-size: 1.5em;
 }
 
 /* Player 1's circle position */
