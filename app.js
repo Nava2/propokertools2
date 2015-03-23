@@ -171,8 +171,6 @@ app.post('/submit', function (req, res) {
     var sessionId = _.uniqueId('session_');
     sessions[sessionId] = "Running";
 
-    console.log('started: ' + sessionId);
-
     request.post('http://www.propokertools.com/simulations/results_box')
         .set('content-length', postQuery.length)
         .set('X-Requested-With', 'XMLHttpRequest') // required
@@ -193,8 +191,8 @@ app.post('/submit', function (req, res) {
                 result.hands[maxEquity.idx].winner = true;
 
                 var resIdx = 0;
-                var orderedHands = {};
-                _.each(data.hands, function (h, i) {
+                var orderedHands = [];
+                _.each(data.hands, function (h) {
                     if (h.length > 0) {
                         orderedHands.push(result.hands[resIdx++]);
                     } else {
@@ -212,6 +210,7 @@ app.post('/submit', function (req, res) {
 
                 console.log('session complete: ' + sessionId);
             } catch (err) {
+                console.log('error: ' + err);
                 sessions[sessionId] = "Error: Invalid response from server";
             }
 
