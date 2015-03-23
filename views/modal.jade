@@ -26,7 +26,10 @@
                           .col-md-2.suit-select.card-display
                              - var i = 50
                              each suit in suits
-                                img(src='images/Suits/#{suit.long}.svg' tabIndex=i++ id='suit-#{suit.long.toLowerCase()}' class='#{suit.long.toLowerCase()}')
+                                img(src='images/Suits/#{suit.long}.svg'
+                                    tabIndex=(i++)
+                                    id='suit-#{suit.long.toLowerCase()}'
+                                    class='#{suit.long.toLowerCase()}')
 
                           .col-md-9
                              //- Create hidden entities for all of the cards
