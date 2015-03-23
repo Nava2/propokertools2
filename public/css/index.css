@@ -36,6 +36,11 @@
     padding: 2%;
 
     width: 180%;
+
+    position: absolute;
+    left: -37%;
+    bottom: 100%;
+
 }
 
 .player .selected .table-card-set {
@@ -63,11 +68,22 @@
 
     position: absolute;
     top: 35%;
-    left: 180%;
+    left: 100%;
 
     /* make it look like a badge */
     border-radius: 10px;
-    font-size: 20px;
+    font-size: 1.2em;
+}
+
+.player .player-label {
+    position: relative;
+    top: 100%;
+
+    left: -8px;
+    margin-top: 10px;
+    margin-left: 5px;
+
+    font-size: 1.5em;
 }
 
 /* Player 1's circle position */
@@ -140,7 +156,7 @@
     list-style: none;
 
     position: absolute;
-    left: 35%;
+    left: 34%;
     top: 40%;
 
     padding: 2%;
@@ -171,9 +187,10 @@
 }
 
 #flop {
-    width: 185px;
+    width: 192px;
     height: 80px;
     position: relative;
+
 }
 
 #flop ul {
@@ -182,6 +199,7 @@
     list-style: outside none none;
     margin: 0 0;
     padding: 2%;
+    margin-top: 1%
 }
 
 #flop ul li {
@@ -201,8 +219,9 @@
 
 .table-card {
     width: 50px;
-    height: 70px;
+    height: 68px;
     margin: 5px;
+    border-radius:10%
 }
 
 .table-card img{

@@ -24,6 +24,10 @@ mixin player_space(playerNo)
 
             span.result.label.label-success
 
+        .player-label
+            span.label.label-primary Player #{playerNo}
+
+
 head
   title ProPokerTools2 :3
 
@@ -91,7 +95,6 @@ body
                                                     <%= result.board.river[0].toUpperCase() + suit2Unicode[result.board.river[1]] %>
                                                 </span>
                                             <% } %>
-
                                         <% } %>
 
                                         </p>
