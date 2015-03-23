@@ -73,7 +73,9 @@
         }
         
         hand.forEach(function(card){
-            modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
+            if(!_.isNumber(card)){
+                modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
+            }
         });
 
         $('#liteAccordion').liteAccordion({
