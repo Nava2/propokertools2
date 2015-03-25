@@ -1,6 +1,29 @@
 (function (window){
 	var ga = { };
 
+    function updateSimulateButton (){
+        if (pp2.board.table().flop().length != 3 ){
+            $("#simulate").attr("disabled","disabled");
+            return;
+        }
+
+        var count = 0;
+        //check if atleast 2 player's hand has been set
+        _.each(pp2.board.players(),function(p){
+            if ( p.hand().length != 0 ){
+                count++;
+                if ( count >= 2){
+                    return;
+                }
+            }
+        })
+
+        if ( count == 2 ){
+            $("#simulate").removeAttr('disabled');
+        }else{
+            $("#simulate").attr("disabled","disabled");
+        }
+    }
     /**
      * Set a player's hand on the table to be the cards passed.
      * @param playerId Player number
@@ -49,6 +72,7 @@
                 'top': (($this.parent().parent().height() - $this.height())/2) + 'px'
             });
         });
+        updateSimulateButton();
     };
 
     ga.updateBoardEnabledState = function (boardTypeId, isSet) {
@@ -93,6 +117,8 @@
             });
             ga.updateBoardEnabledState(boardTypeId, true);
         }
+
+        updateSimulateButton();
     };
 
     /**
