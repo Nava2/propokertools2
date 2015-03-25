@@ -80,6 +80,8 @@
             containerWidth: 700,
             containerHeight: 550
         });
+
+        updateSaveCardButton();
     });
 
 
@@ -118,7 +120,7 @@
 
 
     function updateSaveCardButton(){
-        if ( $("#picked-cards > .enabled").length == 0 ){
+        if ( $("#picked-cards > .enabled").length == 0 || $(".pick-card > .delete-card:visible").length == 0 ){
             $("#saveCards").removeAttr('disabled');
         }else{
             $("#saveCards").attr('disabled','disabled');
