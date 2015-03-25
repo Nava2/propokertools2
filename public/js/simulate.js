@@ -81,19 +81,18 @@
     }
 
     var tableTemplate = $("#outputTemplate").html();
+    var simulationNumber = 1;
     function appendSimulationResult(result, input) {
-        var $output = $('#output-tables');
-        if ($output.children().length > 1) {
-            $output.prepend('<hr />');
-        }
+        $('.simulateResult .collapse').collapse('hide');
 
         var now = new Date();
-        $output.prepend(_.template(tableTemplate)({
+        $('#output-tables').prepend(_.template(tableTemplate)({
             result: result,
             submitData: input,
             timeStr: now.today() + ' ' + now.timeNow(),
             suit2Unicode: suit2Unicode,
-            tag2ColorClass: tag2ColorClass
+            tag2ColorClass: tag2ColorClass,
+            id: (simulationNumber++)
         }));
     }
 
