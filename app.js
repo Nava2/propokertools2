@@ -103,21 +103,27 @@ var parseHTMLResult = (function () {
         }
 
         var A = 'A'.charCodeAt(0);
-        o.hands = _.chain(_.range(A, A + 6))
-            .map(function (c) { return '.simRow' + String.fromCharCode(c); })
-            .map(function (selector) {
 
-                if ($(selector).length > 0) {
-                    return {
-                        hand: splitHand($(selector + ' .pptSpec').text()),
-                        equity: Number($(selector + ' .pptEV').text().slice(0, -1)),
-                        wins: Number($(selector + ' .pptWinsHi').text().replace(/,/g, '')),
-                        ties: Number($(selector + ' .pptTiesHi').text().replace(/,/g, ''))
-                    };
+        var $rows = $(".pptSimTable tr[class^='simRow']");
+        o.hands = _.chain(_.range(0, 6)).map(function (i) {
+                if (i < $rows.length) {
+                    return $($rows[i]);
                 } else {
                     return undefined;
                 }
-            }).compact().value();
+            })
+            .map(function (row) {
+                if (row) {
+                    return {
+                        hand: splitHand($('.pptSpec', row).text()),
+                        equity: Number($('.pptEV', row).text().slice(0, -1)),
+                        wins: Number($('.pptWinsHi', row).text().replace(/,/g, '')),
+                        ties: Number($('.pptTiesHi', row).text().replace(/,/g, ''))
+                    };
+                } else {
+                    return {};
+                }
+            }).value();
 
         return o;
     };
@@ -174,7 +180,6 @@ app.post('/submit', function (req, res) {
                 throw res.error;
 
             try {
-
                 var result = parseHTMLResult(res.text); // html
                 var maxEquity = { idx: -1, value: 0 };
                 _.each(result.hands, function (hand, i) {
@@ -185,8 +190,27 @@ app.post('/submit', function (req, res) {
                 });
                 result.hands[maxEquity.idx].winner = true;
 
+                var resIdx = 0;
+                var orderedHands = [];
+                _.each(data.hands, function (h) {
+                    if (h.length > 0) {
+                        orderedHands.push(result.hands[resIdx++]);
+                    } else {
+                        orderedHands.push({});
+                    }
+                });
+
+                _.each(_.range(data.hands.length, 6), function () {
+                    orderedHands.push({});
+                });
+
+                result.hands = orderedHands;
+
                 sessions[sessionId] = result;
+
+                console.log('session complete: ' + sessionId);
             } catch (err) {
+                console.log('error: ' + err);
                 sessions[sessionId] = "Error: Invalid response from server";
             }
 

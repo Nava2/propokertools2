@@ -21,7 +21,7 @@
         pp2.board.resetState();
     });
 
-    $('#output').click(function (event) {
+    $('#output-tables').click(function (event) {
         var $this = $(event.target);
         if ($this.hasClass('resetBtn')) {
             var board = $this.data('value');

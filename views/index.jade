@@ -116,6 +116,7 @@ body
                                             <th>Ties </th>
                                         </tr>
                                         <% _.each(result.hands, function (player, i) { %>
+                                            <% if (!_.has(player, 'hand')) { return; } %>
                                             <tr class="<%= (player.winner ? "success" : "") %>" >
                                                 <td class="playerId"><%= i+1 %></td>
                                                 <td class="cards">
