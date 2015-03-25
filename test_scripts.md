@@ -30,7 +30,7 @@ Expected: The selected cards should be greyed out in the card selector and shoul
 be displayed at the bottom of the modal dialog with a red X in the top right of the card.
 
 
-## Modal Dialog - Do Not Save Selected Cards
+### Modal Dialog - Do Not Save Selected Cards
 1. Repeat the steps in **Modal Dialog - Selected Cards 2**
 2. Click the close button.
 
@@ -38,7 +38,7 @@ Expected: The cards should not appear in the players hand on the table. P1 shoul
 Clicking on the P1 circle should bring up the modal dialog box with the previous selection not present.
 
 
-## Modal Dialog - Save Selected Cards
+### Modal Dialog - Save Selected Cards
 1. Repeat the steps in **Modal Dialog - Selected Cards 2**
 2. Click the save button.
 
