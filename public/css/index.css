@@ -328,6 +328,7 @@
 
 #footer .controls button {
     margin-right: 5px;
+
 }
 
 /*********************
@@ -517,4 +518,9 @@
     -ms-filter: grayscale(100%) contrast(30%);
     filter: grayscale(100%) contrast(30%);
     cursor: not-allowed;
+}
+
+.controls button:focus, #flop:focus, #turn:focus, #river:focus, .player:focus {
+    outline: solid;
+    outline-color: lightgrey;
 }
