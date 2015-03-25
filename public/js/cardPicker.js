@@ -117,6 +117,14 @@
     });
 
 
+    function updateSaveCardButton(){
+        if ( $("#picked-cards > .enabled").length == 0 ){
+            $("#saveCards").removeAttr('disabled');
+        }else{
+            $("#saveCards").attr('disabled','disabled');
+        }
+    }
+
     //suit select
     (function () {
         var suitDisplayed = pp2.Suits.Clubs.long; // init
@@ -267,6 +275,7 @@
 
             //remove button class from parent
             selectNextActiveCard();
+            updateSaveCardButton();
         };
 
         function recalculateActiveCard(){
@@ -287,7 +296,9 @@
             //change the selection back into a button
             $(this).parent().find(".plus-content").show();
             $(this).parent().addClass("button");
-            return recalculateActiveCard();
+            recalculateActiveCard();
+            updateSaveCardButton();
+            return false;
         });
 
         var Globals = {};
