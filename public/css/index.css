@@ -285,15 +285,33 @@
     color: #000000;
 }
 
-#output-tables .topRow p {
-    padding-left: 2.5%;
-    padding-top: 7%;
+#output-tables div[role=tab] {
+    margin-left: 0;
+    margin-right: 0;
 }
 
 #output-tables .resetBtn {
-    margin: 8px;
+    margin-top: 4px;
     padding: 3px 6px;
     float: right;
+}
+
+#output-tables .expand-label {
+    float: left;
+    margin-right: 5px;
+
+    display: inline;
+
+    font-family: monospace;
+    font-weight: bolder;
+}
+
+#output-tables a[aria-expanded=true] .expand-label:before {
+    content: '-';
+}
+
+#output-tables a.collapsed .expand-label:before {
+    content: '+';
 }
 
 /*********************
