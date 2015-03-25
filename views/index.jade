@@ -7,7 +7,6 @@ mixin card_img(suit, card)
 
 //- Creates a player circle, if the player number is 1 it will make it blue
 mixin player_space(playerNo)
-    - console.log(show_modal_attributes(playerNo, 2));
     .player(id='p' + playerNo tabIndex=playerNo)
         .no-cards(class = (playerNo === 1 ? 'enabled' : 'button'))&attributes(show_modal_attributes(playerNo, 2))
             .plus-content: span.glyphicon.glyphicon-plus
