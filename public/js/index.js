@@ -21,7 +21,7 @@
         pp2.board.resetState();
     });
 
-    $('#output').click(function (event) {
+    $('#output-tables').click(function (event) {
         var $this = $(event.target);
         if ($this.hasClass('resetBtn')) {
             var board = $this.data('value');
@@ -54,10 +54,6 @@
 
     $(window).load(function() {
         $(window).trigger('resize');
-
-        pp2.board.table().flop([pp2.Cards.Two.Spades, pp2.Cards.Two.Clubs, pp2.Cards.Three.Spades]);
-        pp2.board.table().turn(pp2.Cards.Five.Diamonds);
-
 
     });
 
