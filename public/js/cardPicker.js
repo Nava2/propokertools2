@@ -73,12 +73,14 @@
         }
         
         hand.forEach(function(card){
-            modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
+            if(!_.isNumber(card)){
+                modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
+            }
         });
 
         $('#liteAccordion').liteAccordion({
             containerWidth: 700,
-            containerHeight: 550
+            containerHeight: 750
         });
     });
 
@@ -96,24 +98,34 @@
     });
 
     $("#saveCards").click(function() {
+       
         var $cardPicker = $('#cardPicker');
-        var playerId = $cardPicker.data("playerId");
         var hand = [];
-        $("#picked-cards > .pick-card > img", $cardPicker).each(function(index, card) {
-            var suit = $(card).data("card-suit");
-            var value = $(card).data("card-value");
-            hand.push(pp2.Cards[suit][value]);
-        });
+        var playerId = $cardPicker.data("playerId");
 
-        if (playerId in boardMap){
-            pp2.board.table().setCards(boardMap[playerId],hand);
-        }else{
+
+        if($("#advanced").hasClass("selected")){
+            $cardPicker.modal("hide");
+            hand = $("#slider-range").slider( "values" );
             pp2.board.player(playerId).hand(hand);
+            GameActions.setHandResults([]);
         }
-        
+        else {
+            $("#picked-cards > .pick-card > img", $cardPicker).each(function(index, card) {
+                var suit = $(card).data("card-suit");
+                var value = $(card).data("card-value");
+                hand.push(pp2.Cards[suit][value]);
+            });
 
-        GameActions.setHandResults([]);
-        $cardPicker.modal("hide");
+            if (playerId in boardMap){
+                pp2.board.table().setCards(boardMap[playerId],hand);
+            }else{
+                pp2.board.player(playerId).hand(hand);
+            }
+            
+            $cardPicker.modal("hide");
+            GameActions.setHandResults([]);
+        }
     });
 
 
@@ -189,7 +201,7 @@
                 });
 
                 $(".suit-select").show();
-                $("."+pp2.Suits.Clubs.long.toLowerCase()).show();
+                $("."+pp2.Suits.Clubs.long.toLowerCase(),$cardPicker).show();
             }
         });
 

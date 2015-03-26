@@ -228,6 +228,11 @@
     width: 100%;
 }
 
+.low-range, .high-range{
+    color:#f6931f;
+    font-size: 18;
+}
+
 /*********************
 * Sidebar CSS
 **********************/

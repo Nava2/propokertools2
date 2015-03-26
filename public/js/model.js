@@ -238,11 +238,17 @@ var pp2 = (function () {
 
             var that = this;
             this._hand.forEach(function (c) {
-                that._deck.setCardAvailable(c);
+                if(typeof(c) != "number"){
+                    that._deck.setCardAvailable(c);
+                }
             });
-            newHand.forEach(function (c) {
-                that._deck.setCardUnavailable(c);
-            });
+
+            //hand is not a hand range
+            if(typeof(newHand[0]) != "number"){
+                newHand.forEach(function (c) {
+                    that._deck.setCardUnavailable(c);
+                });
+            }
 
             this._hand = newHand;
             GameActions.setPlayerCards(this._id, this._hand);

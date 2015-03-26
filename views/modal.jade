@@ -37,29 +37,27 @@
                                 - var i = 100
                                 each suit in suits
                                     each card in cards
-                                       +card_img(suit, card)(id='card-#{card.short}#{suit.short}'
-                                                             tabIndex=(i++)
-                                                             data-card-value='#{card.long}'
-                                                             data-card-suit='#{suit.long}')
+                                       +card_img(suit, card)(id='card-#{card.short}#{suit.short}' tabIndex=i++ data-card-value='#{card.long}' data-card-suit='#{suit.long}')
+                        .row.col-md-11.col-md-push-1
+                          ul#picked-cards
+                             li.pick-card.enabled
+                                span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
+                                .plus-content: span.glyphicon.glyphicon-plus
+                             li.pick-card.button
+                                span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
+                                .plus-content: span.glyphicon.glyphicon-plus
+                             li.pick-card.button
+                                span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
+                                .plus-content: span.glyphicon.glyphicon-plus
                  li#advanced-accordion
-                    h2: span Advanced...
+                    h2#advanced: span Advanced...
                     #advanced-content
                        p
                         label(for='range') Select a Hand Range then click "Save Changes" to assign to the player:
                         input#range(type='text', readonly='')
      
                        #slider-range
-           .row.col-md-12
-              ul#picked-cards
-                 li.pick-card.enabled
-                    span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
-                    .plus-content: span.glyphicon.glyphicon-plus
-                 li.pick-card.button
-                    span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
-                    .plus-content: span.glyphicon.glyphicon-plus
-                 li.pick-card.button
-                    span.delete-card.label.label-danger.glyphicon.glyphicon-remove-circle
-                    .plus-content: span.glyphicon.glyphicon-plus
+           
 
 
         .modal-footer
