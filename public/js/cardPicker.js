@@ -201,7 +201,7 @@
                 });
 
                 $(".suit-select").show();
-                $("."+pp2.Suits.Clubs.long.toLowerCase()).show();
+                $("."+pp2.Suits.Clubs.long.toLowerCase(),$cardPicker).show();
             }
         });
 
