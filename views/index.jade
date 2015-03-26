@@ -131,11 +131,15 @@ body
                                                 <tr class="<%= (player.winner ? "success" : "") %>" >
                                                     <td class="playerId"><%= i+1 %></td>
                                                     <td class="cards">
-                                                        <% _.each(player.hand, function (c) { %>
-                                                            <span class="<%= tag2ColorClass(c) %>">
-                                                                <%= c[0].toUpperCase() + suit2Unicode[c[1]] %>
-                                                            </span>
-                                                        <% }); %>
+                                                        <% if(player.hand.length > 2){ %>
+                                                            <span><%= player.hand.join("")%></span>
+                                                        <% } %>
+                                                        <% if(player.hand.length == 2) { %>
+                                                            <% _.each(player.hand, function (c) { %>
+                                                                <span class="<%= tag2ColorClass(c) %>">
+                                                                    <%= c[0].toUpperCase() + suit2Unicode[c[1]] %>
+                                                                </span>
+                                                            <% });} %>
                                                     </td>
                                                     <td><%= player.equity %>%</td>
                                                     <td><%= player.wins %></td>
