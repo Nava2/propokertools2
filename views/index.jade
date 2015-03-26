@@ -27,8 +27,12 @@ mixin player_space(playerNo)
             span.label.label-primary Player #{playerNo}
 
 
-head
-  title ProPokerTools2 :3
+head(profile='http://www.w3.org/2005/10/profile')
+
+  title ProPokerTools2
+
+  link(rel='icon', type='image/png', href='/images/favicon.ico')
+
 
   link(rel='stylesheet', href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css')
 
