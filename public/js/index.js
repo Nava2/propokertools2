@@ -14,20 +14,25 @@
     });
 
     $('#reset').click(function () {
-        // TODO confirm dialog
-        console.log('TODO Confirmation dialog');
-
-        GameActions.setHandResults([]);
-        pp2.board.resetState();
+        bootbox.confirm("Are you sure you want to reset?",function(result){
+            if ( result ){
+                GameActions.setHandResults([]);
+                pp2.board.resetState();
+            }
+        })
     });
 
     $('#output-tables').click(function (event) {
         var $this = $(event.target);
         if ($this.hasClass('resetBtn')) {
-            var board = $this.data('value');
+            bootbox.confirm("Are you sure you want to replay?",function(result){
+                if ( result ){
+                    var board = $this.data('value');
 
-            GameActions.setHandResults([]);
-            pp2.board.loadState(board);
+                    GameActions.setHandResults([]);
+                    pp2.board.loadState(board);
+                }
+            });
         }
     });
 
