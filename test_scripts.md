@@ -129,7 +129,7 @@ Expected Output:
   + Table: 9S 5C AH 6C
   + P1 Hand: 2H 7D
   + P1 Equity: 14.29%
-  + P1 Wins: 30
+  + P1 Wins: 6
   + P1 Ties: 0
   + P2 Hand: JD 3C
   + P2 Equity: 71.43%
