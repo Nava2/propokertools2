@@ -68,10 +68,3 @@ The first card slot should be blue (enabled) and the second black (disabled).
 Expected: When selecting cards for P2, the cards previously selected for P1 should be greyed out and non selectable
 in the modal dialog.
 
-
-### Next Player Circle Turns Blue
-1. Select and save cards for player n.
-2. Select and save cards for player n+1.
-
-Expected: The next player's circle (n+1) should turn from black to blue indicating it is now enabled.
-
