@@ -27,23 +27,23 @@
 
     $('#output-tables').click(function (event) {
         var $this = $(event.target);
+        function replay(){
+            var board = $this.data('value');
+
+            GameActions.setHandResults([]);
+            pp2.board.loadState(board);
+        }
+
         if ($this.hasClass('resetBtn')) {
-            var result = false;
             if ( pp2.board.isBoardEmpty() ){
-                result = true;
-            }else{
-                bootbox.confirm("Are you sure you want to replay?",function(r){
-                    result =r;
-                });
-
+                return replay();
             }
-            
-            if ( result ){
-                var board = $this.data('value');
+            bootbox.confirm("Are you sure you want to replay?",function(result){
+                if ( result ){
+                    replay();
+                }
+            })
 
-                GameActions.setHandResults([]);
-                pp2.board.loadState(board);
-            }
         }
     });
 
