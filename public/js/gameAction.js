@@ -2,11 +2,6 @@
 	var ga = { };
 
     function updateSimulateButton (){
-        if (pp2.board.table().flop().length != 3 ){
-            $("#simulate").attr("disabled","disabled");
-            return;
-        }
-
         var count = 0;
         //check if atleast 2 player's hand has been set
         _.each(pp2.board.players(),function(p){
@@ -18,7 +13,7 @@
             }
         })
 
-        if ( count == 2 ){
+        if ( count >= 2 ){
             $("#simulate").removeAttr('disabled');
         }else{
             $("#simulate").attr("disabled","disabled");
@@ -118,7 +113,6 @@
             ga.updateBoardEnabledState(boardTypeId, true);
         }
 
-        updateSimulateButton();
     };
 
     /**
