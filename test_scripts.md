@@ -78,85 +78,89 @@ in the modal dialog.
 
 ### Simulation 1
 1. Run the following simulation.  
-  a. P1:  
-  b. P2:  
-  c. Flop:  
-  d. Turn:  
-  e. River:  
+  a. P1: 4C 9C  
+  b. P2: AC KC  
+  c. Flop: 4S 2S 8C  
+  d. Turn: 10D  
+  e. River: --  
 
-Expected:
-  + Winner:
-  + P1 Percentage:
-  + P1 Color:
-  + P2 Percentage:
-  + P2 Color:
+Expected:  
+
+  + Winner: P1  
+  + P1 Percentage: 73.54%
+  + P1 Color: Green  
+  + P2 Percentage: 26.46%
+  + P2 Color: Blue  
 
 Expected Output:
-  + Table:
-  + P1 Hand:
-  + P1 Equity:
-  + P1 Wins:
-  + P1 Ties:
-  + P2 Hand:
-  + P2 Equity:
-  + P2 Wins:
-  + P2 Ties:
+
+  + Table: 4S 2S 8C  
+  + P1 Hand: 4C 9C  
+  + P1 Equity: 73.54%  
+  + P1 Wins: 728  
+  + P1 Ties: 0  
+  + P2 Hand: AC KC  
+  + P2 Equity: 26.46%  
+  + P2 Wins: 262  
+  + P2 Ties: 0  
 
 
 ### Simulation 2
 1. Run the following simulation.  
-  a. P1:  
-  b. P2:  
-  c. P3:  
-  d. Flop:  
-  e. Turn:  
-  f. River:  
+  a. P1: 2H 7D
+  b. P2: JD 3C
+  c. P3: 8H 4H  
+  d. Flop: 9S 5C AH  
+  e. Turn: 6C  
+  f. River: --  
 
 Expected:
-  + Winner:
-  + P1 Percentage:
-  + P1 Color:
-  + P2 Percentage:
-  + P2 Color:
-  + P3 Percentage:
-  + P3 Color:
+
+  + Winner: P1
+  + P1 Percentage:  14.29%
+  + P1 Color: Blue
+  + P2 Percentage: 71.43%
+  + P2 Color: Green
+  + P3 Percentage: 14.29%
+  + P3 Color: Blue
 
 Expected Output:
-  + Table:
-  + P1 Hand:
-  + P1 Equity:
-  + P1 Wins:
-  + P1 Ties:
-  + P2 Hand:
-  + P2 Equity:
-  + P2 Wins:
-  + P2 Ties:
-  + P3 Hand:
-  + P3 Equity:
-  + P3 Wins:
-  + P3 Ties:
+
+  + Table: 9S 5C AH 6C
+  + P1 Hand: 2H 7D
+  + P1 Equity: 14.29%
+  + P1 Wins: 30
+  + P1 Ties: 0
+  + P2 Hand: JD 3C
+  + P2 Equity: 71.43%
+  + P2 Wins: 30
+  + P2 Ties: 0
+  + P3 Hand: 8H 4H
+  + P3 Equity: 14.29%
+  + P3 Wins: 6
+  + P3 Ties: 0
 
 
 ### Simulation 3
 1. Run the following simulation.  
-  a. P1:  
-  b. P2:  
-  c. P3:  
-  d. P4:  
-  e. Flop:  
-  f. Turn:  
-  g. River:  
+  a. P1: 2H 2D
+  b. P2: 4H 7C
+  c. P3: 7S 3H
+  d. P4: QD 8S
+  e. Flop: 7H 9S KD
+  f. Turn: QH
+  g. River: 3S
 
 Expected:
-  + Winner:
-  + P1 Percentage:
-  + P1 Color:
-  + P2 Percentage:
-  + P2 Color:
-  + P3 Percentage:
-  + P3 Color:
-  + P4 Percentage:
-  + P4 Color:
+  + Winner: P3
+  + P1 Percentage: 100.00%  
+  + P1 Color: Green
+  + P2 Percentage: 0.00%
+  + P2 Color: Blue
+  + P3 Percentage: 0.00%
+  + P3 Color: Blue
+  + P4 Percentage: 0.00%
+  + P4 Color: Blue
 
 Expected Output:
   + Table:
