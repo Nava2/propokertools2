@@ -87,21 +87,21 @@ in the modal dialog.
 Expected:  
 
   + Winner: P1  
-  + P1 Percentage: 73.54%
+  + P1 Percentage: 86.36%
   + P1 Color: Green  
-  + P2 Percentage: 26.46%
+  + P2 Percentage: 13.64%
   + P2 Color: Blue  
 
 Expected Output:
 
   + Table: 4S 2S 8C  
   + P1 Hand: 4C 9C  
-  + P1 Equity: 73.54%  
-  + P1 Wins: 728  
+  + P1 Equity: 86.36%
+  + P1 Wins: 38
   + P1 Ties: 0  
   + P2 Hand: AC KC  
-  + P2 Equity: 26.46%  
-  + P2 Wins: 262  
+  + P2 Equity: 13.64%
+  + P2 Wins: 6
   + P2 Ties: 0  
 
 
