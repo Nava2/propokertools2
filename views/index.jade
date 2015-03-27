@@ -8,7 +8,7 @@ mixin card_img(suit, card)
 //- Creates a player circle, if the player number is 1 it will make it blue
 mixin player_space(playerNo)
     .player(id='p' + playerNo tabIndex=playerNo)
-        .no-cards(class = (playerNo === 1 ? 'enabled' : 'button'))&attributes(show_modal_attributes(playerNo, 2))
+        .no-cards(class = 'button')&attributes(show_modal_attributes(playerNo, 2))
             .plus-content: span.glyphicon.glyphicon-plus
 
         ul.selected.table-card-set&attributes(show_modal_attributes(playerNo, 2))
@@ -16,10 +16,12 @@ mixin player_space(playerNo)
                 +card_img(suits[0], cards[0])
                 .card-placeholder.enabled(style = 'display: none;')
                     .plus-content: span.glyphicon.glyphicon-plus
+                b.low-range
             li
                 +card_img(suits[0], cards[0])(style='display: none;')
                 .card-placeholder.enabled
                     .plus-content: span.glyphicon.glyphicon-plus
+                b.high-range
 
             span.result.label.label-success
 
@@ -27,8 +29,12 @@ mixin player_space(playerNo)
             span.label.label-primary Player #{playerNo}
 
 
-head
-  title ProPokerTools2 :3
+head(profile='http://www.w3.org/2005/10/profile')
+
+  title ProPokerTools2
+
+  link(rel='icon', type='image/png', href='/images/favicon.ico')
+
 
   link(rel='stylesheet', href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/themes/smoothness/jquery-ui.css')
 
@@ -89,26 +95,30 @@ body
                                 <div id="simulation-collapse-<%= id %>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                                     <div class="topRow panel-body">
                                         <p> Table: &nbsp;
-                                            <% _.each(result.board.flop, function (c) { %>
-                                            <span class="<%= tag2ColorClass(c) %>">
-                                                <%= c[0].toUpperCase() + suit2Unicode[c[1]] %>
-                                            </span>
-                                            <% }); %>
-                                            <% if (result.board.turn) { %>
-                                                &nbsp;
-                                                <span class="<%= tag2ColorClass(result.board.turn) %>">
-                                                    <%= result.board.turn[0].toUpperCase() + suit2Unicode[result.board.turn[1]] %>
+                                            <% if (_.isArray(result.board.flop)) {
+                                                _.each(result.board.flop, function (c) { %>
+                                                <span class="<%= tag2ColorClass(c) %>">
+                                                    <%= c[0].toUpperCase() + suit2Unicode[c[1]] %>
                                                 </span>
-
-                                                <% if (result.board.river) { %>
+                                                <% }); %>
+                                                <% if (result.board.turn) { %>
                                                     &nbsp;
-                                                    <span class="<%= tag2ColorClass(result.board.river) %>">
-                                                        <%= result.board.river[0].toUpperCase() + suit2Unicode[result.board.river[1]] %>
+                                                    <span class="<%= tag2ColorClass(result.board.turn) %>">
+                                                        <%= result.board.turn[0].toUpperCase() + suit2Unicode[result.board.turn[1]] %>
                                                     </span>
-                                                <% } %>
-                                            <% } %>
 
-                                                <span style='float: right'><%= timeStr %></span>
+                                                    <% if (result.board.river) { %>
+                                                        &nbsp;
+                                                        <span class="<%= tag2ColorClass(result.board.river) %>">
+                                                            <%= result.board.river[0].toUpperCase() + suit2Unicode[result.board.river[1]] %>
+                                                        </span>
+                                                    <% } %>
+                                                <% } %>
+
+                                                    <span style='float: right'><%= timeStr %></span>
+                                            <% } else { %>
+                                                <em>No cards selected</em>
+                                            <% } %>
                                         </p>
                                     </div>
                                     <div>
@@ -125,15 +135,19 @@ body
                                                 <tr class="<%= (player.winner ? "success" : "") %>" >
                                                     <td class="playerId"><%= i+1 %></td>
                                                     <td class="cards">
-                                                        <% _.each(player.hand, function (c) { %>
-                                                            <span class="<%= tag2ColorClass(c) %>">
-                                                                <%= c[0].toUpperCase() + suit2Unicode[c[1]] %>
-                                                            </span>
-                                                        <% }); %>
+                                                        <% if(player.hand.length > 2){ %>
+                                                            <span><%= player.hand.join("")%></span>
+                                                        <% } %>
+                                                        <% if(player.hand.length == 2) { %>
+                                                            <% _.each(player.hand, function (c) { %>
+                                                                <span class="<%= tag2ColorClass(c) %>">
+                                                                    <%= c[0].toUpperCase() + suit2Unicode[c[1]] %>
+                                                                </span>
+                                                            <% });} %>
                                                     </td>
                                                     <td><%= player.equity %>%</td>
-                                                    <td><%= player.wins %></td>
-                                                    <td><%= player.ties %></td>
+                                                    <td><%= (player.wins > 999) ? numeral(player.wins).format('0.0a') : player.wins %></td>
+                                                    <td><%= (player.ties > 999) ? numeral(player.ties).format('0.0a') : player.ties %></td>
                                                 </tr>
                                             <% }); %>
                                         </table>
@@ -150,9 +164,10 @@ body
 
     //- CDN Scripts:
     script(src='//code.jquery.com/jquery-2.1.3.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js')
-    script(src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js')
-    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.2/underscore-min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js')
+    script(src='//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js')
 
     //- local scripts:
     script(src='js/bloodhound.js')

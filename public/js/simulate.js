@@ -51,9 +51,12 @@
             return player.hand();
         }).map(function (hand) {
             if (_.isArray(hand)) {
+                if(_.isNumber(hand[0])){
+                    return [hand[0] + "% - "+hand[1]+"%"];
+                }
+                else{
                 return _.map(hand, pp2.Cards.toTag);
-            } else if (_.isNumber(hand)) {
-                return [hand + '%'];
+                }
             } else {
                 return undefined;
             }

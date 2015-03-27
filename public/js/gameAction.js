@@ -35,22 +35,40 @@
 
         var $imgs = $('.selected img', $player);
         var $selectables = $('.selected .card-placeholder', $player);
-        cards.forEach(function (card, i) {
-            console.log(card);
-            $($imgs[i]).attr('src', 'images/Cards/' + card.suit.long + '/' + card.value.short + card.suit.short + '.svg');
-        });
+        var $low = $('.selected .low-range', $player)
+        var $high = $('.selected .high-range', $player);
+
+        //hand range given
+        if(typeof(cards[0]) == "number"){
+            $low.text(cards[0]+"% -");
+            $high.text(cards[1]+"%");
+            $imgs.hide();
+            $selectables.hide();
+        }
+        //standard card selection
+        else{
+            $low.text("");
+            $high.text("");
+
+            var $imgs = $('.selected img', $player);
+
+            cards.forEach(function (card, i) {
+                console.log(card);
+                $($imgs[i]).attr('src', 'images/Cards/' + card.suit.long + '/' + card.value.short + card.suit.short + '.svg');
+            });
 
 
-        // show and hide
-        cards.forEach(function (card, i) {
-            $($imgs[i]).show();
-            $($selectables[i]).hide();
-        });
+            // show and hide
+            cards.forEach(function (card, i) {
+                $($imgs[i]).show();
+                $($selectables[i]).hide();
+            });
 
-         _.range(cards.length, 2).forEach(function (i) {
-             $($imgs[i]).hide();
-             $($selectables[i]).show();
-        });
+             _.range(cards.length, 2).forEach(function (i) {
+                 $($imgs[i]).hide();
+                 $($selectables[i]).show();
+            });
+         }
 
         $('.selected .plus-content .glyphicon-plus', $player).each(function () {
             var $this = $(this);
