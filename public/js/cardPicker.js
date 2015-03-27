@@ -25,8 +25,10 @@
         $.each($modal.find("#picked-cards").children(),function(index){
             if ( index >= numCards){
                 $(this).hide();
+                $(this).removeClass("valid");
             }else{
                 $(this).show();
+                $(this).addClass("valid")
             }
 
         });
@@ -42,7 +44,41 @@
             $("#advanced-accordion").hide();
         }else{
             $("#advanced-accordion").show();
+            var playerHand = pp2.board.player(playerId).hand();
+            var advancedSelected =  $("#advanced").hasClass("selected");
+            var isCard = playerHand.length == 0 || !_.isNumber(playerHand[1]);
+            if ( advancedSelected && isCard ){
+                $("#advanced").click();
+            }else if ( !advancedSelected && !isCard) {
+                $("#advanced").click();
+            }
         }
+
+
+        //get saved cards
+        var playerId = $modal.data("playerId");
+        var hand = [];
+        if (playerId in boardMap) {
+            hand = pp2.board.table().setCards(boardMap[playerId]);
+        }else{
+            hand = pp2.board.player(playerId).hand();
+        }
+        
+        var sliderValues = [0,100];
+        hand.forEach(function(card, i){
+            if(!_.isNumber(card)){
+                modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
+            }else{
+                sliderValues[i] = card;
+            }
+        });
+
+        //update advanced slider values
+        $("#slider-range").slider('option','values',sliderValues);
+        $("#range").val(sliderValues[0]+"% - "+sliderValues[1]+"%");
+
+        updateSaveCardButton();
+
     });
 
     $cardPicker.on('shown.bs.modal', function () {
@@ -64,28 +100,6 @@
 
         });
 
-
-        //get saved cards
-        var playerId = $modal.data("playerId");
-        var hand = [];
-        if (playerId in boardMap) {
-            hand = pp2.board.table().setCards(boardMap[playerId]);
-        }else{
-            hand = pp2.board.player(playerId).hand();
-        }
-        
-        hand.forEach(function(card){
-            if(!_.isNumber(card)){
-                modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
-            }
-        });
-
-        $('#liteAccordion').liteAccordion({
-            containerWidth: 700,
-            containerHeight: 750
-        });
-
-        updateSaveCardButton();
     });
 
 
@@ -97,7 +111,6 @@
         $("#search").val("").trigger('input');
         $(".delete-card").click();
         $('.suit-select .' + pp2.Suits.Clubs.long).click();
-
 
     });
 
@@ -253,7 +266,7 @@
 
             $selectedCard.removeClass("enabled");
             $selectedCard = $selectedCard.next();
-            if ( $selectedCard.is(":visible") && $selectedCard.hasClass("button") ){
+            if ( $selectedCard.hasClass("valid") && $selectedCard.hasClass("button") ){
                 $selectedCard.removeClass("button")
                 $selectedCard.addClass("enabled");
             }
