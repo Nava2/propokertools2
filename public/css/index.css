@@ -77,14 +77,14 @@
 
 /* Player 1's circle position */
 #p1 {
-    left: 45.5%;
+    left: 46.2%;
     bottom: 15%;
 }
 
 /* Player 2's circle position */
 #p2 {
-    left: 20%;
-    bottom: 20%;
+    left: 16%;
+    bottom: 27%;
 }
 
 /* Player 3's circle position */
@@ -95,7 +95,7 @@
 
 /* Player 4's circle position */
 #p4 {
-    left: 45.5%;
+    left: 46.2%;
     top: 15%;
 }
 
@@ -107,8 +107,8 @@
 
 /* Player 6's circle position */
 #p6 {
-    right: 20%;
-    bottom: 20%;
+    right: 16%;
+    bottom: 27%;
 }
 
 .plus-content {
