@@ -441,11 +441,23 @@ var pp2 = (function () {
     };
 
     function cardArrToTags(cards) {
-        return _.map(cards, Globals.Cards.toTag);
+        return _.map(cards, function (c) {
+            if (_.isNumber(c)) {
+                return c;
+            } else {
+                return Globals.Cards.toTag(c);
+            }
+        });
     }
 
     function tagsToCardArr(tags) {
-        return _.map(tags, Globals.Cards.fromTag);
+        return _.map(tags, function (tag) {
+            if (_.isNumber(tag)) {
+                return tag;
+            } else {
+                return Globals.Cards.fromTag(tag);
+            }
+        });
     }
 
     /**
@@ -456,7 +468,9 @@ var pp2 = (function () {
         var table = this.table();
 
         return {
-            players : _.map(this.players(), function (p) { return cardArrToTags(p.hand()); }),
+            players : _.map(this.players(), function (p) {
+                return cardArrToTags(p.hand());
+            }),
             table: {
                 flop: cardArrToTags(table.flop()),
                 turn: Globals.Cards.toTag(table.turn()),
@@ -496,6 +510,16 @@ var pp2 = (function () {
         this.table().turn(Globals.Cards.fromTag(state.table.turn));
         this.table().river(Globals.Cards.fromTag(state.table.river));
     };
+
+    Game.prototype.numberOfHandsSet = function(){
+        return _.reject(pp2.board.players(),function(p){
+            return p.hand().length == 0
+        }).length
+    }
+
+    Game.prototype.isBoardEmpty = function(){
+        return this.table().flop().length == 0 && this.numberOfHandsSet() == 0;
+    }
 
 
     Globals.Game = Game;

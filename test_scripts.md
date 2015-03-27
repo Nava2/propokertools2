@@ -143,146 +143,152 @@ Expected Output:
 
 ### Simulation 3
 1. Run the following simulation.  
-  a. P1: 2H 2D
-  b. P2: 4H 7C
-  c. P3: 7S 3H
-  d. P4: QD 8S
-  e. Flop: 7H 9S KD
-  f. Turn: QH
-  g. River: 3S
+  a. P1: 2H 2D  
+  b. P2: 4H 7C  
+  c. P3: 7S 3H  
+  d. P4: QD 8S  
+  e. Flop: 7H 9S KD  
+  f. Turn: QH  
+  g. River: 3S  
 
 Expected:
+
   + Winner: P3
-  + P1 Percentage: 100.00%  
-  + P1 Color: Green
+  + P1 Percentage: 0.00
+  + P1 Color: Blue
   + P2 Percentage: 0.00%
   + P2 Color: Blue
-  + P3 Percentage: 0.00%
-  + P3 Color: Blue
+  + P3 Percentage: 100.00%
+  + P3 Color: Green
   + P4 Percentage: 0.00%
   + P4 Color: Blue
 
 Expected Output:
-  + Table:
-  + P1 Hand:
-  + P1 Equity:
-  + P1 Wins:
-  + P1 Ties:
-  + P2 Hand:
-  + P2 Equity:
-  + P2 Wins:
-  + P2 Ties:
-  + P3 Hand:
-  + P3 Equity:
-  + P3 Wins:
-  + P3 Ties:
-  + P4 Hand:
-  + P4 Equity:
-  + P4 Wins:
-  + P4 Ties:
+
+  + Table: 7H 9S KD QH 3S
+  + P1 Hand: 2H 2D
+  + P1 Equity: 0.00%
+  + P1 Wins: 0
+  + P1 Ties: 0
+  + P2 Hand: 4H 7C
+  + P2 Equity: 0.00%
+  + P2 Wins: 0
+  + P2 Ties: 0
+  + P3 Hand: 7S 3H
+  + P3 Equity: 100.00%
+  + P3 Wins: 1
+  + P3 Ties: 0
+  + P4 Hand: QD 8S
+  + P4 Equity: 0.00%
+  + P4 Wins: 0
+  + P4 Ties: 0
 
 
 ### Simulation 4
 1. Run the following simulation.  
-  a. P1:  
-  b. P2:  
-  c. P3:  
-  d. P4:  
-  e. P5:  
-  f. Flop:  
-  g. Turn:  
-  h. River:  
+  a. P1: 50%-90%  
+  b. P2: AS 9H  
+  c. P3: 2H 6C  
+  d. P4: 30%-45%  
+  e. P5: 10%-30%  
+  f. Flop: 6H QD 9S  
+  g. Turn: 7H  
+  h. River: KC  
 
 Expected:
-  + Winner:
-  + P1 Percentage:
-  + P1 Color:
-  + P2 Percentage:
-  + P2 Color:
-  + P3 Percentage:
-  + P3 Color:
-  + P4 Percentage:
-  + P4 Color:
-  + P5 Percentage:
-  + P5 Color:
+
+  + Winner: P5
+  + P1 Percentage: 13.12%
+  + P1 Color: Blue
+  + P2 Percentage: 18.86%
+  + P2 Color: Blue
+  + P3 Percentage: 0.00%
+  + P3 Color: Blue
+  + P4 Percentage: 28.93%
+  + P4 Color: Blue
+  + P5 Percentage: 39.09%
+  + P5 Color: Green
 
 Expected Output:
-  + Table:
-  + P1 Hand:
-  + P1 Equity:
-  + P1 Wins:
-  + P1 Ties:
-  + P2 Hand:
-  + P2 Equity:
-  + P2 Wins:
-  + P2 Ties:
-  + P3 Hand:
-  + P3 Equity:
-  + P3 Wins:
-  + P3 Ties:
-  + P4 Hand:
-  + P4 Equity:
-  + P4 Wins:
-  + P4 Ties:
-  + P5 Hand:
-  + P5 Equity:
-  + P5 Wins:
-  + P5 Ties:
+
+  + Table: 6H QD 9S 7H KC
+  + P1 Hand: 50%-90%
+  + P1 Equity: 13.12%
+  + P1 Wins: 76.5k
+  + P1 Ties: 4.4k
+  + P2 Hand: AS 9H
+  + P2 Equity: 18.86%
+  + P2 Wins: 109.6k
+  + P2 Ties: 7k
+  + P3 Hand: 2H 6C
+  + P3 Equity: 0.00%
+  + P3 Wins: 0
+  + P3 Ties: 0
+  + P4 Hand: 30%-45%
+  + P4 Equity: 28.93%
+  + P4 Wins: 170.6k
+  + P4 Ties: 5.8k
+  + P5 Hand: 10%-30%
+  + P5 Equity: 39.09%
+  + P5 Wins: 229.5k
+  + P5 Ties: 10.1k
 
 
 ### Simulation 5
 1. Run the following simulation.  
-  a. P1:  
-  b. P2:  
-  c. P3:  
-  d. P4:  
-  e. P5:  
-  f. P6:  
-  g. Flop:  
-  h. Turn:  
-  i. River:  
+  a. P1: 50%-95%  
+  b. P2: AS AH  
+  c. P3: 2H 6C  
+  d. P4: 20%-45%  
+  e. P5: 5%-30%  
+  f. P6: JH JS  
+  g. Flop: 3H QD 9S  
+  h. Turn: 7H  
+  i. River: KC  
 
 Expected:
-  + Winner:
-  + P1 Percentage:
-  + P1 Color:
-  + P2 Percentage:
-  + P2 Color:
-  + P3 Percentage:
-  + P3 Color:
-  + P4 Percentage:
-  + P4 Color:
-  + P5 Percentage:
-  + P5 Color:
-  + P6 Percentage:
-  + P6 Color:
+
+  + Winner: P2
+  + P1 Percentage: 7.22%
+  + P1 Color: Blue
+  + P2 Percentage: 54.86%
+  + P2 Color: Green
+  + P3 Percentage: 2H 6C
+  + P3 Color: 0.00%
+  + P4 Percentage: 17.23%
+  + P4 Color: Blue
+  + P5 Percentage: 5%-30%
+  + P5 Color: Blue
+  + P6 Percentage: 0.00%
+  + P6 Color: Blue
 
 Expected Output:
-  + Table:
-  + P1 Hand:
-  + P1 Equity:
-  + P1 Wins:
-  + P1 Ties:
-  + P2 Hand:
-  + P2 Equity:
-  + P2 Wins:
-  + P2 Ties:
-  + P3 Hand:
-  + P3 Equity:
-  + P3 Wins:
-  + P3 Ties:
-  + P4 Hand:
-  + P4 Equity:
-  + P4 Wins:
-  + P4 Ties:
-  + P5 Hand:
-  + P5 Equity:
-  + P5 Wins:
-  + P5 Ties:
-  + P6 Hand:
-  + P6 Equity:
-  + P6 Wins:
-  + P6 Ties:
+
+  + Table: 3H QD 9S 7H KC
+  + P1 Hand: 50%-95%
+  + P1 Equity: 7.22%
+  + P1 Wins: 43.2k
+  + P1 Ties: 194
+  + P2 Hand: AS AH
+  + P2 Equity: 54.86%
+  + P2 Wins: 329.1k
+  + P2 Ties: 0
+  + P3 Hand: 2H 6C
+  + P3 Equity: 0.00%
+  + P3 Wins: 0
+  + P3 Ties: 0
+  + P4 Hand: 20%-45%
+  + P4 Equity: 17.23%
+  + P4 Wins: 102.7k
+  + P4 Ties: 1.2k
+  + P5 Hand: 5%-30%
+  + P5 Equity: 20.70%
+  + P5 Wins: 123.5k
+  + P5 Ties: 1.1k
+  + P6 Hand: JH JS
+  + P6 Equity: 0.00%
+  + P6 Wins: 0
+  + P6 Ties: 0
 
 ### Multiple Output
 1. Run multiple simulations.
