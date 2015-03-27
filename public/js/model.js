@@ -441,11 +441,23 @@ var pp2 = (function () {
     };
 
     function cardArrToTags(cards) {
-        return _.map(cards, Globals.Cards.toTag);
+        return _.map(cards, function (c) {
+            if (_.isNumber(c)) {
+                return c;
+            } else {
+                return Globals.Cards.toTag(c);
+            }
+        });
     }
 
     function tagsToCardArr(tags) {
-        return _.map(tags, Globals.Cards.fromTag);
+        return _.map(tags, function (tag) {
+            if (_.isNumber(tag)) {
+                return tag;
+            } else {
+                return Globals.Cards.fromTag(tag);
+            }
+        });
     }
 
     /**
@@ -456,7 +468,9 @@ var pp2 = (function () {
         var table = this.table();
 
         return {
-            players : _.map(this.players(), function (p) { return cardArrToTags(p.hand()); }),
+            players : _.map(this.players(), function (p) {
+                return cardArrToTags(p.hand());
+            }),
             table: {
                 flop: cardArrToTags(table.flop()),
                 turn: Globals.Cards.toTag(table.turn()),
