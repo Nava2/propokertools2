@@ -148,34 +148,34 @@ Expected Output:
     g. River:
 
 Expected:
-    Winner:
-    P1 Percentage:
-    P1 Color:
-    P2 Percentage:
-    P2 Color:
-    P3 Percentage:
-    P3 Color:
-    P4 Percentage:
-    P4 Color:
+..* Winner:
+..* P1 Percentage:
+..* P1 Color:
+..* P2 Percentage:
+..* P2 Color:
+..* P3 Percentage:
+..* P3 Color:
+..* P4 Percentage:
+..* P4 Color:
 
 Expected Output:
-    Table:
-    P1 Hand:
-    P1 Equity:
-    P1 Wins:
-    P1 Ties:
-    P2 Hand:
-    P2 Equity:
-    P2 Wins:
-    P2 Ties:
-    P3 Hand:
-    P3 Equity:
-    P3 Wins:
-    P3 Ties:
-    P4 Hand:
-    P4 Equity:
-    P4 Wins:
-    P4 Ties:
+..* Table:
+..* P1 Hand:
+..* P1 Equity:
+..* P1 Wins:
+..* P1 Ties:
+..* P2 Hand:
+..* P2 Equity:
+..* P2 Wins:
+..* P2 Ties:
+..* P3 Hand:
+..* P3 Equity:
+..* P3 Wins:
+..* P3 Ties:
+..* P4 Hand:
+..* P4 Equity:
+..* P4 Wins:
+..* P4 Ties:
 
 
 ### Simulation 4
