@@ -70,7 +70,11 @@
 
     $(window).load(function() {
         $(window).trigger('resize');
-
+        
+        $('#liteAccordion').liteAccordion({
+            containerWidth: 700,
+            containerHeight: 750,
+        });
     });
 
     $(window).resize(function () {

@@ -40,6 +40,14 @@
             $("#advanced-accordion").hide();
         }else{
             $("#advanced-accordion").show();
+            var playerHand = pp2.board.player(playerId).hand();
+            var advancedSelected =  $("#advanced").hasClass("selected");
+            var isCard = playerHand.length == 0 || !_.isNumber(playerHand[1]);
+            if ( advancedSelected && isCard ){
+                $("#advanced").click();
+            }else if ( !advancedSelected && !isCard) {
+                $("#advanced").click();
+            }
         }
     });
 
@@ -80,13 +88,10 @@
                 sliderValues[i] = card;
             }
         });
+
+        //update advanced slider values
         $("#slider-range").slider('option','values',sliderValues);
         $("#range").val(sliderValues[0]+"% - "+sliderValues[1]+"%");
-
-        $('#liteAccordion').liteAccordion({
-            containerWidth: 700,
-            containerHeight: 750
-        });
 
         updateSaveCardButton();
     });
