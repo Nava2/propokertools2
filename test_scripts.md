@@ -77,209 +77,208 @@ in the modal dialog.
 
 
 ### Simulation 1
-1. Run the following simulation.
-    a. P1:
-    b. P2:
-    c. Flop:
-    d. Turn:
-    e. River:
+1. Run the following simulation.  
+  a. P1:  
+  b. P2:  
+  c. Flop:  
+  d. Turn:  
+  e. River:  
 
 Expected:
-    Winner:
-    P1 Percentage:
-    P1 Color:
-    P2 Percentage:
-    P2 Color:
+  + Winner:
+  + P1 Percentage:
+  + P1 Color:
+  + P2 Percentage:
+  + P2 Color:
 
 Expected Output:
-    Table:
-    P1 Hand:
-    P1 Equity:
-    P1 Wins:
-    P1 Ties:
-    P2 Hand:
-    P2 Equity:
-    P2 Wins:
-    P2 Ties:
+  + Table:
+  + P1 Hand:
+  + P1 Equity:
+  + P1 Wins:
+  + P1 Ties:
+  + P2 Hand:
+  + P2 Equity:
+  + P2 Wins:
+  + P2 Ties:
 
 
 ### Simulation 2
-1. Run the following simulation.
-    a. P1:
-    b. P2:
-    c. P3:
-    d. Flop:
-    e. Turn:
-    f. River:
+1. Run the following simulation.  
+  a. P1:  
+  b. P2:  
+  c. P3:  
+  d. Flop:  
+  e. Turn:  
+  f. River:  
 
 Expected:
-    Winner:
-    P1 Percentage:
-    P1 Color:
-    P2 Percentage:
-    P2 Color:
-    P3 Percentage:
-    P3 Color:
+  + Winner:
+  + P1 Percentage:
+  + P1 Color:
+  + P2 Percentage:
+  + P2 Color:
+  + P3 Percentage:
+  + P3 Color:
 
 Expected Output:
-    Table:
-    P1 Hand:
-    P1 Equity:
-    P1 Wins:
-    P1 Ties:
-    P2 Hand:
-    P2 Equity:
-    P2 Wins:
-    P2 Ties:
-    P3 Hand:
-    P3 Equity:
-    P3 Wins:
-    P3 Ties:
+  + Table:
+  + P1 Hand:
+  + P1 Equity:
+  + P1 Wins:
+  + P1 Ties:
+  + P2 Hand:
+  + P2 Equity:
+  + P2 Wins:
+  + P2 Ties:
+  + P3 Hand:
+  + P3 Equity:
+  + P3 Wins:
+  + P3 Ties:
 
 
 ### Simulation 3
-1. Run the following simulation.
-    a. P1:
-    b. P2:
-    c. P3:
-    d. P4:
-    e. Flop:
-    f. Turn:
-    g. River:
+1. Run the following simulation.  
+  a. P1:  
+  b. P2:  
+  c. P3:  
+  d. P4:  
+  e. Flop:  
+  f. Turn:  
+  g. River:  
 
 Expected:
-..* Winner:
-..* P1 Percentage:
-..* P1 Color:
-..* P2 Percentage:
-..* P2 Color:
-..* P3 Percentage:
-..* P3 Color:
-..* P4 Percentage:
-..* P4 Color:
+  + Winner:
+  + P1 Percentage:
+  + P1 Color:
+  + P2 Percentage:
+  + P2 Color:
+  + P3 Percentage:
+  + P3 Color:
+  + P4 Percentage:
+  + P4 Color:
 
 Expected Output:
-..* Table:
-..* P1 Hand:
-..* P1 Equity:
-..* P1 Wins:
-..* P1 Ties:
-..* P2 Hand:
-..* P2 Equity:
-..* P2 Wins:
-..* P2 Ties:
-..* P3 Hand:
-..* P3 Equity:
-..* P3 Wins:
-..* P3 Ties:
-..* P4 Hand:
-..* P4 Equity:
-..* P4 Wins:
-..* P4 Ties:
+  + Table:
+  + P1 Hand:
+  + P1 Equity:
+  + P1 Wins:
+  + P1 Ties:
+  + P2 Hand:
+  + P2 Equity:
+  + P2 Wins:
+  + P2 Ties:
+  + P3 Hand:
+  + P3 Equity:
+  + P3 Wins:
+  + P3 Ties:
+  + P4 Hand:
+  + P4 Equity:
+  + P4 Wins:
+  + P4 Ties:
 
 
 ### Simulation 4
-1. Run the following simulation.
-    a. P1:
-    b. P2:
-    c. P3:
-    d. P4:
-    e. P5:
-    f. Flop:
-    g. Turn:
-    h. River:
+1. Run the following simulation.  
+  a. P1:  
+  b. P2:  
+  c. P3:  
+  d. P4:  
+  e. P5:  
+  f. Flop:  
+  g. Turn:  
+  h. River:  
 
 Expected:
-    Winner:
-    P1 Percentage:
-    P1 Color:
-    P2 Percentage:
-    P2 Color:
-    P3 Percentage:
-    P3 Color:
-    P4 Percentage:
-    P4 Color:
-    P5 Percentage:
-    P5 Color:
+  + Winner:
+  + P1 Percentage:
+  + P1 Color:
+  + P2 Percentage:
+  + P2 Color:
+  + P3 Percentage:
+  + P3 Color:
+  + P4 Percentage:
+  + P4 Color:
+  + P5 Percentage:
+  + P5 Color:
 
 Expected Output:
-    Table:
-    P1 Hand:
-    P1 Equity:
-    P1 Wins:
-    P1 Ties:
-    P2 Hand:
-    P2 Equity:
-    P2 Wins:
-    P2 Ties:
-    P3 Hand:
-    P3 Equity:
-    P3 Wins:
-    P3 Ties:
-    P4 Hand:
-    P4 Equity:
-    P4 Wins:
-    P4 Ties:
-    P5 Hand:
-    P5 Equity:
-    P5 Wins:
-    P5 Ties:
+  + Table:
+  + P1 Hand:
+  + P1 Equity:
+  + P1 Wins:
+  + P1 Ties:
+  + P2 Hand:
+  + P2 Equity:
+  + P2 Wins:
+  + P2 Ties:
+  + P3 Hand:
+  + P3 Equity:
+  + P3 Wins:
+  + P3 Ties:
+  + P4 Hand:
+  + P4 Equity:
+  + P4 Wins:
+  + P4 Ties:
+  + P5 Hand:
+  + P5 Equity:
+  + P5 Wins:
+  + P5 Ties:
 
 
 ### Simulation 5
-1. Run the following simulation.
-    a. P1:
-    b. P2:
-    c. P3:
-    d. P4:
-    e. P5:
-    f. P6:
-    g. Flop:
-    h. Turn:
-    i. River:
+1. Run the following simulation.  
+  a. P1:  
+  b. P2:  
+  c. P3:  
+  d. P4:  
+  e. P5:  
+  f. P6:  
+  g. Flop:  
+  h. Turn:  
+  i. River:  
 
 Expected:
-    Winner:
-    P1 Percentage:
-    P1 Color:
-    P2 Percentage:
-    P2 Color:
-    P3 Percentage:
-    P3 Color:
-    P4 Percentage:
-    P4 Color:
-    P5 Percentage:
-    P5 Color:
-    P6 Percentage:
-    P6 Color:
+  + Winner:
+  + P1 Percentage:
+  + P1 Color:
+  + P2 Percentage:
+  + P2 Color:
+  + P3 Percentage:
+  + P3 Color:
+  + P4 Percentage:
+  + P4 Color:
+  + P5 Percentage:
+  + P5 Color:
+  + P6 Percentage:
+  + P6 Color:
 
 Expected Output:
-    Table:
-    P1 Hand:
-    P1 Equity:
-    P1 Wins:
-    P1 Ties:
-    P2 Hand:
-    P2 Equity:
-    P2 Wins:
-    P2 Ties:
-    P3 Hand:
-    P3 Equity:
-    P3 Wins:
-    P3 Ties:
-    P4 Hand:
-    P4 Equity:
-    P4 Wins:
-    P4 Ties:
-    P5 Hand:
-    P5 Equity:
-    P5 Wins:
-    P5 Ties:
-    P6 Hand:
-    P6 Equity:
-    P6 Wins:
-    P6 Ties:
-
+  + Table:
+  + P1 Hand:
+  + P1 Equity:
+  + P1 Wins:
+  + P1 Ties:
+  + P2 Hand:
+  + P2 Equity:
+  + P2 Wins:
+  + P2 Ties:
+  + P3 Hand:
+  + P3 Equity:
+  + P3 Wins:
+  + P3 Ties:
+  + P4 Hand:
+  + P4 Equity:
+  + P4 Wins:
+  + P4 Ties:
+  + P5 Hand:
+  + P5 Equity:
+  + P5 Wins:
+  + P5 Ties:
+  + P6 Hand:
+  + P6 Equity:
+  + P6 Wins:
+  + P6 Ties:
 
 ### Multiple Output
 1. Run multiple simulations.
@@ -291,9 +290,9 @@ Expected: The most recent output should be at the top.
 1. Run a simulation.
 2. Click the reset button.
 
-Expected: All cards should be reset.
-    Board: Board should be reset to **Poker Board on Start**
-    Modal: Modal dialog for all players should be reset. There should be no greyed out or selected cards.
+Expected: All cards should be reset.  
+  Board: Board should be reset to **Poker Board on Start**  
+  Modal: Modal dialog for all players should be reset. There should be no greyed out or selected cards.
 
 
 ### Replay
