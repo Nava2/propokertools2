@@ -83,9 +83,11 @@
     function updateBoardEnabled(enableId, disableId){
         if ( enableId != null){
             $("#"+enableId).removeClass("button").addClass("enabled");
+            $("#"+enableId).attr("data-status",'enabled');
         }
         if ( disableId != null){
-            $("#"+disableId).removeClass("enabled").addClass("button");    
+            $("#"+disableId).removeClass("enabled").addClass("button");  
+            $("#"+disableId).attr("data-status",'disabled');
         }
     }
 
@@ -102,14 +104,20 @@
         }
 
         if ( _.isEmpty(pp2.board.table().turn())){
+            _.each([1,2,3],function(i){
+                updateBoardEnabled("f"+i);
+            })
             updateBoardEnabled("t1","r1");
             return;
         }else{
+            _.each([1,2,3],function(i){
+                updateBoardEnabled(null,"f"+i);
+            })
             updateBoardEnabled("r1");
         }
 
         if ( !_.isEmpty(pp2.board.table().river())){
-            updateBoardEnabled(null,"r1");
+            updateBoardEnabled("r1","t1");
         }
     };
 

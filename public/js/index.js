@@ -21,6 +21,7 @@
             if ( result ){
                 GameActions.setHandResults([]);
                 pp2.board.resetState();
+                GameActions.updateBoardEnabledState();
             }
         })
     });
@@ -32,6 +33,7 @@
 
             GameActions.setHandResults([]);
             pp2.board.loadState(board);
+            GameActions.updateBoardEnabledState();
         }
 
         if ($this.hasClass('resetBtn')) {

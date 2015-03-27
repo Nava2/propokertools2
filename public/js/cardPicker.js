@@ -12,6 +12,9 @@
         // get the data passed in
         var playerId = button.attr('data-playerId');
         var numCards = button.attr('data-numCards');
+        if ( button.attr('data-status') == 'disabled'){
+            return false;
+        }
 
 
         //update modal headers
@@ -139,7 +142,7 @@
                 hand.push(pp2.Cards[suit][value]);
             });
 
-            if(hand.length == 0){
+            if(hand.length == 0 && (playerId == "pturn" || playerId == "priver") ){
                 hand = null;
             }
 
