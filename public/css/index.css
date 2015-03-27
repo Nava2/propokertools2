@@ -96,7 +96,7 @@
 /* Player 4's circle position */
 #p4 {
     left: 46.2%;
-    top: 15%;
+    top: 11%;
 }
 
 /* Player 5's circle position */
@@ -107,7 +107,7 @@
 
 /* Player 6's circle position */
 #p6 {
-    right: 16%;
+    right: 15.3%;
     bottom: 27%;
 }
 
@@ -383,21 +383,21 @@
 * Misc CSS
 **********************/
 .button {
-    border: 2px solid #a1a1a1;
-    background: -webkit-linear-gradient(gray, black); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(gray, black); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(gray, black); /* Standard syntax */
+    border: 2px solid #b9b9b9;
+    background: -webkit-linear-gradient(#ffffff, #7a7a7a); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#ffffff, #7a7a7a); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#ffffff, #7a7a7a); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#ffffff, #7a7a7a); /* Standard syntax */
 
     cursor: default;
 }
 
 
 .enabled {
-    border: 2px solid #a1a1a1;
-    background: -webkit-linear-gradient(rgba(211, 236, 255, 0.9), rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* Standard syntax */
+    border: 2px solid #000000;
+    background: -webkit-linear-gradient(rgba(168, 255, 45, 0.9), rgba(26, 150, 63, 1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(168, 255, 45, 0.9), rgba(26, 150, 63, 1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(168, 255, 45, 0.9), rgba(26, 150, 63, 1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(168, 255, 45, 0.9), rgba(26, 150, 63, 1)); /* Standard syntax */
     cursor: pointer;
 }
