@@ -107,8 +107,8 @@ Expected Output:
 
 ### Simulation 2
 1. Run the following simulation.  
-  a. P1: 2H 7D
-  b. P2: JD 3C
+  a. P1: 2H 7D  
+  b. P2: JD 3C  
   c. P3: 8H 4H  
   d. Flop: 9S 5C AH  
   e. Turn: 6C  
