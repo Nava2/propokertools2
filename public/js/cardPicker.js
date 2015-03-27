@@ -72,11 +72,16 @@
             hand = pp2.board.player(playerId).hand();
         }
         
-        hand.forEach(function(card){
+        var sliderValues = [0,100];
+        hand.forEach(function(card, i){
             if(!_.isNumber(card)){
                 modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
+            }else{
+                sliderValues[i] = card;
             }
         });
+        $("#slider-range").slider('option','values',sliderValues);
+        $("#range").val(sliderValues[0]+"% - "+sliderValues[1]+"%");
 
         $('#liteAccordion').liteAccordion({
             containerWidth: 700,
@@ -95,7 +100,6 @@
         $("#search").val("").trigger('input');
         $(".delete-card").click();
         $('.suit-select .' + pp2.Suits.Clubs.long).click();
-
 
     });
 
