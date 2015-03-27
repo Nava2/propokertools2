@@ -25,8 +25,10 @@
         $.each($modal.find("#picked-cards").children(),function(index){
             if ( index >= numCards){
                 $(this).hide();
+                $(this).removeClass("valid");
             }else{
                 $(this).show();
+                $(this).addClass("valid")
             }
 
         });
@@ -49,26 +51,6 @@
                 $("#advanced").click();
             }
         }
-    });
-
-    $cardPicker.on('shown.bs.modal', function () {
-        var $modal = $(this);
-
-        $("#search").focus();
-
-        $('.plus-content .glyphicon-plus', $modal).each(function () {
-            var $this = $(this);
-
-            $this.css({
-                top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
-                width: $this.height() + 'px'
-            });
-
-            $this.css({
-                left: (($this.parent().parent().width() - $this.width()) / 2) + 'px'
-            })
-
-        });
 
 
         //get saved cards
@@ -94,6 +76,28 @@
         $("#range").val(sliderValues[0]+"% - "+sliderValues[1]+"%");
 
         updateSaveCardButton();
+
+    });
+
+    $cardPicker.on('shown.bs.modal', function () {
+        var $modal = $(this);
+
+        $("#search").focus();
+
+        $('.plus-content .glyphicon-plus', $modal).each(function () {
+            var $this = $(this);
+
+            $this.css({
+                top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
+                width: $this.height() + 'px'
+            });
+
+            $this.css({
+                left: (($this.parent().parent().width() - $this.width()) / 2) + 'px'
+            })
+
+        });
+
     });
 
 
@@ -260,7 +264,7 @@
 
             $selectedCard.removeClass("enabled");
             $selectedCard = $selectedCard.next();
-            if ( $selectedCard.is(":visible") && $selectedCard.hasClass("button") ){
+            if ( $selectedCard.hasClass("valid") && $selectedCard.hasClass("button") ){
                 $selectedCard.removeClass("button")
                 $selectedCard.addClass("enabled");
             }
