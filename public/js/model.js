@@ -173,7 +173,7 @@ var pp2 = (function () {
 
     /**
      * Get the cards in use of `suit`, or if unspecified all cards in use.
-     * @param {Object} suit
+     * @param {Object} [suit]
      * @returns {Card[]}
      */
     Deck.prototype.getCardsInUse = function(suit) {
@@ -238,17 +238,15 @@ var pp2 = (function () {
 
             var that = this;
             this._hand.forEach(function (c) {
-                if(typeof(c) != "number"){
+                if(_.isObject(c)){
                     that._deck.setCardAvailable(c);
                 }
             });
 
             //hand is not a hand range
-            if(typeof(newHand[0]) != "number"){
-                newHand.forEach(function (c) {
-                    that._deck.setCardUnavailable(c);
-                });
-            }
+            newHand.forEach(function (c) {
+                that._deck.setCardUnavailable(c);
+            });
 
             this._hand = newHand;
             GameActions.setPlayerCards(this._id, this._hand);
