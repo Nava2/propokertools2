@@ -145,9 +145,9 @@ body
                                                                 </span>
                                                             <% });} %>
                                                     </td>
-                                                    <td><%= numeral(player.equity).format('0.0a') %>%</td>
-                                                    <td><%= numeral(player.wins).format('0.0a') %></td>
-                                                    <td><%= numeral(player.ties).format('0.0a') %></td>
+                                                    <td><%= player.equity %>%</td>
+                                                    <td><%= (player.wins > 999) ? numeral(player.wins).format('0.0a') : player.wins %></td>
+                                                    <td><%= (player.ties > 999) ? numeral(player.ties).format('0.0a') : player.ties %></td>
                                                 </tr>
                                             <% }); %>
                                         </table>
