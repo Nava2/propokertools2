@@ -2,16 +2,7 @@
 	var ga = { };
 
     function updateSimulateButton (){
-        var count = 0;
-        //check if atleast 2 player's hand has been set
-        _.each(pp2.board.players(),function(p){
-            if ( p.hand().length != 0 ){
-                count++;
-                if ( count >= 2){
-                    return;
-                }
-            }
-        })
+        var count = pp2.board.numberOfHandsSet();
 
         if ( count >= 2 ){
             $("#simulate").removeAttr('disabled');
@@ -35,6 +26,7 @@
             // empty hand
             $('.selected', $player).hide();
             $('.no-cards', $player).show();
+            updateSimulateButton();
             return;
         }
 
