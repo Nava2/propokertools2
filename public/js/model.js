@@ -511,6 +511,16 @@ var pp2 = (function () {
         this.table().river(Globals.Cards.fromTag(state.table.river));
     };
 
+    Game.prototype.numberOfHandsSet = function(){
+        return _.reject(pp2.board.players(),function(p){
+            return p.hand().length == 0
+        }).length
+    }
+
+    Game.prototype.isBoardEmpty = function(){
+        return this.table().flop().length == 0 && this.numberOfHandsSet() == 0;
+    }
+
 
     Globals.Game = Game;
     Globals.board = new Game(); // preinitialize a game.

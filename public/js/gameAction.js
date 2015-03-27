@@ -1,6 +1,15 @@
 (function (window){
 	var ga = { };
 
+    function updateSimulateButton (){
+        var count = pp2.board.numberOfHandsSet();
+
+        if ( count >= 2 ){
+            $("#simulate").removeAttr('disabled');
+        }else{
+            $("#simulate").attr("disabled","disabled");
+        }
+    }
     /**
      * Set a player's hand on the table to be the cards passed.
      * @param playerId Player number
@@ -17,6 +26,7 @@
             // empty hand
             $('.selected', $player).hide();
             $('.no-cards', $player).show();
+            updateSimulateButton();
             return;
         }
 
@@ -67,6 +77,7 @@
                 'top': (($this.parent().parent().height() - $this.height())/2) + 'px'
             });
         });
+        updateSimulateButton();
     };
 
     ga.updateBoardEnabledState = function (boardTypeId, isSet) {
@@ -111,6 +122,7 @@
             });
             ga.updateBoardEnabledState(boardTypeId, true);
         }
+
     };
 
     /**
