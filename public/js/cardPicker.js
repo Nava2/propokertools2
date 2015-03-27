@@ -97,14 +97,21 @@
         $('.plus-content .glyphicon-plus', $modal).each(function () {
             var $this = $(this);
 
+            var display = $this.parent().css('display');
+            $this.parent().show();
+            console.log($this.parent().parent().height())
+            console.log($this.height());
+
             $this.css({
                 top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
                 width: $this.height() + 'px'
             });
 
+            console.log($this.width());
             $this.css({
                 left: (($this.parent().parent().width() - $this.width()) / 2) + 'px'
             })
+            $this.parent().css('display',display);
 
         });
 
