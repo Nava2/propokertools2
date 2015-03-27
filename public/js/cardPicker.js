@@ -63,7 +63,12 @@
         }else{
             hand = pp2.board.player(playerId).hand();
         }
-        
+        if ( _.isUndefined(hand)){
+            hand = [];
+        }else if ( !_.isArray(hand)){
+            hand = [hand];
+        }
+
         var sliderValues = [0,100];
         hand.forEach(function(card, i){
             if(!_.isNumber(card)){
@@ -134,6 +139,10 @@
                 hand.push(pp2.Cards[suit][value]);
             });
 
+            if(hand.length == 0){
+                hand = null;
+            }
+
             if (playerId in boardMap){
                 pp2.board.table().setCards(boardMap[playerId],hand);
             }else{
@@ -142,6 +151,7 @@
             
             $cardPicker.modal("hide");
             GameActions.setHandResults([]);
+            GameActions.updateBoardEnabledState();
         }
     });
 
