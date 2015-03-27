@@ -31,9 +31,11 @@
 
         });
 
+        $('.card-select img[id^=card].disabled', $modal).removeClass('disabled');
+
         //disable cards
         pp2.board.deck().getCardsInUse().forEach(function(card){
-            $("#card-"+card.value.short+""+card.suit.short,$modal).addClass("disabled");
+            $("#card-" + card.value.short + card.suit.short, $modal).addClass("disabled");
         });
 
         if (playerId in boardMap) {
