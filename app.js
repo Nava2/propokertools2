@@ -22,19 +22,19 @@ app.use(express.static(__dirname + '/public'));
 
 var indexModel = {
     cards : [
-        {short:"A", long:"ace"},
-        {short:"2", long:"two"},
-        {short:"3", long:"three"},
-        {short:"4", long:"four"},
-        {short:"5", long:"five"},
-        {short:"6", long:"six"},
-        {short:"7", long:"seven"},
-        {short:"8", long:"eight"},
-        {short:"9", long:"nine"},
-        {short:"T", long:"ten"},
-        {short:"J", long:"jack"},
-        {short:"Q", long:"queen"},
-        {short:"K", long:"king"}
+        {short:"A", long:"Ace"},
+        {short:"2", long:"Two"},
+        {short:"3", long:"Three"},
+        {short:"4", long:"Four"},
+        {short:"5", long:"Five"},
+        {short:"6", long:"Six"},
+        {short:"7", long:"Seven"},
+        {short:"8", long:"Eight"},
+        {short:"9", long:"Nine"},
+        {short:"T", long:"Ten"},
+        {short:"J", long:"Jack"},
+        {short:"Q", long:"Queen"},
+        {short:"K", long:"King"}
     ],
 
     suits : [
@@ -48,7 +48,7 @@ var indexModel = {
         return {
             'data-toggle': 'modal',
             'data-target': '#cardPicker',
-            'data-playerid': id,
+            'data-playerid': 'p' + id,
             'data-numcards': numCards
         };
     }
@@ -103,21 +103,27 @@ var parseHTMLResult = (function () {
         }
 
         var A = 'A'.charCodeAt(0);
-        o.hands = _.chain(_.range(A, A + 6))
-            .map(function (c) { return '.simRow' + String.fromCharCode(c); })
-            .map(function (selector) {
 
-                if ($(selector).length > 0) {
-                    return {
-                        hand: splitHand($(selector + ' .pptSpec').text()),
-                        equity: Number($(selector + ' .pptEV').text().slice(0, -1)),
-                        wins: Number($(selector + ' .pptWinsHi').text().replace(/,/g, '')),
-                        ties: Number($(selector + ' .pptTiesHi').text().replace(/,/g, ''))
-                    };
+        var $rows = $(".pptSimTable tr[class^='simRow']");
+        o.hands = _.chain(_.range(0, 6)).map(function (i) {
+                if (i < $rows.length) {
+                    return $($rows[i]);
                 } else {
                     return undefined;
                 }
-            }).compact().value();
+            })
+            .map(function (row) {
+                if (row) {
+                    return {
+                        hand: splitHand($('.pptSpec', row).text()),
+                        equity: Number($('.pptEV', row).text().slice(0, -1)),
+                        wins: Number($('.pptWinsHi', row).text().replace(/,/g, '')),
+                        ties: Number($('.pptTiesHi', row).text().replace(/,/g, ''))
+                    };
+                } else {
+                    return {};
+                }
+            }).value();
 
         return o;
     };
@@ -126,7 +132,7 @@ var parseHTMLResult = (function () {
 /**
  * Expected input: {
  *  table: ['ah', 'td', 'jh'],
- *  hands: [['ac', 'jd'], ['as, 'qs]]
+ *  hands: [['ac', 'jd'], ['as', 'qs']]
  * }
  */
 app.post('/submit', function (req, res) {
@@ -173,10 +179,42 @@ app.post('/submit', function (req, res) {
             if (res.error)
                 throw res.error;
 
-            sessions[sessionId] = parseHTMLResult(res.text); // html
+            try {
+                var result = parseHTMLResult(res.text); // html
+                var maxEquity = { idx: -1, value: 0 };
+                _.each(result.hands, function (hand, i) {
+                    if (hand.equity > maxEquity.value) {
+                        maxEquity.value = hand.equity;
+                        maxEquity.idx = i;
+                    }
+                });
+                result.hands[maxEquity.idx].winner = true;
 
-            //console.log('STATUS: ' + _res.statusCode);
-            //console.log('HEADERS: ' + JSON.stringify(_res.headers));
+                var resIdx = 0;
+                var orderedHands = [];
+                _.each(data.hands, function (h) {
+                    if (h.length > 0) {
+                        orderedHands.push(result.hands[resIdx++]);
+                    } else {
+                        orderedHands.push({});
+                    }
+                });
+
+                _.each(_.range(data.hands.length, 6), function () {
+                    orderedHands.push({});
+                });
+
+                result.hands = orderedHands;
+
+                sessions[sessionId] = result;
+
+                console.log('session complete: ' + sessionId);
+            } catch (err) {
+                console.log('error: ' + err);
+                sessions[sessionId] = "Error: Invalid response from server";
+            }
+
+
         });
 
     res.json({'id' : sessionId});
