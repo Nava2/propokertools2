@@ -211,6 +211,7 @@ app.post('/submit', function (req, res) {
                 console.log('session complete: ' + sessionId);
             } catch (err) {
                 console.log('error: ' + err);
+                console.log('input:', postObj);
                 sessions[sessionId] = "Error: Invalid response from server";
             }
 
