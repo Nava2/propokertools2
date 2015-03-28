@@ -12,6 +12,9 @@
         // get the data passed in
         var playerId = button.attr('data-playerId');
         var numCards = button.attr('data-numCards');
+        if ( button.attr('data-status') == 'disabled'){
+            return false;
+        }
 
 
         //update modal headers
@@ -63,7 +66,12 @@
         }else{
             hand = pp2.board.player(playerId).hand();
         }
-        
+        if ( _.isUndefined(hand)){
+            hand = [];
+        }else if ( !_.isArray(hand)){
+            hand = [hand];
+        }
+
         var sliderValues = [0,100];
         hand.forEach(function(card, i){
             if(!_.isNumber(card)){
@@ -89,14 +97,21 @@
         $('.plus-content .glyphicon-plus', $modal).each(function () {
             var $this = $(this);
 
+            var display = $this.parent().css('display');
+            $this.parent().show();
+            console.log($this.parent().parent().height())
+            console.log($this.height());
+
             $this.css({
                 top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
                 width: $this.height() + 'px'
             });
 
+            console.log($this.width());
             $this.css({
                 left: (($this.parent().parent().width() - $this.width()) / 2) + 'px'
             })
+            $this.parent().css('display',display);
 
         });
 
@@ -134,6 +149,10 @@
                 hand.push(pp2.Cards[suit][value]);
             });
 
+            if(hand.length == 0 && (playerId == "pturn" || playerId == "priver") ){
+                hand = null;
+            }
+
             if (playerId in boardMap){
                 pp2.board.table().setCards(boardMap[playerId],hand);
             }else{
@@ -142,6 +161,7 @@
             
             $cardPicker.modal("hide");
             GameActions.setHandResults([]);
+            GameActions.updateBoardEnabledState();
         }
     });
 

@@ -60,11 +60,11 @@ body
                                         .plus-content: span.glyphicon.glyphicon-plus
 
                         li#turn.table-card-set(tabIndex=8)
-                            #t1.button.table-card&attributes(show_modal_attributes('turn', 1))
+                            #t1.button.table-card(data-status='disabled')&attributes(show_modal_attributes('turn', 1))
                                 .plus-content: span.glyphicon.glyphicon-plus
 
                         li#river.table-card-set(tabIndex=9)
-                            #r1.button.table-card&attributes(show_modal_attributes('river', 1))
+                            #r1.button.table-card(data-status='disabled')&attributes(show_modal_attributes('river', 1))
                                 .plus-content: span.glyphicon.glyphicon-plus
 
                 #sidebar.col-md-4

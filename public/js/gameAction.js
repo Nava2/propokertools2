@@ -80,24 +80,45 @@
         updateSimulateButton();
     };
 
-    ga.updateBoardEnabledState = function (boardTypeId, isSet) {
-        var state = {
-            flop: "turn",
-            turn: "river"
-        };
+    function updateBoardEnabled(enableId, disableId){
+        if ( enableId != null){
+            $("#"+enableId).removeClass("button").addClass("enabled");
+            $("#"+enableId).attr("data-status",'enabled');
+        }
+        if ( disableId != null){
+            $("#"+disableId).removeClass("enabled").addClass("button");  
+            $("#"+disableId).attr("data-status",'disabled');
+        }
+    }
 
-        if ( isSet ){
-            $("#"+boardTypeId+" .enabled").removeClass("enabled").addClass("button");
-            if ( boardTypeId in state){
-                $("#"+state[boardTypeId]+" .button").removeClass("button").addClass("enabled");
-            }
-        } else {
-            $("#"+boardTypeId+" .button").removeClass("button").addClass("enabled");
-            if ( boardTypeId in state){
-                $("#"+state[boardTypeId]+" .enabled").removeClass("enabled").addClass("button");
-            }
+    ga.updateBoardEnabledState = function () {
+        if ( _.isEmpty(pp2.board.table().flop())){
+            _.each([1,2,3],function(i){
+                updateBoardEnabled("f"+i);
+            })
+            updateBoardEnabled(null,"t1");
+            updateBoardEnabled(null,"r1");
+            return;
+        }else{
+            updateBoardEnabled("t1","r1");
         }
 
+        if ( _.isEmpty(pp2.board.table().turn())){
+            _.each([1,2,3],function(i){
+                updateBoardEnabled("f"+i);
+            })
+            updateBoardEnabled("t1","r1");
+            return;
+        }else{
+            _.each([1,2,3],function(i){
+                updateBoardEnabled(null,"f"+i);
+            })
+            updateBoardEnabled("r1");
+        }
+
+        if ( !_.isEmpty(pp2.board.table().river())){
+            updateBoardEnabled("r1","t1");
+        }
     };
 
     ga.setBoard = function (boardTypeId, cards) {
@@ -112,7 +133,6 @@
         if (_.isArray(cards) && cards.length == 0) {
             // empty hand
             $('.plus-content', $boardType).show();
-            ga.updateBoardEnabledState(boardTypeId, false);
         } else {
             $('.plus-content', $boardType).hide();
 
@@ -120,9 +140,7 @@
                 $boardType.find(".table-card:nth-child("+(i+1)+")")
                     .append("<img src='images/Cards/" + card.suit.long + '/' + card.value.short + card.suit.short + ".svg' />");
             });
-            ga.updateBoardEnabledState(boardTypeId, true);
-        }
-
+        } 
     };
 
     /**
