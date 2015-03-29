@@ -118,8 +118,8 @@
 
 /* Player 6's circle position */
 #p6 {
-    right: 20%;
-    bottom: 20%;
+    right: 13%;
+    bottom: 23%;
 }
 
 .plus-content {
@@ -230,7 +230,7 @@
 
 .low-range, .high-range{
     color:#f6931f;
-    font-size: 18;
+    font-size: 18px;
 }
 
 /*********************
@@ -518,17 +518,17 @@
 
 
 .enabled {
-    border: 2px solid #a1a1a1;
-    background: -webkit-linear-gradient(rgba(211, 236, 255, 0.9), rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* Standard syntax */
+    border: 2px solid #000000;
+    background: -webkit-linear-gradient(rgba(211, 236, 255, 0.9), rgb(16, 131, 207)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(211, 236, 255, 0.9), rgb(16, 131, 207)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(211, 236, 255, 0.9), rgb(16, 131, 207)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(211, 236, 255, 0.9), rgb(16, 131, 207)); /* Standard syntax */
     cursor: pointer;
 }
 
 .card-select .disabled{
     -webkit-filter: grayscale(100%) contrast(30%);
-    -ms-filter: grayscale(100%) contrast(30%);
+ //   -ms-filter: grayscale(100%) contrast(30%);
     filter: grayscale(100%) contrast(30%);
     cursor: not-allowed;
 }
