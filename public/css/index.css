@@ -507,11 +507,11 @@
 * Misc CSS
 **********************/
 .button {
-    border: 2px solid #b9b9b9;
-    background: -webkit-linear-gradient(#ffffff, #7a7a7a); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#ffffff, #7a7a7a); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#ffffff, #7a7a7a); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#ffffff, #7a7a7a); /* Standard syntax */
+    border: 2px solid #000000;
+    background: -webkit-linear-gradient(#a8ff2d, #009d1a); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#a8ff2d, #009d1a); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#a8ff2d, #009d1a); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#a8ff2d, #009d1a); /* Standard syntax */
 
     cursor: default;
 }
@@ -527,7 +527,7 @@
 }
 .card-select .disabled{
     -webkit-filter: grayscale(100%) contrast(30%);
-  //  -ms-filter: grayscale(100%) contrast(30%);
+    -ms-filter: grayscale(100%) contrast(30%);
     filter: grayscale(100%) contrast(30%);
     cursor: not-allowed;
 }
