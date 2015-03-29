@@ -460,11 +460,11 @@
     border:0;
     color:#f6931f;
     font-weight:bold;
-    padding-left: 30px;    
+    padding-left: 250px;
 }
 
 #slider-range{
-    width: 400px;
+    width: 555px;
     margin: 30px;
     background: -webkit-linear-gradient(gray, black); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
