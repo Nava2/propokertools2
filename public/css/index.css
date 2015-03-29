@@ -525,7 +525,6 @@
     background: linear-gradient(rgba(168, 255, 45, 0.9), rgba(26, 150, 63, 1)); /* Standard syntax */
     cursor: pointer;
 }
-
 .card-select .disabled{
     -webkit-filter: grayscale(100%) contrast(30%);
   //  -ms-filter: grayscale(100%) contrast(30%);
