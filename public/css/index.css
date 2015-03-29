@@ -38,8 +38,8 @@
     width: 180%;
 
     position: absolute;
-    left: -37%;
-    bottom: 100%;
+    left: -49%;
+    bottom: -169%;
 
 }
 
@@ -89,7 +89,7 @@
 /* Player 1's circle position */
 #p1 {
     left: 46.2%;
-    bottom: 15%;
+    bottom: 15.5%;
 }
 
 /* Player 2's circle position */
