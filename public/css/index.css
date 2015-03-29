@@ -39,15 +39,12 @@
     left: -49%;
     bottom: -169%;
 }
-
 .player .selected .table-card-set {
     display: inline-block;
-
     position: relative;
     left: -25%;
     padding: 1%;
 }
-
 .player .selected li {
     width: 100%;
     padding: 2%;
