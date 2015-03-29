@@ -5,6 +5,8 @@
         priver: "river"
     };
 
+    var SLIDER_MIN_MAX = [1, 100];
+
     var $cardPicker = $('#cardPicker');
     //event listeners
     $cardPicker.on('show.bs.modal', function (event) {
@@ -40,7 +42,9 @@
 
         //disable cards
         pp2.board.deck().getCardsInUse().forEach(function(card){
-            $("#card-" + card.value.short + card.suit.short, $modal).addClass("disabled");
+            if (_.isObject(card)) {
+                $("#card-" + card.value.short + card.suit.short, $modal).addClass("disabled");
+            }
         });
 
         if (playerId in boardMap) {
@@ -72,7 +76,7 @@
             hand = [hand];
         }
 
-        var sliderValues = [0,100];
+        var sliderValues = _.clone(SLIDER_MIN_MAX);
         hand.forEach(function(card, i){
             if(!_.isNumber(card)){
                 modalSearch.setCard($modal.find("#card-"+card.value.short+""+card.suit.short));
@@ -82,7 +86,7 @@
         });
 
         //update advanced slider values
-        $("#slider-range").slider('option','values',sliderValues);
+        $("#slider-range").slider('option', 'values', sliderValues);
         $("#range").val(sliderValues[0]+"% - "+sliderValues[1]+"%");
 
         updateSaveCardButton();
@@ -99,19 +103,16 @@
 
             var display = $this.parent().css('display');
             $this.parent().show();
-            console.log($this.parent().parent().height())
-            console.log($this.height());
 
             $this.css({
                 top: (($this.parent().parent().height() - $this.height()) / 2) + 'px',
                 width: $this.height() + 'px'
             });
 
-            console.log($this.width());
             $this.css({
                 left: (($this.parent().parent().width() - $this.width()) / 2) + 'px'
-            })
-            $this.parent().css('display',display);
+            });
+            $this.parent().css('display', display);
 
         });
 
@@ -202,8 +203,8 @@
                 var cardObject = {
                     card: card,
                     suit: suit,
-                    search: card.short+""+suit.short+" "+card.long+" "+suit.long,
-                    selector:"#card-"+card.short+""+suit.short
+                    search: card.short + suit.short + " " + card.long + " " + suit.long,
+                    selector:"#card-" + card.short + suit.short
                 };
                 
                 allCards.push(cardObject);
@@ -222,7 +223,8 @@
 
 
         //second way of doing autocomplete display
-        $("#search").on('input',function(e){
+        var $search = $("#search");
+        $search.on('input',function(e){
             var search = $(this).val();
             if ( search ){
                 $(".suit-select").hide();
@@ -250,12 +252,12 @@
             }
         });
 
-        $("#search").keyup(function(e){
+        $search.keyup(function(e){
             if ( e.keyCode != 13 || $(this).val() == ''){ //enter was not pressed
                  return;
             }
             
-            var $card = $(".card-select.card-display>img:visible:not(.disabled)").first();
+            var $card = $(".card-select.card-display > img:visible:not(.disabled)").first();
             if ( $card.length == 0){
                 return;
             }
@@ -264,8 +266,26 @@
 
         })
 
-    })();   
+    })();
 
+    /*
+     * JQueryUI advanced tab % slider
+     */
+    $(function() {
+        var $sliderRange = $("#slider-range");
+        $sliderRange.slider({
+            range: true,
+            min: SLIDER_MIN_MAX[0],
+            max: SLIDER_MIN_MAX[1],
+            values: SLIDER_MIN_MAX,
+            slide: function( event, ui ) {
+                $("#range").val(" " + ui.values[ 0 ] + "% - " + ui.values[ 1 ] + "%");
+            }
+        });
+
+        $("#range").val(" " + $sliderRange.slider( "values", 0 ) +
+            "% - " + $sliderRange.slider( "values", 1 ) + "%" );
+    });
 
     //modal select card functonality
     var modalSearch = (function(){
@@ -356,4 +376,4 @@
     })();
 
     window.modalSearch = modalSearch;
-})(window);;
+})(window);

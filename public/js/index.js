@@ -49,27 +49,6 @@
         }
     });
 
-   /*
-    * JQueryUI advanced tab % slider
-    */
-    $(function() {
-        var $sliderRange = $("#slider-range");
-        $sliderRange.slider({
-          range: true,
-          min: 0,
-          max: 100,
-          values: [ 0, 100 ],
-          slide: function( event, ui ) {
-            $("#range").val(" " + ui.values[ 0 ] + "% - " + ui.values[ 1 ] + "%");
-          }
-        });
-        
-        $("#range").val(" " + $sliderRange.slider( "values", 0 ) +
-            "% - " + $sliderRange.slider( "values", 1 ) + "%" );
-    });
-    
-
-
     $(window).load(function() {
         $(window).trigger('resize');
         
