@@ -231,7 +231,7 @@
 
 
 .low-range, .high-range{
-    color:#f6931f;
+    color:#1FAAF6;
     font-size: 18px;
 }
 
@@ -460,7 +460,7 @@
 
 #range {
     border:0;
-    color: #1c92a8;
+    color: #1FAAF6;
     font-weight:bold;
     padding-left: 250px;
 }
