@@ -88,14 +88,14 @@
 
 /* Player 1's circle position */
 #p1 {
-    left: 45.5%;
+    left: 46.2%;
     bottom: 15%;
 }
 
 /* Player 2's circle position */
 #p2 {
-    left: 20%;
-    bottom: 20%;
+    left: 14%;
+    bottom: 23%;
 }
 
 /* Player 3's circle position */
@@ -106,7 +106,7 @@
 
 /* Player 4's circle position */
 #p4 {
-    left: 45.5%;
+    left: 46.2%;
     top: 15%;
 }
 
@@ -118,8 +118,8 @@
 
 /* Player 6's circle position */
 #p6 {
-    right: 20%;
-    bottom: 20%;
+    right: 13%;
+    bottom: 23%;
 }
 
 .plus-content {
@@ -141,7 +141,7 @@
 .plus-content .glyphicon-plus {
     width: 50%;
     font-size: 50px;
-    margin-left: 4%;
+    margin-left: 8%;
     position: relative;
     height: auto;
 }
@@ -230,7 +230,7 @@
 
 .low-range, .high-range{
     color:#f6931f;
-    font-size: 18;
+    font-size: 18px;
 }
 
 /*********************
@@ -458,13 +458,13 @@
 
 #range {
     border:0;
-    color:#f6931f;
+    color: #1e9db5;
     font-weight:bold;
-    padding-left: 30px;    
+    padding-left: 267px;
 }
 
 #slider-range{
-    width: 400px;
+    width: 560px;
     margin: 30px;
     background: -webkit-linear-gradient(gray, black); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
@@ -507,22 +507,22 @@
 * Misc CSS
 **********************/
 .button {
-    border: 2px solid #a1a1a1;
-    background: -webkit-linear-gradient(gray, black); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(gray, black); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(gray, black); /* Standard syntax */
+    border: 2px solid #b9b9b9;
+    background: -webkit-linear-gradient(#ffffff, #7a7a7a); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#ffffff, #7a7a7a); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#ffffff, #7a7a7a); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#ffffff, #7a7a7a); /* Standard syntax */
 
     cursor: default;
 }
 
 
 .enabled {
-    border: 2px solid #a1a1a1;
-    background: -webkit-linear-gradient(rgba(211, 236, 255, 0.9), rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* Standard syntax */
+    border: 2px solid #000000;
+    background: -webkit-linear-gradient(rgba(149, 255, 0, 0.9), rgb(0, 157, 26)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(149, 255, 0, 0.9), rgb(0, 157, 26)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(149, 255, 0, 0.9), rgb(0, 157, 26)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(149, 255, 0, 0.9), rgb(0, 157, 26)); /* Standard syntax */
     cursor: pointer;
 }
 
