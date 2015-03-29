@@ -473,10 +473,10 @@
 }
 
 .ui-slider-range{
-    background: -webkit-linear-gradient(rgba(168, 255, 45, 0.9), rgb(0, 157, 26)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(168, 255, 45, 0.9), rgb(0, 157, 26)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(168, 255, 45, 0.9), rgb(0, 157, 26)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(168, 255, 45, 0.9), rgb(0, 157, 26)); /* Standard syntax */
+    background: -webkit-linear-gradient(rgba(211, 236, 255, 0.9), rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(211, 236, 255, 0.9), rgba(117, 200, 255, 1)); /* Standard syntax */
 }
 
 #picked-cards .delete-card {
@@ -519,10 +519,10 @@
 
 .enabled {
     border: 2px solid #000000;
-    background: -webkit-linear-gradient(rgba(211, 236, 255, 0.9), rgb(16, 131, 207)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(211, 236, 255, 0.9), rgb(16, 131, 207)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(211, 236, 255, 0.9), rgb(16, 131, 207)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(211, 236, 255, 0.9), rgb(16, 131, 207)); /* Standard syntax */
+    background: -webkit-linear-gradient(rgba(168, 255, 45, 0.9), rgb(0, 157, 26)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(168, 255, 45, 0.9), rgb(0, 157, 26)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(168, 255, 45, 0.9), rgb(0, 157, 26)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(168, 255, 45, 0.9), rgb(0, 157, 26)); /* Standard syntax */
     cursor: pointer;
 }
 
