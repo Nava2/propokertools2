@@ -167,13 +167,13 @@
     });
 
 
-    function updateSaveCardButton(){
-        if ( $("#picked-cards > .enabled").length == 0 || $(".pick-card > .delete-card:visible").length == 0 ){
+    window.updateSaveCardButton = function(){
+        if ( $("#picked-cards > .enabled").length == 0 || $(".pick-card > .delete-card:visible").length == 0 || $("#advanced").hasClass("selected")){
             $("#saveCards").removeAttr('disabled');
         }else{
             $("#saveCards").attr('disabled','disabled');
         }
-    }
+    };
 
     //suit select
     (function () {

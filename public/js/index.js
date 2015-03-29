@@ -55,6 +55,9 @@
         $('#liteAccordion').liteAccordion({
             containerWidth: 700,
             containerHeight: 750,
+            onSlideAnimComplete: function(){
+                updateSaveCardButton();
+            },
         });
     });
 
