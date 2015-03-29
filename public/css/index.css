@@ -94,8 +94,8 @@
 
 /* Player 2's circle position */
 #p2 {
-    left: 14%;
-    bottom: 23%;
+    left: 16%;
+    bottom: 27%;
 }
 
 /* Player 3's circle position */
@@ -106,8 +106,8 @@
 
 /* Player 4's circle position */
 #p4 {
-    left: 45.5%;
-    top: 15%;
+    left: 46.2%;
+    top: 11%;
 }
 
 /* Player 5's circle position */
@@ -118,8 +118,8 @@
 
 /* Player 6's circle position */
 #p6 {
-    right: 13%;
-    bottom: 23%;
+    right: 15.3%;
+    bottom: 27%;
 }
 
 .plus-content {
@@ -141,7 +141,7 @@
 .plus-content .glyphicon-plus {
     width: 50%;
     font-size: 50px;
-    margin-left: 8%;
+    margin-left: 4%;
     position: relative;
     height: auto;
 }
@@ -458,13 +458,13 @@
 
 #range {
     border:0;
-    color: #1e9db5;
+    color:#f6931f;
     font-weight:bold;
-    padding-left: 267px;
+    padding-left: 30px;    
 }
 
 #slider-range{
-    width: 560px;
+    width: 400px;
     margin: 30px;
     background: -webkit-linear-gradient(gray, black); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
@@ -519,16 +519,16 @@
 
 .enabled {
     border: 2px solid #000000;
-    background: -webkit-linear-gradient(rgba(168, 255, 45, 0.9), rgb(0, 157, 26)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba(168, 255, 45, 0.9), rgb(0, 157, 26)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba(168, 255, 45, 0.9), rgb(0, 157, 26)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba(168, 255, 45, 0.9), rgb(0, 157, 26)); /* Standard syntax */
+    background: -webkit-linear-gradient(rgba(168, 255, 45, 0.9), rgba(26, 150, 63, 1)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(168, 255, 45, 0.9), rgba(26, 150, 63, 1)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(168, 255, 45, 0.9), rgba(26, 150, 63, 1)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(168, 255, 45, 0.9), rgba(26, 150, 63, 1)); /* Standard syntax */
     cursor: pointer;
 }
 
 .card-select .disabled{
     -webkit-filter: grayscale(100%) contrast(30%);
- //   -ms-filter: grayscale(100%) contrast(30%);
+  //  -ms-filter: grayscale(100%) contrast(30%);
     filter: grayscale(100%) contrast(30%);
     cursor: not-allowed;
 }
