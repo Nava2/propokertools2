@@ -101,19 +101,19 @@
 /* Player 3's circle position */
 #p3 {
     left: 20%;
-    top: 18%;
+    bottom: 66%;
 }
 
 /* Player 4's circle position */
 #p4 {
     left: 46.2%;
-    top: 11%;
+    bottom: 70%;
 }
 
 /* Player 5's circle position */
 #p5 {
     right: 20%;
-    top: 18%;
+    bottom: 66%;    
 }
 
 /* Player 6's circle position */
