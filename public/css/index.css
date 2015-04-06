@@ -235,6 +235,14 @@
 .percentage{
     background-color: white;
 }
+
+.percentage li:first-child{
+    padding-left:8%;
+
+}
+.player .percentage li{
+    width:auto;
+}
 /*********************
 * Sidebar CSS
 **********************/
