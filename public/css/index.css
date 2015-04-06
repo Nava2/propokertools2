@@ -11,7 +11,6 @@
     background-size: contain;
     height: 100%;
     max-height: 625px;
-    border: solid 1px blue;
 
     overflow: auto;
 }
@@ -82,38 +81,38 @@
 
 /* Player 1's circle position */
 #p1 {
-    left: 46.2%;
-    bottom: 15.5%;
+    left: 45.5%;
+    bottom: 15%;
 }
 
 /* Player 2's circle position */
 #p2 {
-    left: 13%;
-    bottom: 27%;
+    left: 20%;
+    bottom: 20%;
 }
 
 /* Player 3's circle position */
 #p3 {
     left: 20%;
-    top: 18%;
+    bottom: 66%;
 }
 
 /* Player 4's circle position */
 #p4 {
-    left: 46.2%;
-    top: 12%;
+    left: 45.5%;
+    bottom: 70%;
 }
 
 /* Player 5's circle position */
 #p5 {
-    right: 19%;
-    top: 18%;
+    right: 20%;
+    bottom: 66%;    
 }
 
 /* Player 6's circle position */
 #p6 {
-    right: 12.3%;
-    bottom: 27%;
+    right: 20%;
+    bottom: 20%;
 }
 
 .plus-content {
@@ -225,15 +224,36 @@
 
 
 .low-range, .high-range{
-    color:#1FAAF6;
-    font-size: 18px;
+    color: black;
+    font-size: 23;
+}
+
+.percentage{
+    background-color: white;
+}
+
+.percentage li:first-child{
+    padding-left:6%;
+    padding-right:0%;
+    margin-left:auto;
+    margin-right:0;
+
+}
+
+.percentage li:nth-of-type(2){
+    margin-right:auto;
+    margin-left:0;
+}
+
+.player .percentage li{
+    width: auto;
 }
 
 /*********************
 * Sidebar CSS
 **********************/
 #sidebar {
-    border: 2px solid red;
+    border-left: 2px solid lightgrey;
     height: 100%;
     max-height: 625px;
 }
@@ -241,10 +261,6 @@
 #sidebar h2 {
     text-align: center;
     height: 10%;
-    background: -webkit-linear-gradient(white, rgba(25, 163, 255, 1)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(white, rgba(117, 200, 255, 1)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(white, rgba(117, 200, 255, 1)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(white, rgba(117, 200, 255, 1)); /* Standard syntax */
 }
 
 .outputTable {
@@ -319,7 +335,7 @@
 * Footer CSS
 **********************/
 #footer {
-    border: 2px solid green;
+    border-top: 2px solid lightgrey;
 }
 
 #footer .controls {
@@ -433,6 +449,7 @@
 
     float: left;
     margin: 5px;
+    border-radius: 7%;
 }
 
 
@@ -529,4 +546,8 @@
 .controls button:focus, #flop:focus, #turn:focus, #river:focus, .player:focus {
     outline: solid;
     outline-color: lightgrey;
+}
+
+#advanced-content{
+    margin-left:5%;
 }
