@@ -232,6 +232,24 @@
     font-size: 18;
 }
 
+.percentage li:first-child{
+    padding-left:6%;
+    padding-right:0%;
+    margin-left:auto;
+    margin-right:0;
+
+}
+
+.percentage li:nth-of-type(2){
+    margin-right:auto;
+    margin-left:0;
+}
+
+.player .percentage li{
+    width: auto;
+
+}
+
 /*********************
 * Sidebar CSS
 **********************/
