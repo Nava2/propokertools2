@@ -33,23 +33,17 @@
     flex-direction: row;
     margin: 0;
     padding: 2%;
-
     width: 180%;
-
     position: absolute;
-    left: -37%;
-    bottom: 100%;
-
+    left: -49%;
+    bottom: -169%;
 }
-
 .player .selected .table-card-set {
     display: inline-block;
-
     position: relative;
     left: -25%;
     padding: 1%;
 }
-
 .player .selected li {
     width: 100%;
     padding: 2%;
@@ -227,6 +221,8 @@
     width: 100%;
 }
 
+
+
 .low-range, .high-range{
     color: black;
     font-size: 23;
@@ -251,7 +247,6 @@
 
 .player .percentage li{
     width: auto;
-
 }
 
 /*********************
@@ -472,17 +467,15 @@
 
     text-align: center;
 }
-
-
 #range {
     border:0;
-    color:#f6931f;
+    color: #1FAAF6;
     font-weight:bold;
-    padding-left: 30px;    
+    padding-left: 250px;
 }
 
 #slider-range{
-    width: 400px;
+    width: 555px;
     margin: 30px;
     background: -webkit-linear-gradient(gray, black); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient(gray, black); /* For Opera 11.1 to 12.0 */
@@ -543,7 +536,6 @@
     background: linear-gradient(rgba(168, 255, 45, 0.9), rgba(26, 150, 63, 1)); /* Standard syntax */
     cursor: pointer;
 }
-
 .card-select .disabled{
     -webkit-filter: grayscale(100%) contrast(30%);
     -ms-filter: grayscale(100%) contrast(30%);
