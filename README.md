@@ -1,5 +1,5 @@
 # propokertools2
-A redesign of http://www.propokertools.com/
+A redesign of [ProPokerTools](http://propokertools.com/simulations)
 
 ## Remote Server
 The latest version of this application is hosted on https://stark-inlet-1935.herokuapp.com/ for easier access.
@@ -8,7 +8,7 @@ The latest version of this application is hosted on https://stark-inlet-1935.her
 ### Install
 
 1. Install [node.js](http://nodejs.org/download/)
-1. Clone this repository `git clone git@github.com:Nava2/pokerprotools2.git` or unzip the provided file
+1. Clone this repository `git clone git@github.com:Nava2/propokertools2.git` or unzip the provided file
 1. Go to the directory from previous step and start the nodejs terminal.
 1. Execute `npm install`
 

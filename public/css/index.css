@@ -34,7 +34,7 @@
     margin: 0;
     padding: 2%;
 
-    width: 180%;
+    width: 200%;
 
     position: absolute;
     left: -37%;
@@ -476,9 +476,9 @@
 
 #range {
     border:0;
-    color:#f6931f;
+    color: #1FAAF6;
     font-weight:bold;
-    padding-left: 30px;    
+    padding-left: 200px;
 }
 
 #slider-range{
