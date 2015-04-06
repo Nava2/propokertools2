@@ -22,6 +22,8 @@
             cards = [];
         }
 
+        $('.selected', $player).removeClass('percentage');
+        
         if (_.isArray(cards) && cards.length == 0) {
             // empty hand
             $('.selected', $player).hide();
@@ -29,6 +31,7 @@
             updateSimulateButton();
             return;
         }
+
 
         $('.selected', $player).show();
         $('.no-cards', $player).hide();
@@ -44,6 +47,7 @@
             $high.text(cards[1]+"%");
             $imgs.hide();
             $selectables.hide();
+            $('.selected', $player).addClass('percentage');
         }
         //standard card selection
         else{

@@ -228,8 +228,12 @@
 }
 
 .low-range, .high-range{
-    color:#f6931f;
-    font-size: 18;
+    color: black;
+    font-size: 23;
+}
+
+.percentage{
+    background-color: white;
 }
 
 .percentage li:first-child{
@@ -450,6 +454,7 @@
 
     float: left;
     margin: 5px;
+    border-radius: 7%;
 }
 
 
@@ -549,4 +554,8 @@
 .controls button:focus, #flop:focus, #turn:focus, #river:focus, .player:focus {
     outline: solid;
     outline-color: lightgrey;
+}
+
+#advanced-content{
+    margin-left:5%;
 }
