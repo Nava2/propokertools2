@@ -1,5 +1,6 @@
 # propokertools2
-A redesign of [ProPokerTools](http://propokertools.com/simulations)
+A redesign of [ProPokerTools](http://propokertools.com/simulations). The live source code for this repository is hosted
+at [Nava2/propokertools2](https://github.com/Nava2/propokertools2). See LICENSE.txt for License information.
 
 ## Remote Server
 The latest version of this application is hosted on https://stark-inlet-1935.herokuapp.com/ for easier access.
